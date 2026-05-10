@@ -584,22 +584,67 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 .outlook-legend span { display: inline-flex; align-items: center; gap: 4px; color: var(--label-2); }
 .outlook-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
 
+/* ===== Day-detail popup sheet ===== */
 .out-detail {
-  padding: 14px 16px;
-  border-top: 1px solid var(--separator);
+  position: fixed; inset: 0;
+  z-index: 95;
   display: none;
-  animation: fade-up 0.3s var(--ease-spring);
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(2px);
+  align-items: flex-end;
+  animation: fade-in 0.2s ease;
 }
-.out-detail.open { display: block; }
-.out-detail .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
-.out-detail .h .date { font-size: 17px; font-weight: 600; }
-.out-detail .h .sc { font-size: 22px; font-weight: 700; }
-.out-detail .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 16px; font-size: 13px; color: var(--label-2); margin-bottom: 8px; }
-.out-detail .stats strong { color: var(--label); font-weight: 600; }
-.out-detail .flags { display: flex; flex-wrap: wrap; gap: 6px; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.out-detail.open { display: flex; }
+.out-detail .od-panel {
+  width: 100%; max-height: 88vh;
+  background: var(--bg-1);
+  border-radius: 24px 24px 0 0;
+  padding: 8px 18px calc(20px + var(--safe-bottom));
+  animation: slide-up 0.35s var(--ease-spring);
+  overflow-y: auto;
+  position: relative;
+}
+.out-detail .grabber {
+  width: 36px; height: 5px; border-radius: 3px;
+  background: var(--separator-strong);
+  margin: 8px auto 14px;
+}
+.out-detail .od-close {
+  position: absolute; top: 14px; right: 16px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-3);
+  color: var(--label-2);
+  display: grid; place-items: center;
+  cursor: pointer;
+}
+.out-detail .od-close:active { transform: scale(0.92); }
+.out-detail .od-close svg { width: 14px; height: 14px; }
+.out-detail .h { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; padding-right: 36px; }
+.out-detail .h .date { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+.out-detail .h .date small { display: block; font-weight: 500; color: var(--label-2); font-size: 11px; margin-top: 2px; }
+.out-detail .h .sc { font-size: 28px; font-weight: 800; line-height: 1; font-feature-settings: 'tnum'; }
+.out-detail .h .sc small { font-size: 13px; font-weight: 600; opacity: 0.8; display: block; margin-top: 2px; text-align: right; }
+.out-detail .hero-day {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 14px;
+  background: var(--bg-2);
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+.out-detail .hero-day svg { width: 56px; height: 56px; flex-shrink: 0; }
+.out-detail .hero-day .ht { font-size: 32px; font-weight: 700; line-height: 1; font-feature-settings: 'tnum'; }
+.out-detail .hero-day .hl { font-size: 14px; color: var(--label-2); font-weight: 500; margin-top: 4px; }
+.out-detail .hero-day .hc { font-size: 14px; color: var(--label-2); font-weight: 500; margin-top: 1px; }
+.out-detail .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; font-size: 13px; color: var(--label-2); margin-bottom: 14px; }
+.out-detail .stats > div { padding: 9px 12px; background: var(--bg-2); border-radius: 10px; display: flex; flex-direction: column; gap: 2px; }
+.out-detail .stats strong { color: var(--label); font-weight: 700; font-size: 15px; font-feature-settings: 'tnum'; }
+.out-detail .flags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
 .out-detail .flag {
   font-size: 11px; font-weight: 600;
-  padding: 4px 9px;
+  padding: 5px 10px;
   border-radius: 999px;
   background: var(--bg-3);
   border: 1px solid var(--separator-strong);
@@ -610,18 +655,18 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 
 .out-detail .actions {
   display: flex; gap: 8px; flex-wrap: wrap;
-  margin-top: 14px; padding-top: 14px;
+  margin-top: 18px; padding-top: 16px;
   border-top: 1px solid var(--separator);
 }
 .out-detail .actions button {
   flex: 1 1 calc(50% - 4px);
   min-width: 140px;
-  padding: 11px 14px;
-  font-size: 14px; font-weight: 600;
+  padding: 13px 14px;
+  font-size: 15px; font-weight: 600;
   border: 1px solid var(--separator-strong);
   background: var(--bg-2);
   color: var(--label);
-  border-radius: 11px;
+  border-radius: 12px;
   cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center; gap: 7px;
   transition: transform 0.15s var(--ease-spring), background 0.15s;
@@ -631,7 +676,7 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
   background: var(--blue); border-color: var(--blue); color: #fff;
 }
 .out-detail .actions button.primary:active { background: #006fdb; }
-.out-detail .actions button svg { width: 16px; height: 16px; }
+.out-detail .actions button svg { width: 17px; height: 17px; }
 
 /* ===== Detail metrics grid ===== */
 .metrics {
@@ -1137,7 +1182,6 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
         <span><i class="dot" style="background:var(--orange)"></i>Poor</span>
         <span><i class="dot" style="background:var(--red)"></i>Stop work</span>
       </div>
-      <div class="out-detail" id="out-detail" role="region" aria-live="polite"></div>
     </div>
   </div>
   <div class="about" style="text-align:left">
@@ -1199,6 +1243,11 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
   </div>
   <div class="recents-title" id="recents-title">Recent</div>
   <div class="search-results" id="search-results"></div>
+</div>
+
+<!-- =============== DAY DETAIL POPUP SHEET =============== -->
+<div class="out-detail" id="out-detail" role="dialog" aria-modal="true" aria-labelledby="out-detail-title">
+  <div class="od-panel" id="out-detail-panel"></div>
 </div>
 
 <!-- =============== LOCATION PERMISSION SHEET =============== -->
@@ -1858,70 +1907,109 @@ function render30Day(data, hasActiveAlert, aqResp) {
 
   // Wire detail clicks
   $$('#outlook-grid .out-day').forEach(b => b.addEventListener('click', () => showOutDetail(parseInt(b.dataset.i))));
-  // Default-open today
-  showOutDetail(0);
+}
+
+function closeOutDetail() {
+  $('#out-detail').classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 function showOutDetail(i) {
   const dy = STATE.outlook[i];
   if (!dy) return;
   const det = $('#out-detail');
-  const date = dy.date.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
+  const panel = $('#out-detail-panel');
+  const fullDate = dy.date.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  const isoDate = dy.date.toISOString().slice(0, 10);
   const tierLabel = { excellent: 'Excellent', good: 'Good', fair: 'Fair', poor: 'Poor', stop: 'Stop work' }[dy.tier];
   const tierColor = { excellent: 'var(--green)', good: 'var(--indigo)', fair: 'var(--yellow)', poor: 'var(--orange)', stop: 'var(--red)' }[dy.tier];
 
-  const flags = (dy.reasons.length ? dy.reasons : [{t:'No major issues', s:'ok'}])
+  const flags = (dy.reasons.length ? dy.reasons : [{t:'No major workability issues', s:'ok'}])
     .map(r => `<span class="flag ${r.s}">${r.t}</span>`).join('');
 
-  // Wind direction as compass label (dominant)
   const compass = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
   const windDirLabel = compass[Math.round((dy.windDir || 0) / 22.5) % 16];
 
   const aqiVal = dy.aqi != null ? dy.aqi : null;
   const aqiCat = aqiCategory(aqiVal);
   const solarStr = (dy.solarKwh != null) ? `${dy.solarKwh.toFixed(2)} kWh/m²` : '—';
-  const sunshineStr = (dy.sunshineHours != null) ? `${dy.sunshineHours.toFixed(1)} h sunshine` : '';
-  const daylightStr = (dy.daylightHours != null) ? `${dy.daylightHours.toFixed(1)} h daylight` : '';
+  const sunshineStr = (dy.sunshineHours != null) ? `${dy.sunshineHours.toFixed(1)} h` : '—';
+  const daylightStr = (dy.daylightHours != null) ? `${dy.daylightHours.toFixed(1)} h` : '—';
 
-  det.innerHTML = `
+  panel.innerHTML = `
+    <div class="grabber"></div>
+    <button class="od-close" id="od-close-btn" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
     <div class="h">
-      <div class="date">${date}${dy.confidence === 'low' ? ' <small style="font-weight:500;color:var(--label-2)">· extended outlook · low confidence</small>' : ''}</div>
-      <div class="sc" style="color:${tierColor}">${dy.score}<span style="font-size:14px;opacity:0.7">%</span> · ${tierLabel}</div>
+      <div class="date" id="out-detail-title">
+        ${fullDate}
+        ${dy.confidence === 'low' ? '<small>Extended outlook · low confidence</small>' : ''}
+      </div>
+      <div class="sc" style="color:${tierColor}">
+        ${dy.score}<span style="font-size:16px;font-weight:700;opacity:0.7">%</span>
+        <small style="color:${tierColor}">${tierLabel}</small>
+      </div>
+    </div>
+    <div class="hero-day">
+      ${wmoIcon(dy.code)}
+      <div>
+        <div class="ht">${fmtT(dy.tMaxC)} <span style="opacity:0.5;font-weight:500">/</span> <span style="color:var(--label-2);font-size:24px">${fmtT(dy.tMinC)}</span></div>
+        <div class="hc">${wmoLabel(dy.code)}</div>
+        <div class="hl">Feels like ${fmtT(dy.tMaxC)} · UV ${Math.round(dy.uv)}</div>
+      </div>
     </div>
     <div class="stats">
-      <div>Conditions <strong>${wmoLabel(dy.code)}</strong></div>
-      <div>UV index <strong>${Math.round(dy.uv)}</strong></div>
-      <div>High <strong>${fmtT(dy.tMaxC)}</strong></div>
-      <div>Low <strong>${fmtT(dy.tMinC)}</strong></div>
-      <div>Rain chance <strong>${dy.popMax}%</strong></div>
-      <div>Precip <strong>${(isImperial() ? dy.precipMm/25.4 : dy.precipMm).toFixed(2)} ${isImperial()?'in':'mm'}</strong></div>
+      <div>Rain chance <strong style="color:var(--blue)">${dy.popMax}%</strong></div>
+      <div>Precipitation <strong>${(isImperial() ? dy.precipMm/25.4 : dy.precipMm).toFixed(2)} ${isImperial()?'in':'mm'}</strong></div>
       <div>Wind <strong>${fmtWind(dy.windMaxKmh)} ${windDirLabel}</strong></div>
       <div>Gusts <strong>${fmtWind(dy.gustsMaxKmh)}</strong></div>
-      ${dy.snowMm > 0 ? `<div>Snow <strong>${(isImperial() ? dy.snowMm/25.4 : dy.snowMm).toFixed(1)} ${isImperial()?'in':'mm'}</strong></div>` : ''}
-      <div>Solar irradiance <strong>${solarStr}</strong></div>
-      ${sunshineStr ? `<div>Sun exposure <strong>${sunshineStr}</strong></div>` : ''}
-      ${daylightStr ? `<div>Daylight <strong>${daylightStr}</strong></div>` : ''}
-      <div>Air quality <strong style="color:${aqiCat.color}">${aqiVal != null ? aqiVal : '—'} ${aqiVal != null ? '· ' + aqiCat.label : ''}</strong></div>
+      ${dy.snowMm > 0 ? `<div>Snowfall <strong>${(isImperial() ? dy.snowMm/25.4 : dy.snowMm).toFixed(1)} ${isImperial()?'in':'mm'}</strong></div>` : ''}
+      <div>Solar irradiance <strong style="color:var(--orange)">${solarStr}</strong></div>
+      <div>Sun exposure <strong>${sunshineStr}</strong></div>
+      <div>Daylight <strong>${daylightStr}</strong></div>
+      <div>Air quality <strong style="color:${aqiCat.color}">${aqiVal != null ? aqiVal : '—'}${aqiVal != null ? ' · ' + aqiCat.label : ''}</strong></div>
+      <div>UV index <strong>${Math.round(dy.uv)}</strong></div>
     </div>
     <div class="flags">${flags}</div>
     <div class="actions">
-      <button id="out-cal-btn" class="primary" aria-label="Add this day to your calendar">
+      <button id="out-cal-btn" class="primary" aria-label="Schedule a job for this date">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="19"/><line x1="9.5" y1="16.5" x2="14.5" y2="16.5"/></svg>
-        Add to Calendar
+        Schedule This Date
       </button>
-      <button id="out-share-btn" aria-label="Share this day">
+      <button id="out-share-btn" aria-label="Share this forecast">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v14M5 9l7-7 7 7"/><path d="M5 14v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>
         Share
       </button>
     </div>
   `;
+
   det.classList.add('open');
+  document.body.style.overflow = 'hidden';
 
   // Wire actions
+  $('#od-close-btn').addEventListener('click', closeOutDetail);
+  det.addEventListener('click', (e) => { if (e.target === det) closeOutDetail(); }, { once: true });
+
+  // Schedule button opens NEPA-PRO scheduler with date + forecast context as URL params
   $('#out-cal-btn').addEventListener('click', () => {
     const locName = STATE.loc ? [STATE.loc.name, STATE.loc.admin1].filter(Boolean).join(', ') : '';
-    downloadICS(dy, locName);
+    const params = new URLSearchParams({
+      date: isoDate,
+      score: String(dy.score),
+      tier: dy.tier,
+      conditions: wmoLabel(dy.code),
+      tHi: fmtT(dy.tMaxC),
+      tLo: fmtT(dy.tMinC),
+      rain: String(dy.popMax) + '%',
+      wind: fmtWind(dy.windMaxKmh),
+      location: locName,
+      source: 'skyline'
+    });
+    const url = `https://schedule.nepa-pro.com/?${params.toString()}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
   });
+
   $('#out-share-btn').addEventListener('click', async () => {
     const dateStr = dy.date.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
     const locName = STATE.loc ? [STATE.loc.name, STATE.loc.admin1].filter(Boolean).join(', ') : '';
@@ -1931,11 +2019,21 @@ function showOutDetail(i) {
       try { await navigator.share({ title: 'Skyline forecast', text, url }); }
       catch (e) { /* user cancelled */ }
     } else {
-      try { await navigator.clipboard.writeText(`${text}\n${url}`); $('#out-share-btn').innerText = 'Copied!'; setTimeout(() => showOutDetail(i), 1500); }
-      catch (e) {}
+      try {
+        await navigator.clipboard.writeText(`${text}\n${url}`);
+        const btn = $('#out-share-btn');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Copied!';
+        setTimeout(() => { btn.innerHTML = orig; }, 1500);
+      } catch (e) {}
     }
   });
 }
+
+// Close popup on ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && $('#out-detail').classList.contains('open')) closeOutDetail();
+});
 
 /* ===== Alerts (NWS) ===== */
 async function loadAlerts(lat, lon) {
@@ -2010,7 +2108,13 @@ async function initMap(lat, lon) {
     map.setView([lat, lon], 8);
     return;
   }
-  map = L.map('map', { zoomControl: true, attributionControl: true, tap: true }).setView([lat, lon], 8);
+  map = L.map('map', {
+    zoomControl: true,
+    attributionControl: true,
+    tap: true,
+    minZoom: 4,
+    maxZoom: 12
+  }).setView([lat, lon], 8);
   baseTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
@@ -2046,7 +2150,16 @@ function setRadarFrame(idx) {
   const f = STATE.radar.frames[idx];
   if (!f) return;
   if (STATE.radar.layer) map.removeLayer(STATE.radar.layer);
-  STATE.radar.layer = L.tileLayer(f.url, { opacity: 0.72, maxZoom: 12 }).addTo(map);
+  // RainViewer v2 radar tiles top out at native zoom 8. Letting Leaflet ask for higher zooms
+  // returns RainViewer's "Zoom Level Not Supported" placeholder tile.
+  // maxNativeZoom caps the actual fetch; maxZoom lets users still zoom in (Leaflet over-scales).
+  STATE.radar.layer = L.tileLayer(f.url, {
+    opacity: 0.72,
+    tileSize: 256,
+    maxNativeZoom: 8,
+    maxZoom: 18,
+    minZoom: 0
+  }).addTo(map);
   STATE.radar.idx = idx;
   $('#radar-scrub').value = (idx / (STATE.radar.frames.length - 1)) * 100;
   const d = new Date(f.time * 1000);
@@ -2163,6 +2276,35 @@ async function geoPermissionState() {
     const r = await navigator.permissions.query({ name: 'geolocation' });
     return r.state; // 'granted' | 'prompt' | 'denied'
   } catch (e) { return 'unknown'; }
+}
+
+// Watch the geolocation permission for live changes.
+// If the user grants access in browser settings (after a denial), reflect it immediately:
+// hide the "Location is blocked" banner and pull fresh GPS.
+async function watchGeoPermission() {
+  if (!navigator.permissions || !navigator.permissions.query) return;
+  try {
+    const status = await navigator.permissions.query({ name: 'geolocation' });
+    const react = async () => {
+      if (status.state === 'granted') {
+        hideLocBanner();
+        // Auto-load fresh GPS so the UI catches up to the permission change
+        const pos = await getPositionOnce({ timeout: 6000 });
+        if (pos) {
+          const loc = await coordsToLocation(pos.latitude, pos.longitude);
+          localStorage.setItem('skyline.gpsEnabled', 'true');
+          STATE.gpsEnabled = true;
+          await loadFor(loc, { source: 'gps' });
+          startLocationWatch();
+        }
+      } else if (status.state === 'denied') {
+        showLocBanner('denied');
+      } else if (status.state === 'prompt') {
+        hideLocBanner();
+      }
+    };
+    status.addEventListener('change', react);
+  } catch (e) {}
 }
 
 // Get a single fresh position (returns { latitude, longitude } or null)
@@ -2411,6 +2553,9 @@ async function init() {
     try { await navigator.serviceWorker.register('sw.js', { scope: './' }); } catch (e) {}
   }
 
+  // Live-watch the geolocation permission so the banner auto-dismisses when granted
+  watchGeoPermission();
+
   // Wire UI
   syncSettings();
   $('#btn-search').addEventListener('click', openSearch);
@@ -2587,11 +2732,38 @@ async function init() {
   }, 10 * 60 * 1000);
 
   document.addEventListener('visibilitychange', async () => {
-    if (document.visibilityState !== 'visible' || !STATE.loc) return;
+    if (document.visibilityState !== 'visible') return;
+
+    // Reconcile permission state when user returns from browser settings
+    // (e.g., enabled location in iOS Settings → Safari → Location)
+    const perm = await geoPermissionState();
+    if (perm === 'granted') {
+      hideLocBanner();
+      if (!STATE.gpsEnabled) {
+        // Newly granted — pull fresh GPS automatically
+        const pos = await getPositionOnce({ timeout: 8000 });
+        if (pos) {
+          localStorage.setItem('skyline.gpsEnabled', 'true');
+          STATE.gpsEnabled = true;
+          const fresh = await coordsToLocation(pos.latitude, pos.longitude);
+          await loadFor(fresh, { source: 'gps' });
+          startLocationWatch();
+          return;
+        }
+      }
+    } else if (perm === 'denied' && STATE.gpsEnabled) {
+      // User revoked permission while away
+      localStorage.setItem('skyline.gpsEnabled', 'false');
+      STATE.gpsEnabled = false;
+      stopLocationWatch();
+      showLocBanner('denied');
+    }
+
+    if (!STATE.loc) return;
     const last = parseInt(localStorage.getItem('skyline.lastFetch') || '0');
     if (Date.now() - last <= 5 * 60 * 1000) return;
     // On return, prefer fresh GPS if enabled
-    if (STATE.gpsEnabled && (await geoPermissionState()) === 'granted') {
+    if (STATE.gpsEnabled && perm === 'granted') {
       const pos = await getPositionOnce({ maximumAge: 120000 });
       if (pos) {
         const km = haversineKm(STATE.loc.latitude, STATE.loc.longitude, pos.latitude, pos.longitude);
