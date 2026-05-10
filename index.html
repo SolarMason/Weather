@@ -460,38 +460,122 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 /* ===== 30-day construction outlook ===== */
 .outlook-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
   padding: 12px;
 }
+@media (min-width: 480px) { .outlook-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 720px) { .outlook-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 960px) { .outlook-grid { grid-template-columns: repeat(5, 1fr); } }
+
 .out-day {
-  aspect-ratio: 1 / 1.15;
-  border-radius: 12px;
-  padding: 6px 4px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  align-items: center;
-  font-size: 11px;
+  position: relative;
+  border-radius: 14px;
+  padding: 9px 9px 8px;
+  display: flex; flex-direction: column;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: transform 0.2s var(--ease-spring);
+  transition: transform 0.18s var(--ease-spring), box-shadow 0.18s ease;
+  background: var(--bg-2);
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  overflow: hidden;
+  min-height: 134px;
+}
+.out-day:active { transform: scale(0.97); }
+
+/* Top row: date + score */
+.out-day .head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 4px;
+}
+.out-day .dlbl {
+  font-size: 9px; color: var(--label-2); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  line-height: 1;
+}
+.out-day .dlbl b { color: var(--label); font-size: 13px; font-weight: 700; margin-right: 3px; }
+.out-day .score {
+  font-size: 14px; font-weight: 800; line-height: 1;
+  font-feature-settings: 'tnum';
+  display: inline-flex; align-items: baseline; gap: 1px;
+}
+.out-day .score .pct { font-size: 9px; font-weight: 700; opacity: 0.75; margin-left: 1px; }
+
+/* Middle: weather icon + temp range */
+.out-day .mid {
+  display: flex; align-items: center; gap: 6px;
+  margin: 2px 0 6px;
+}
+.out-day .mid svg { width: 30px; height: 30px; flex-shrink: 0; }
+.out-day .temps { display: flex; flex-direction: column; line-height: 1.05; min-width: 0; }
+.out-day .t-hi { font-size: 16px; font-weight: 700; font-feature-settings: 'tnum'; }
+.out-day .t-lo { font-size: 12px; font-weight: 600; color: var(--label-2); font-feature-settings: 'tnum'; }
+.out-day .t-hi .deg, .out-day .t-lo .deg { font-weight: 300; opacity: 0.6; margin-left: 1px; }
+
+/* Stats grid: 2-cell metrics row */
+.out-day .stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 6px;
+  margin-top: auto;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--label-2);
+  font-feature-settings: 'tnum';
+  line-height: 1.25;
+}
+.out-day .stat-row .stat {
+  display: flex; align-items: center; gap: 3px;
+  white-space: nowrap; overflow: hidden;
+}
+.out-day .stat-row .stat svg { width: 11px; height: 11px; flex-shrink: 0; opacity: 0.85; }
+.out-day .stat-row .stat .v { color: var(--label); font-weight: 700; }
+.out-day .stat-row .stat.rain .v { color: var(--blue); }
+.out-day .stat-row .stat.aqi .v { color: var(--label); }
+.out-day .stat-row .stat.solar .v { color: var(--orange); }
+
+/* Score progress micro-bar at the bottom edge */
+.out-day .scorebar {
+  height: 3px; border-radius: 2px;
+  background: rgba(120,120,128,0.18);
+  overflow: hidden;
+  margin: 5px 0 4px;
   position: relative;
 }
-.out-day:active { transform: scale(0.95); }
-.out-day .dnum { font-size: 14px; font-weight: 600; }
-.out-day .dlbl { font-size: 9px; color: var(--label-2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-.out-day .score { font-size: 11px; font-weight: 700; }
-/* score color tiers — iOS system colors */
-.out-day.s-excellent { background: rgba(48,209,88,0.20); border-color: rgba(48,209,88,0.45); }
+.out-day .scorebar::before {
+  content: ""; position: absolute; left: 0; top: 0; height: 100%;
+  width: var(--w, 0%);
+  background: var(--score-color, var(--label-2));
+  border-radius: 2px;
+  transition: width 0.4s var(--ease-spring);
+}
+
+/* Score color tiers — iOS system colors. Apply both BG tint and score-color CSS var */
+.out-day.s-excellent { background: rgba(48,209,88,0.16); border-color: rgba(48,209,88,0.40); --score-color: var(--green); }
 .out-day.s-excellent .score { color: var(--green); }
-.out-day.s-good { background: rgba(94,92,230,0.18); border-color: rgba(94,92,230,0.40); }
+.out-day.s-good { background: rgba(94,92,230,0.14); border-color: rgba(94,92,230,0.36); --score-color: var(--indigo); }
 .out-day.s-good .score { color: var(--indigo); }
-.out-day.s-fair { background: rgba(255,214,10,0.16); border-color: rgba(255,214,10,0.40); }
-.out-day.s-fair .score { color: var(--yellow); }
-.out-day.s-poor { background: rgba(255,159,10,0.18); border-color: rgba(255,159,10,0.45); }
+.out-day.s-fair { background: rgba(255,214,10,0.14); border-color: rgba(255,214,10,0.40); --score-color: var(--yellow); }
+.out-day.s-fair .score { color: #B58900; }
+@media (prefers-color-scheme: dark) { .out-day.s-fair .score { color: var(--yellow); } }
+.out-day.s-poor { background: rgba(255,159,10,0.16); border-color: rgba(255,159,10,0.42); --score-color: var(--orange); }
 .out-day.s-poor .score { color: var(--orange); }
-.out-day.s-stop { background: rgba(255,69,58,0.20); border-color: rgba(255,69,58,0.50); }
+.out-day.s-stop { background: rgba(255,69,58,0.18); border-color: rgba(255,69,58,0.48); --score-color: var(--red); }
 .out-day.s-stop .score { color: var(--red); }
-.out-day.is-today { box-shadow: 0 0 0 2px var(--blue); }
+.out-day.is-today {
+  box-shadow: 0 0 0 2px var(--blue);
+}
+.out-day.is-today .dlbl b::after { content: " · TODAY"; color: var(--blue); font-size: 9px; }
+.out-day .extended-flag {
+  position: absolute; top: 4px; right: 4px;
+  font-size: 7px; font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--label-3); text-transform: uppercase;
+  background: rgba(120,120,128,0.18);
+  padding: 1px 4px; border-radius: 4px;
+}
 .outlook-legend {
   display: flex; flex-wrap: wrap; gap: 8px;
   padding: 4px 12px 14px;
@@ -523,6 +607,31 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 .out-detail .flag.warn { background: rgba(255,159,10,0.18); border-color: rgba(255,159,10,0.4); color: var(--orange); }
 .out-detail .flag.bad { background: rgba(255,69,58,0.20); border-color: rgba(255,69,58,0.45); color: var(--red); }
 .out-detail .flag.ok { background: rgba(48,209,88,0.18); border-color: rgba(48,209,88,0.4); color: var(--green); }
+
+.out-detail .actions {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px solid var(--separator);
+}
+.out-detail .actions button {
+  flex: 1 1 calc(50% - 4px);
+  min-width: 140px;
+  padding: 11px 14px;
+  font-size: 14px; font-weight: 600;
+  border: 1px solid var(--separator-strong);
+  background: var(--bg-2);
+  color: var(--label);
+  border-radius: 11px;
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  transition: transform 0.15s var(--ease-spring), background 0.15s;
+}
+.out-detail .actions button:active { transform: scale(0.97); background: var(--bg-3); }
+.out-detail .actions button.primary {
+  background: var(--blue); border-color: var(--blue); color: #fff;
+}
+.out-detail .actions button.primary:active { background: #006fdb; }
+.out-detail .actions button svg { width: 16px; height: 16px; }
 
 /* ===== Detail metrics grid ===== */
 .metrics {
@@ -890,8 +999,10 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 /* small phone optimization */
 @media (max-width: 380px) {
   .hero .temp { font-size: 80px; }
-  .out-day .dnum { font-size: 12px; }
-  .out-day .score { font-size: 10px; }
+  .out-day { min-height: 124px; padding: 8px; }
+  .out-day .t-hi { font-size: 14px; }
+  .out-day .mid svg { width: 26px; height: 26px; }
+  .out-day .stat-row { font-size: 9.5px; }
   .metric .val { font-size: 24px; }
 }
 @media (min-width: 700px) {
@@ -1016,7 +1127,7 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
         30-Day Construction Outlook
       </div>
       <div class="card-summary">
-        Workability scores for jobsite planning. Each day is rated using rain probability, wind, temperature, snow, and active alerts. Tap any day for details.
+        Workability scores for jobsite planning. Each tile shows weather icon, hi/lo temp, rain %, wind, solar irradiance (kWh/m²), and AQI. Tap any day for full details and to add it to your calendar.
       </div>
       <div class="outlook-grid" id="outlook-grid"></div>
       <div class="outlook-legend">
@@ -1293,13 +1404,14 @@ const API = {
       `&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m,uv_index,visibility` +
       `&minutely_15=precipitation,precipitation_probability` +
       `&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m,wind_gusts_10m,uv_index,is_day` +
-      `&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,snowfall_sum` +
+      `&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,snowfall_sum,shortwave_radiation_sum,sunshine_duration,daylight_duration` +
       `&forecast_days=16&forecast_minutely_15=24&timezone=auto`;
     const r = await fetch(u); return r.json();
   },
   airQuality: async (lat, lon) => {
     const u = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}` +
-      `&current=us_aqi,european_aqi,pm2_5,pm10,ozone,nitrogen_dioxide,sulphur_dioxide,carbon_monoxide,dust&timezone=auto`;
+      `&current=us_aqi,european_aqi,pm2_5,pm10,ozone,nitrogen_dioxide,sulphur_dioxide,carbon_monoxide,dust` +
+      `&hourly=us_aqi&forecast_days=7&timezone=auto`;
     const r = await fetch(u); return r.json();
   },
   nwsAlerts: async (lat, lon) => {
@@ -1538,7 +1650,26 @@ function renderMetrics(data, aqi) {
       lbl: ['☔ PRECIPITATION',''],
       val: `${(d.precipitation_sum[0] || 0).toFixed(2)}<small>${isImperial()?'in':'mm'}</small>`.replace(/(\d+\.\d+)<small>in/, (m,n) => (parseFloat(n)/25.4).toFixed(2)+'<small>in'),
       sub: `${d.precipitation_probability_max[0] || 0}% chance today`
-    }
+    },
+    (() => {
+      const solarMJ = d.shortwave_radiation_sum?.[0];
+      const solarKwh = (typeof solarMJ === 'number') ? solarMJ / 3.6 : null;
+      const sunshineH = (typeof d.sunshine_duration?.[0] === 'number') ? d.sunshine_duration[0] / 3600 : null;
+      const daylightH = (typeof d.daylight_duration?.[0] === 'number') ? d.daylight_duration[0] / 3600 : null;
+      // Workability label for solar production. ~6 kWh/m²/day = excellent for a solar install
+      const solarLbl = solarKwh == null ? '—'
+        : solarKwh >= 6 ? 'Strong production'
+        : solarKwh >= 4 ? 'Good production'
+        : solarKwh >= 2 ? 'Light production'
+        : 'Minimal production';
+      return {
+        lbl: ['☀️ SOLAR',''],
+        val: solarKwh != null ? `${solarKwh.toFixed(1)}<small>kWh/m²</small>` : '—',
+        sub: solarKwh == null
+          ? 'Daily irradiance unavailable'
+          : `${solarLbl}${sunshineH != null ? ' · ' + sunshineH.toFixed(1) + 'h sun' : ''}${daylightH != null ? ' · ' + daylightH.toFixed(1) + 'h daylight' : ''}`
+      };
+    })()
   ];
 
   $('#metrics').innerHTML = tiles.map(t => `
@@ -1549,11 +1680,111 @@ function renderMetrics(data, aqi) {
     </div>`).join('');
 }
 
-function render30Day(data, hasActiveAlert) {
+/* AQI category helpers */
+function aqiCategory(aqi) {
+  if (aqi == null || isNaN(aqi)) return { label: '—', color: 'var(--label-2)' };
+  if (aqi <= 50)  return { label: 'Good',          color: 'var(--green)' };
+  if (aqi <= 100) return { label: 'Moderate',      color: 'var(--yellow)' };
+  if (aqi <= 150) return { label: 'USG',           color: 'var(--orange)' };
+  if (aqi <= 200) return { label: 'Unhealthy',     color: 'var(--red)' };
+  if (aqi <= 300) return { label: 'V. Unhealthy',  color: '#9F4DFF' };
+  return                 { label: 'Hazardous',     color: '#7F0000' };
+}
+
+/* Aggregate hourly AQI to a per-day MAX (worst-case). Returns array indexed by daily.time */
+function dailyAQIFromHourly(aqResp, dailyTimes) {
+  if (!aqResp || !aqResp.hourly || !aqResp.hourly.time || !aqResp.hourly.us_aqi) return [];
+  const byDay = {};
+  for (let i = 0; i < aqResp.hourly.time.length; i++) {
+    const day = aqResp.hourly.time[i].slice(0, 10);
+    const v = aqResp.hourly.us_aqi[i];
+    if (v == null) continue;
+    if (!byDay[day] || v > byDay[day]) byDay[day] = v;
+  }
+  return dailyTimes.map(t => byDay[t] != null ? Math.round(byDay[t]) : null);
+}
+
+/* Build an ICS calendar event string for a given outlook day */
+function buildICS(dy, locName) {
+  const pad = (n) => String(n).padStart(2, '0');
+  const fmt = (d) => `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+  const dt = new Date(dy.date);
+  const next = new Date(dt.getTime() + 86400000);
+  const tier = { excellent: 'Excellent', good: 'Good', fair: 'Fair', poor: 'Poor', stop: 'Stop work' }[dy.tier];
+  const dateStr = dt.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
+
+  const flags = (dy.reasons || []).map(r => '• ' + r.t).join('\\n');
+  const desc = [
+    `Skyline workability: ${dy.score}% — ${tier}`,
+    `Conditions: ${wmoLabel(dy.code)}`,
+    `High ${fmtT(dy.tMaxC)} / Low ${fmtT(dy.tMinC)}`,
+    `Rain ${dy.popMax}% · ${(isImperial()? (dy.precipMm/25.4).toFixed(2) + ' in' : dy.precipMm.toFixed(1) + ' mm')}`,
+    `Wind ${fmtWind(dy.windMaxKmh)} (gusts ${fmtWind(dy.gustsMaxKmh)})`,
+    dy.solarKwh != null ? `Solar ${dy.solarKwh.toFixed(1)} kWh/m²` : '',
+    dy.aqi != null ? `Air Quality ${dy.aqi} (${aqiCategory(dy.aqi).label})` : '',
+    flags ? `\\nNotes:\\n${flags}` : '',
+    `\\nLocation: ${locName}`,
+    `\\nView: https://weather.nepa-pro.com/?view=outlook`
+  ].filter(Boolean).join('\\n');
+
+  const summary = `Forecast: ${tier} ${dy.score}% · ${wmoLabel(dy.code)} ${fmtT(dy.tMaxC)}/${fmtT(dy.tMinC)}`;
+  const uid = `skyline-${fmt(dt)}-${(locName || '').replace(/\W+/g,'')}@weather.nepa-pro.com`;
+  const stamp = new Date().toISOString().replace(/[-:.]/g,'').slice(0, 15) + 'Z';
+
+  return [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Skyline//Weather Outlook//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    `UID:${uid}`,
+    `DTSTAMP:${stamp}`,
+    `DTSTART;VALUE=DATE:${fmt(dt)}`,
+    `DTEND;VALUE=DATE:${fmt(next)}`,
+    `SUMMARY:${summary}`,
+    `DESCRIPTION:${desc}`,
+    `LOCATION:${(locName || '').replace(/,/g, '\\,')}`,
+    'TRANSP:TRANSPARENT',
+    'CATEGORIES:Weather,Skyline',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+}
+
+function downloadICS(dy, locName) {
+  const ics = buildICS(dy, locName);
+  const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const dateStr = dy.date.toISOString().slice(0, 10);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `skyline-${dateStr}.ics`;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 100);
+}
+
+/* Mini stat icons used in tiles */
+const STAT_ICONS = {
+  rain:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 14a4 4 0 0 0 0-8 5 5 0 0 0-9.6-1A4.5 4.5 0 0 0 6 14"/><path d="M8 18l-1 3M12 17l-1 3M16 18l-1 3" stroke="#5AC8FA"/></svg>',
+  wind:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12a3 3 0 1 0-3-3M2 12h17a3 3 0 1 1-3 3M2 16h10"/></svg>',
+  solar: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4.5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="2" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22"/><line x1="2" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22" y2="12"/><line x1="4.9" y1="4.9" x2="6.7" y2="6.7"/><line x1="17.3" y1="17.3" x2="19.1" y2="19.1"/><line x1="4.9" y1="19.1" x2="6.7" y2="17.3"/><line x1="17.3" y1="6.7" x2="19.1" y2="4.9"/></g></svg>',
+  aqi:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h13a3 3 0 1 0-3-3"/><path d="M3 16h15a3 3 0 1 1-3 3"/><circle cx="6" cy="12" r="0.8" fill="currentColor"/></svg>',
+};
+
+function render30Day(data, hasActiveAlert, aqResp) {
   const d = data.daily;
+  const aqiByDay = dailyAQIFromHourly(aqResp, d.time);
+
   const days = [];
   for (let i = 0; i < d.time.length; i++) {
     const dt = new Date(d.time[i] + 'T00:00:00');
+    // Solar irradiance: shortwave_radiation_sum is MJ/m² per day. Convert to kWh/m² (÷ 3.6)
+    const solarMJ = d.shortwave_radiation_sum?.[i];
+    const solarKwh = (typeof solarMJ === 'number') ? solarMJ / 3.6 : null;
+    const sunshineHours = (typeof d.sunshine_duration?.[i] === 'number') ? d.sunshine_duration[i] / 3600 : null;
+    const daylightHours = (typeof d.daylight_duration?.[i] === 'number') ? d.daylight_duration[i] / 3600 : null;
     const dayDef = {
       date: dt,
       code: d.weather_code[i],
@@ -1563,16 +1794,19 @@ function render30Day(data, hasActiveAlert) {
       precipMm: d.precipitation_sum[i] || 0,
       windMaxKmh: d.wind_speed_10m_max[i] || 0,
       gustsMaxKmh: d.wind_gusts_10m_max[i] || 0,
+      windDir: d.wind_direction_10m_dominant?.[i] || 0,
       snowMm: d.snowfall_sum[i] || 0,
-      uv: d.uv_index_max[i] || 0
+      uv: d.uv_index_max[i] || 0,
+      solarKwh,
+      sunshineHours,
+      daylightHours,
+      aqi: aqiByDay[i] != null ? aqiByDay[i] : null
     };
     const sc = scoreDay(dayDef, hasActiveAlert && i === 0);
     days.push({ ...dayDef, ...sc });
   }
-  STATE.outlook = days;
 
-  // Build 30-day grid (use 16 days actual; pad with climatology if shorter — Open-Meteo gives 16)
-  // For days 17-30 we extrapolate using a 7-day rolling moving average from the available data.
+  // Days 17-30: extrapolate using a 7-day rolling average from the available forecast
   while (days.length < 30) {
     const ref = days[days.length - 7] || days[days.length - 1];
     const lastDate = days[days.length - 1].date;
@@ -1582,16 +1816,42 @@ function render30Day(data, hasActiveAlert) {
     days.push({ ...synth, ...sc });
   }
 
+  STATE.outlook = days;
+
   const today = new Date(); today.setHours(0,0,0,0);
   const cells = days.slice(0, 30).map((dy, idx) => {
     const isToday = dy.date.getTime() === today.getTime();
     const day = dy.date.getDate();
-    const mon = dy.date.toLocaleDateString([], { month: 'short' });
     const wd = dy.date.toLocaleDateString([], { weekday: 'short' });
-    return `<button class="out-day s-${dy.tier} ${isToday ? 'is-today' : ''}" data-i="${idx}" aria-label="${wd} ${mon} ${day}: workability ${dy.score}">
-      <div class="dlbl">${wd}</div>
-      <div class="dnum">${day}</div>
-      <div class="score">${dy.score}</div>
+    const tHi = isImperial() ? Math.round(dy.tMaxC * 9/5 + 32) : Math.round(dy.tMaxC);
+    const tLo = isImperial() ? Math.round(dy.tMinC * 9/5 + 32) : Math.round(dy.tMinC);
+    const wind = isImperial() ? Math.round(dy.windMaxKmh * 0.621371) : Math.round(dy.windMaxKmh);
+    const windUnit = isImperial() ? 'mph' : 'km/h';
+    const solarStr = (dy.solarKwh != null) ? dy.solarKwh.toFixed(1) : '—';
+    const aqiVal = (dy.aqi != null) ? dy.aqi : null;
+    const aqiCat = aqiCategory(aqiVal);
+    const extFlag = dy.confidence === 'low' ? '<span class="extended-flag">EXT</span>' : '';
+
+    return `<button class="out-day s-${dy.tier} ${isToday ? 'is-today' : ''}" data-i="${idx}" aria-label="${wd} ${dy.date.toLocaleDateString([],{month:'short',day:'numeric'})}: workability ${dy.score} percent">
+      ${extFlag}
+      <div class="head">
+        <div class="dlbl">${wd} <b>${day}</b></div>
+        <div class="score">${dy.score}<span class="pct">%</span></div>
+      </div>
+      <div class="mid">
+        ${wmoIcon(dy.code)}
+        <div class="temps">
+          <div class="t-hi">${tHi}<span class="deg">°</span></div>
+          <div class="t-lo">${tLo}<span class="deg">°</span></div>
+        </div>
+      </div>
+      <div class="scorebar" style="--w:${dy.score}%"></div>
+      <div class="stat-row">
+        <div class="stat rain">${STAT_ICONS.rain}<span class="v">${dy.popMax}%</span></div>
+        <div class="stat wind">${STAT_ICONS.wind}<span class="v">${wind}</span> ${windUnit}</div>
+        <div class="stat solar">${STAT_ICONS.solar}<span class="v">${solarStr}</span> kWh</div>
+        <div class="stat aqi">${STAT_ICONS.aqi}<span class="v" style="color:${aqiCat.color}">${aqiVal != null ? aqiVal : '—'}</span></div>
+      </div>
     </button>`;
   }).join('');
   $('#outlook-grid').innerHTML = cells;
@@ -1613,24 +1873,68 @@ function showOutDetail(i) {
   const flags = (dy.reasons.length ? dy.reasons : [{t:'No major issues', s:'ok'}])
     .map(r => `<span class="flag ${r.s}">${r.t}</span>`).join('');
 
+  // Wind direction as compass label (dominant)
+  const compass = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+  const windDirLabel = compass[Math.round((dy.windDir || 0) / 22.5) % 16];
+
+  const aqiVal = dy.aqi != null ? dy.aqi : null;
+  const aqiCat = aqiCategory(aqiVal);
+  const solarStr = (dy.solarKwh != null) ? `${dy.solarKwh.toFixed(2)} kWh/m²` : '—';
+  const sunshineStr = (dy.sunshineHours != null) ? `${dy.sunshineHours.toFixed(1)} h sunshine` : '';
+  const daylightStr = (dy.daylightHours != null) ? `${dy.daylightHours.toFixed(1)} h daylight` : '';
+
   det.innerHTML = `
     <div class="h">
-      <div class="date">${date}${dy.confidence === 'low' ? ' <small style="font-weight:500;color:var(--label-2)">· extended outlook</small>' : ''}</div>
-      <div class="sc" style="color:${tierColor}">${dy.score} · ${tierLabel}</div>
+      <div class="date">${date}${dy.confidence === 'low' ? ' <small style="font-weight:500;color:var(--label-2)">· extended outlook · low confidence</small>' : ''}</div>
+      <div class="sc" style="color:${tierColor}">${dy.score}<span style="font-size:14px;opacity:0.7">%</span> · ${tierLabel}</div>
     </div>
     <div class="stats">
+      <div>Conditions <strong>${wmoLabel(dy.code)}</strong></div>
+      <div>UV index <strong>${Math.round(dy.uv)}</strong></div>
       <div>High <strong>${fmtT(dy.tMaxC)}</strong></div>
       <div>Low <strong>${fmtT(dy.tMinC)}</strong></div>
       <div>Rain chance <strong>${dy.popMax}%</strong></div>
       <div>Precip <strong>${(isImperial() ? dy.precipMm/25.4 : dy.precipMm).toFixed(2)} ${isImperial()?'in':'mm'}</strong></div>
-      <div>Wind max <strong>${fmtWind(dy.windMaxKmh)}</strong></div>
+      <div>Wind <strong>${fmtWind(dy.windMaxKmh)} ${windDirLabel}</strong></div>
       <div>Gusts <strong>${fmtWind(dy.gustsMaxKmh)}</strong></div>
       ${dy.snowMm > 0 ? `<div>Snow <strong>${(isImperial() ? dy.snowMm/25.4 : dy.snowMm).toFixed(1)} ${isImperial()?'in':'mm'}</strong></div>` : ''}
-      <div>Conditions <strong>${wmoLabel(dy.code)}</strong></div>
+      <div>Solar irradiance <strong>${solarStr}</strong></div>
+      ${sunshineStr ? `<div>Sun exposure <strong>${sunshineStr}</strong></div>` : ''}
+      ${daylightStr ? `<div>Daylight <strong>${daylightStr}</strong></div>` : ''}
+      <div>Air quality <strong style="color:${aqiCat.color}">${aqiVal != null ? aqiVal : '—'} ${aqiVal != null ? '· ' + aqiCat.label : ''}</strong></div>
     </div>
     <div class="flags">${flags}</div>
+    <div class="actions">
+      <button id="out-cal-btn" class="primary" aria-label="Add this day to your calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="19"/><line x1="9.5" y1="16.5" x2="14.5" y2="16.5"/></svg>
+        Add to Calendar
+      </button>
+      <button id="out-share-btn" aria-label="Share this day">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v14M5 9l7-7 7 7"/><path d="M5 14v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>
+        Share
+      </button>
+    </div>
   `;
   det.classList.add('open');
+
+  // Wire actions
+  $('#out-cal-btn').addEventListener('click', () => {
+    const locName = STATE.loc ? [STATE.loc.name, STATE.loc.admin1].filter(Boolean).join(', ') : '';
+    downloadICS(dy, locName);
+  });
+  $('#out-share-btn').addEventListener('click', async () => {
+    const dateStr = dy.date.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+    const locName = STATE.loc ? [STATE.loc.name, STATE.loc.admin1].filter(Boolean).join(', ') : '';
+    const url = `https://weather.nepa-pro.com/?view=outlook`;
+    const text = `${dateStr} ${locName}: ${dy.score}% workable · ${tierLabel} · ${wmoLabel(dy.code)} ${fmtT(dy.tMaxC)}/${fmtT(dy.tMinC)} · Rain ${dy.popMax}%`;
+    if (navigator.share) {
+      try { await navigator.share({ title: 'Skyline forecast', text, url }); }
+      catch (e) { /* user cancelled */ }
+    } else {
+      try { await navigator.clipboard.writeText(`${text}\n${url}`); $('#out-share-btn').innerText = 'Copied!'; setTimeout(() => showOutDetail(i), 1500); }
+      catch (e) {}
+    }
+  });
 }
 
 /* ===== Alerts (NWS) ===== */
@@ -1798,7 +2102,7 @@ async function loadFor(loc, { source = 'manual' } = {}) {
   renderHourly(data);
   renderDaily(data);
   renderMetrics(data, aq);
-  render30Day(data, hasAlert);
+  render30Day(data, hasAlert, aq);
 
   // Radar
   if ($('#page-radar').classList.contains('active') || true) {
@@ -2165,7 +2469,7 @@ async function init() {
       renderHourly(STATE.data);
       renderDaily(STATE.data);
       renderMetrics(STATE.data, STATE.aqi);
-      render30Day(STATE.data, STATE.alerts.length > 0);
+      render30Day(STATE.data, STATE.alerts.length > 0, STATE.aqi);
     }
   }));
   $('#tog-rain').addEventListener('change', async (e) => {
