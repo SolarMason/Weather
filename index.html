@@ -485,132 +485,142 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 }
 .day .pop { font-size: 11px; font-weight: 600; color: var(--blue-2); min-width: 30px; text-align: right; }
 
-/* ===== 30-day construction outlook ===== */
+/* ===== 30-day construction outlook =====
+ * Goal: all 30 tiles visible at once without scrolling, on every viewport.
+ * Strategy: page-outlook becomes a flex column filling 100dvh - tabbar.
+ *           the .outlook-grid takes the remaining height; tiles size from there.
+ * Mobile portrait → 5 columns × 6 rows (exactly 30 cells).
+ * Wider phone   → 6 × 5.   Tablet → 10 × 3.   Desktop → 15 × 2.
+ */
+#page-outlook.active {
+  display: flex; flex-direction: column;
+  /* Fill the viewport between the topnav and the tabbar. Both are measured at runtime by
+     detectDeviceLayout() so this is exact on every iPhone (SE / notch / Dynamic Island). */
+  min-height: calc(100dvh - var(--topnav-h, 80px) - var(--tabbar-h, 70px) - 4px);
+  padding-bottom: 4px;
+}
+#page-outlook .section {
+  flex: 1; display: flex; flex-direction: column;
+  min-height: 0; margin-bottom: 0;
+}
+#page-outlook .card {
+  flex: 1; display: flex; flex-direction: column;
+  min-height: 0;
+  padding-bottom: 6px;
+}
+#page-outlook .card-header { padding-bottom: 4px; }
+#page-outlook .card-summary {
+  padding: 0 16px 8px;
+  font-size: 12px; line-height: 1.35; color: var(--label-2);
+}
 .outlook-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  padding: 12px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px 10px 8px;
+  flex: 1; min-height: 0;
+  overflow: hidden;
 }
-@media (min-width: 480px) { .outlook-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 720px) { .outlook-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (min-width: 960px) { .outlook-grid { grid-template-columns: repeat(5, 1fr); } }
+@media (min-width: 480px) {
+  .outlook-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+  }
+}
+@media (min-width: 720px) {
+  .outlook-grid {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+  }
+}
+@media (min-width: 1024px) {
+  .outlook-grid {
+    grid-template-columns: repeat(15, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+}
 
 .out-day {
   position: relative;
-  border-radius: 14px;
-  padding: 9px 9px 8px;
+  border-radius: 8px;
+  padding: 4px 3px;
   display: flex; flex-direction: column;
+  align-items: center; justify-content: space-between;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: transform 0.18s var(--ease-spring), box-shadow 0.18s ease;
   background: var(--bg-2);
-  text-align: left;
-  font-family: inherit;
-  color: inherit;
+  font-family: inherit; color: inherit;
+  text-align: center;
   overflow: hidden;
-  min-height: 134px;
+  min-width: 0; min-height: 0;
+  transition: transform 0.15s var(--ease-spring);
+  container-type: size; /* lets children size against tile */
 }
-.out-day:active { transform: scale(0.97); }
+.out-day:active { transform: scale(0.95); }
 
-/* Top row: date + score */
-.out-day .head {
-  display: flex; align-items: baseline; justify-content: space-between;
-  margin-bottom: 4px;
-}
 .out-day .dlbl {
-  font-size: 9px; color: var(--label-2); font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: clamp(7.5px, 2.1cqw, 10px);
+  color: var(--label-2);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   line-height: 1;
 }
-.out-day .dlbl b { color: var(--label); font-size: 13px; font-weight: 700; margin-right: 3px; }
+.out-day .dnum {
+  font-size: clamp(12px, 5cqw, 18px);
+  font-weight: 800;
+  line-height: 1;
+  margin-top: 1px;
+  font-feature-settings: 'tnum';
+}
+.out-day .ic {
+  width: clamp(16px, 6cqw, 24px);
+  height: clamp(16px, 6cqw, 24px);
+  margin: 1px 0;
+}
+.out-day .ic svg { width: 100%; height: 100%; }
 .out-day .score {
-  font-size: 14px; font-weight: 800; line-height: 1;
+  font-size: clamp(8.5px, 2.4cqw, 11px);
+  font-weight: 800;
+  line-height: 1;
   font-feature-settings: 'tnum';
-  display: inline-flex; align-items: baseline; gap: 1px;
-}
-.out-day .score .pct { font-size: 9px; font-weight: 700; opacity: 0.75; margin-left: 1px; }
-
-/* Middle: weather icon + temp range */
-.out-day .mid {
-  display: flex; align-items: center; gap: 6px;
-  margin: 2px 0 6px;
-}
-.out-day .mid svg { width: 30px; height: 30px; flex-shrink: 0; }
-.out-day .temps { display: flex; flex-direction: column; line-height: 1.05; min-width: 0; }
-.out-day .t-hi { font-size: 16px; font-weight: 700; font-feature-settings: 'tnum'; }
-.out-day .t-lo { font-size: 12px; font-weight: 600; color: var(--label-2); font-feature-settings: 'tnum'; }
-.out-day .t-hi .deg, .out-day .t-lo .deg { font-weight: 300; opacity: 0.6; margin-left: 1px; }
-
-/* Stats grid: 2-cell metrics row */
-.out-day .stat-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px 6px;
-  margin-top: auto;
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--label-2);
-  font-feature-settings: 'tnum';
-  line-height: 1.25;
-}
-.out-day .stat-row .stat {
-  display: flex; align-items: center; gap: 3px;
-  white-space: nowrap; overflow: hidden;
-}
-.out-day .stat-row .stat svg { width: 11px; height: 11px; flex-shrink: 0; opacity: 0.85; }
-.out-day .stat-row .stat .v { color: var(--label); font-weight: 700; }
-.out-day .stat-row .stat.rain .v { color: var(--blue); }
-.out-day .stat-row .stat.aqi .v { color: var(--label); }
-.out-day .stat-row .stat.solar .v { color: var(--orange); }
-
-/* Score progress micro-bar at the bottom edge */
-.out-day .scorebar {
-  height: 3px; border-radius: 2px;
-  background: rgba(120,120,128,0.18);
-  overflow: hidden;
-  margin: 5px 0 4px;
-  position: relative;
-}
-.out-day .scorebar::before {
-  content: ""; position: absolute; left: 0; top: 0; height: 100%;
-  width: var(--w, 0%);
-  background: var(--score-color, var(--label-2));
-  border-radius: 2px;
-  transition: width 0.4s var(--ease-spring);
 }
 
-/* Score color tiers — iOS system colors. Apply both BG tint and score-color CSS var */
-.out-day.s-excellent { background: rgba(48,209,88,0.16); border-color: rgba(48,209,88,0.40); --score-color: var(--green); }
+/* Score color tiers — iOS system colors */
+.out-day.s-excellent { background: rgba(48,209,88,0.16); border-color: rgba(48,209,88,0.40); }
 .out-day.s-excellent .score { color: var(--green); }
-.out-day.s-good { background: rgba(94,92,230,0.14); border-color: rgba(94,92,230,0.36); --score-color: var(--indigo); }
+.out-day.s-good { background: rgba(94,92,230,0.14); border-color: rgba(94,92,230,0.36); }
 .out-day.s-good .score { color: var(--indigo); }
-.out-day.s-fair { background: rgba(255,214,10,0.14); border-color: rgba(255,214,10,0.40); --score-color: var(--yellow); }
+.out-day.s-fair { background: rgba(255,214,10,0.14); border-color: rgba(255,214,10,0.40); }
 .out-day.s-fair .score { color: #B58900; }
 @media (prefers-color-scheme: dark) { .out-day.s-fair .score { color: var(--yellow); } }
-.out-day.s-poor { background: rgba(255,159,10,0.16); border-color: rgba(255,159,10,0.42); --score-color: var(--orange); }
+.out-day.s-poor { background: rgba(255,159,10,0.16); border-color: rgba(255,159,10,0.42); }
 .out-day.s-poor .score { color: var(--orange); }
-.out-day.s-stop { background: rgba(255,69,58,0.18); border-color: rgba(255,69,58,0.48); --score-color: var(--red); }
+.out-day.s-stop { background: rgba(255,69,58,0.18); border-color: rgba(255,69,58,0.48); }
 .out-day.s-stop .score { color: var(--red); }
-.out-day.is-today {
-  box-shadow: 0 0 0 2px var(--blue);
-}
-.out-day.is-today .dlbl b::after { content: " · TODAY"; color: var(--blue); font-size: 9px; }
-.out-day .extended-flag {
-  position: absolute; top: 4px; right: 4px;
-  font-size: 7px; font-weight: 700;
+.out-day.is-today { box-shadow: inset 0 0 0 2px var(--blue); }
+.out-day.is-today .dlbl { color: var(--blue); }
+.out-day .ext-flag {
+  position: absolute; top: 2px; right: 2px;
+  font-size: 6.5px; font-weight: 800;
   letter-spacing: 0.05em;
   color: var(--label-3); text-transform: uppercase;
-  background: rgba(120,120,128,0.18);
-  padding: 1px 4px; border-radius: 4px;
+  background: rgba(120,120,128,0.22);
+  padding: 0 3px; border-radius: 3px;
+  line-height: 1.4;
 }
+
 .outlook-legend {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  padding: 4px 12px 14px;
-  font-size: 11px;
+  display: flex; flex-wrap: wrap; gap: 6px 10px;
+  padding: 4px 12px 6px;
+  font-size: 10px;
+  justify-content: center;
 }
-.outlook-legend span { display: inline-flex; align-items: center; gap: 4px; color: var(--label-2); }
-.outlook-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
+.outlook-legend span { display: inline-flex; align-items: center; gap: 3px; color: var(--label-2); }
+.outlook-legend .dot { width: 7px; height: 7px; border-radius: 50%; }
 
 /* ===== Day-detail popup sheet ===== */
 .out-detail {
@@ -1038,10 +1048,6 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 /* small phone optimization */
 @media (max-width: 380px) {
   .hero .temp { font-size: 80px; }
-  .out-day { min-height: 124px; padding: 8px; }
-  .out-day .t-hi { font-size: 14px; }
-  .out-day .mid svg { width: 26px; height: 26px; }
-  .out-day .stat-row { font-size: 9.5px; }
   .metric .val { font-size: 24px; }
 }
 @media (min-width: 700px) {
@@ -1138,21 +1144,16 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
         30-Day Construction Outlook
       </div>
-      <div class="card-summary">
-        Workability scores for jobsite planning. Each tile shows weather icon, hi/lo temp, rain %, wind, solar irradiance (kWh/m²), and AQI. Tap any day for full details and to add it to your calendar.
-      </div>
+      <div class="card-summary">Tap any day for full details + scheduling.</div>
       <div class="outlook-grid" id="outlook-grid"></div>
       <div class="outlook-legend">
         <span><i class="dot" style="background:var(--green)"></i>Excellent</span>
         <span><i class="dot" style="background:var(--indigo)"></i>Good</span>
         <span><i class="dot" style="background:var(--yellow)"></i>Fair</span>
         <span><i class="dot" style="background:var(--orange)"></i>Poor</span>
-        <span><i class="dot" style="background:var(--red)"></i>Stop work</span>
+        <span><i class="dot" style="background:var(--red)"></i>Stop</span>
       </div>
     </div>
-  </div>
-  <div class="about" style="text-align:left">
-    Scoring weights — rain probability ×3, sustained wind &gt; 25 mph ×2.5, temperature outside 35–95 °F ×2, snow accumulation ×3, active severe alerts ×4. Tuned for exterior trades: roofing, solar install, framing, concrete, paint. Adjust thresholds in Settings (coming soon).
   </div>
 </section>
 
@@ -1821,35 +1822,15 @@ function render30Day(data, hasActiveAlert, aqResp) {
     const isToday = dy.date.getTime() === today.getTime();
     const day = dy.date.getDate();
     const wd = dy.date.toLocaleDateString([], { weekday: 'short' });
-    const tHi = isImperial() ? Math.round(dy.tMaxC * 9/5 + 32) : Math.round(dy.tMaxC);
-    const tLo = isImperial() ? Math.round(dy.tMinC * 9/5 + 32) : Math.round(dy.tMinC);
-    const wind = isImperial() ? Math.round(dy.windMaxKmh * 0.621371) : Math.round(dy.windMaxKmh);
-    const windUnit = isImperial() ? 'mph' : 'km/h';
-    const solarStr = (dy.solarKwh != null) ? dy.solarKwh.toFixed(1) : '—';
-    const aqiVal = (dy.aqi != null) ? dy.aqi : null;
-    const aqiCat = aqiCategory(aqiVal);
-    const extFlag = dy.confidence === 'low' ? '<span class="extended-flag">EXT</span>' : '';
+    const aria = `${wd} ${dy.date.toLocaleDateString([],{month:'short',day:'numeric'})}: workability ${dy.score} percent`;
+    const extFlag = dy.confidence === 'low' ? '<span class="ext-flag">EXT</span>' : '';
 
-    return `<button class="out-day s-${dy.tier} ${isToday ? 'is-today' : ''}" data-i="${idx}" aria-label="${wd} ${dy.date.toLocaleDateString([],{month:'short',day:'numeric'})}: workability ${dy.score} percent">
+    return `<button class="out-day s-${dy.tier}${isToday ? ' is-today' : ''}" data-i="${idx}" aria-label="${aria}">
       ${extFlag}
-      <div class="head">
-        <div class="dlbl">${wd} <b>${day}</b></div>
-        <div class="score">${dy.score}<span class="pct">%</span></div>
-      </div>
-      <div class="mid">
-        ${wmoIcon(dy.code)}
-        <div class="temps">
-          <div class="t-hi">${tHi}<span class="deg">°</span></div>
-          <div class="t-lo">${tLo}<span class="deg">°</span></div>
-        </div>
-      </div>
-      <div class="scorebar" style="--w:${dy.score}%"></div>
-      <div class="stat-row">
-        <div class="stat rain">${STAT_ICONS.rain}<span class="v">${dy.popMax}%</span></div>
-        <div class="stat wind">${STAT_ICONS.wind}<span class="v">${wind}</span> ${windUnit}</div>
-        <div class="stat solar">${STAT_ICONS.solar}<span class="v">${solarStr}</span> kWh</div>
-        <div class="stat aqi">${STAT_ICONS.aqi}<span class="v" style="color:${aqiCat.color}">${aqiVal != null ? aqiVal : '—'}</span></div>
-      </div>
+      <span class="dlbl">${isToday ? 'TDY' : wd}</span>
+      <span class="dnum">${day}</span>
+      <span class="ic">${wmoIcon(dy.code)}</span>
+      <span class="score">${dy.score}%</span>
     </button>`;
   }).join('');
   $('#outlook-grid').innerHTML = cells;
@@ -2153,8 +2134,15 @@ function detectDeviceLayout() {
   html.classList.toggle('has-home-button', isIOS && safeTopPx < 30);              // SE / 8 / older
   html.classList.toggle('landscape', window.innerWidth > window.innerHeight);
 
-  // Expose the measured value so the CSS minimum is always at least this
+  // Expose the measured safe-top
   html.style.setProperty('--measured-safe-top', `${safeTopPx}px`);
+
+  // Measure rendered topnav and tabbar heights so layout math (esp. the 30-day grid
+  // that fills the viewport) is exact across every iPhone model and orientation.
+  const topnav = document.querySelector('.topnav');
+  const tabbar = document.querySelector('.tabbar');
+  if (topnav) html.style.setProperty('--topnav-h', `${topnav.getBoundingClientRect().height}px`);
+  if (tabbar) html.style.setProperty('--tabbar-h', `${tabbar.getBoundingClientRect().height}px`);
 }
 
 // Read current Permissions API state ('granted' | 'prompt' | 'denied' | 'unknown')
