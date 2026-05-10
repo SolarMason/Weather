@@ -295,10 +295,13 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
   }
 }
 
-/* ===== Status / dynamic-island banner ===== */
+/* ===== Status / Dynamic-Island-style banner =====
+ * Sits below the topnav, sticky to the top of the scrollable content.
+ * Pill-shaped to feel related to the Dynamic Island on supported iPhones.
+ */
 .island {
-  position: sticky; top: calc(var(--safe-top) + 8px); z-index: 50;
-  margin: 0 16px;
+  position: sticky; top: 8px; z-index: 50;
+  margin: 4px 16px 0;
   display: flex; align-items: center; gap: 10px;
   padding: 10px 14px;
   background: var(--mat-thin);
@@ -321,13 +324,24 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 @keyframes pulse { 0%{box-shadow:0 0 0 0 currentColor;} 70%{box-shadow:0 0 0 10px rgba(255,255,255,0);} 100%{box-shadow:0 0 0 0 rgba(255,255,255,0);} }
 @keyframes island-in { to { transform: translateY(0); opacity: 1; } }
 
-/* ===== Top nav: location + search ===== */
+/* ===== Top nav: location + search =====
+ * Layout respects iOS safe areas on every iPhone:
+ *   - iPhone SE (home button, status bar 20pt)
+ *   - iPhone X / 11 / 12 / 13 (notch, status bar 44pt)
+ *   - iPhone 14 Pro+, 15+, 16+ (Dynamic Island, status bar 59pt)
+ *   - Landscape orientation (safe-area-inset-left/right > 0 on notched models)
+ *   - Standalone PWA mode (no Safari chrome — safe-top includes status bar)
+ * env(safe-area-inset-*) reports the right value per device automatically when viewport-fit=cover.
+ * We clamp to a minimum so non-iOS browsers still get reasonable padding.
+ */
 .topnav {
   display: flex; align-items: center; gap: 10px;
-  padding: 12px 16px 6px;
-  padding-top: calc(var(--safe-top) + 12px);
-  margin-top: -36px; /* let island float over */
+  padding-top: max(var(--safe-top), 12px);
+  padding-bottom: 8px;
+  padding-left: max(16px, var(--safe-left));
+  padding-right: max(16px, var(--safe-right));
   position: relative;
+  z-index: 10;
 }
 .topnav .place {
   flex: 1; min-width: 0;
@@ -344,15 +358,32 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
   display: grid; place-items: center;
   color: var(--label);
   cursor: pointer;
+  flex-shrink: 0;
   transition: transform 0.2s var(--ease-spring), background 0.2s;
 }
 .topnav .iconbtn:active { transform: scale(0.92); }
 .topnav .iconbtn svg { width: 19px; height: 19px; }
 
+/* Per-device fine-tuning for topnav.
+ * Dynamic Island iPhones: extra breathing room so buttons don't sit right next to the island.
+ * Notch iPhones: standard safe-top is already perfect.
+ * Home-button iPhones: status bar is only 20pt — bump up so the topnav feels intentional.
+ * In standalone (PWA) mode, there's no Safari chrome — safe-top already accounts for status bar.
+ */
+.has-dynamic-island .topnav { padding-top: max(var(--safe-top), 16px); }
+.has-home-button .topnav { padding-top: max(var(--safe-top, 20px), 20px); }
+.is-pwa .topnav { padding-top: max(var(--safe-top), 14px); }
+
+/* Landscape on notched iPhones: status bar shrinks, but safe-left/right become 44+pt to clear notch */
+.landscape.has-notch .topnav,
+.landscape.has-dynamic-island .topnav {
+  padding-top: max(var(--safe-top), 8px);
+}
+
 /* ===== Hero — current conditions ===== */
 .hero {
   text-align: center;
-  padding: 24px 24px 36px;
+  padding: 24px max(24px, var(--safe-left)) 36px max(24px, var(--safe-right));
   animation: fade-up 0.8s var(--ease-spring) 0.1s both;
 }
 @keyframes fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
@@ -377,7 +408,11 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 .hero .hilo strong { color: var(--label); font-weight: 600; }
 
 /* ===== Card system (iOS grouped material) ===== */
-.section { padding: 0 16px; margin-bottom: 14px; }
+.section {
+  padding-left: max(16px, var(--safe-left));
+  padding-right: max(16px, var(--safe-right));
+  margin-bottom: 14px;
+}
 .card {
   background: var(--mat-reg);
   backdrop-filter: blur(50px) saturate(1.8);
@@ -804,7 +839,10 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 .tabbar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
   display: flex;
-  padding: 8px 8px calc(8px + var(--safe-bottom));
+  padding-top: 8px;
+  padding-bottom: calc(8px + var(--safe-bottom));
+  padding-left: max(8px, var(--safe-left));
+  padding-right: max(8px, var(--safe-right));
   background: var(--mat-reg);
   backdrop-filter: blur(40px) saturate(1.8);
   -webkit-backdrop-filter: blur(40px) saturate(1.8);
@@ -1067,12 +1105,6 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 <body>
 <div class="atmo" aria-hidden="true"></div>
 
-<!-- =============== BANNERS =============== -->
-<div id="rain-banner" class="island rain hidden" role="status" aria-live="polite">
-  <span class="pulse" aria-hidden="true"></span>
-  <span id="rain-text">Checking conditions…</span>
-</div>
-
 <!-- =============== TOP NAV =============== -->
 <header class="topnav" role="banner">
   <button class="iconbtn" id="btn-locate" aria-label="Use my location" title="Use my location">
@@ -1089,6 +1121,12 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
   </button>
 </header>
+
+<!-- =============== BANNERS =============== -->
+<div id="rain-banner" class="island rain hidden" role="status" aria-live="polite">
+  <span class="pulse" aria-hidden="true"></span>
+  <span id="rain-text">Checking conditions…</span>
+</div>
 
 <main>
 <!-- =============== PAGE: TODAY =============== -->
@@ -2269,6 +2307,35 @@ function applyAtmoTint(code, isDay) {
  *   - Once granted, keep a passive watch so location updates as Noel drives between job sites.
  */
 
+// Detect device layout characteristics so CSS can fine-tune.
+// Adds classes to <html>: .has-dynamic-island, .has-notch, .has-home-button, .is-ios, .is-pwa, .landscape
+function detectDeviceLayout() {
+  const html = document.documentElement;
+  const ua = navigator.userAgent || '';
+  const isIOS = /iPad|iPhone|iPod/.test(ua) ||
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
+                       window.navigator.standalone === true;
+
+  // Read the actual resolved safe-area-inset-top value
+  const probe = document.createElement('div');
+  probe.style.cssText = 'position:fixed;top:0;height:env(safe-area-inset-top,0px);width:0;visibility:hidden;';
+  document.body.appendChild(probe);
+  const safeTopPx = probe.getBoundingClientRect().height;
+  probe.remove();
+
+  // Classify by safe-top range (in CSS pixels, not raw pt — they match 1:1 on iOS)
+  html.classList.toggle('is-ios', isIOS);
+  html.classList.toggle('is-pwa', isStandalone);
+  html.classList.toggle('has-dynamic-island', safeTopPx >= 50);                  // 14 Pro+, 15+, 16+
+  html.classList.toggle('has-notch', safeTopPx >= 30 && safeTopPx < 50);          // X / 11 / 12 / 13 / 14 base
+  html.classList.toggle('has-home-button', isIOS && safeTopPx < 30);              // SE / 8 / older
+  html.classList.toggle('landscape', window.innerWidth > window.innerHeight);
+
+  // Expose the measured value so the CSS minimum is always at least this
+  html.style.setProperty('--measured-safe-top', `${safeTopPx}px`);
+}
+
 // Read current Permissions API state ('granted' | 'prompt' | 'denied' | 'unknown')
 async function geoPermissionState() {
   if (!navigator.permissions || !navigator.permissions.query) return 'unknown';
@@ -2552,6 +2619,16 @@ async function init() {
   if ('serviceWorker' in navigator) {
     try { await navigator.serviceWorker.register('sw.js', { scope: './' }); } catch (e) {}
   }
+
+  // Tag the document with device characteristics so CSS / layout can react.
+  // iOS reports safe-area-inset-top via env() once viewport-fit=cover is set:
+  //   - SE / home-button iPhones: ~20pt
+  //   - Notched iPhones (X / 11 / 12 / 13 / 14 base): ~44pt
+  //   - Dynamic Island iPhones (14 Pro, 15+, 16+): ~59pt
+  // We measure the resolved env() value and add a class so styles can fine-tune.
+  detectDeviceLayout();
+  window.addEventListener('resize', detectDeviceLayout);
+  window.addEventListener('orientationchange', () => setTimeout(detectDeviceLayout, 120));
 
   // Live-watch the geolocation permission so the banner auto-dismisses when granted
   watchGeoPermission();
