@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5"/>
 
 <!-- ===== Primary SEO ===== -->
-<title>Skyline — Weather, Radar & 30-Day Construction Outlook</title>
-<meta name="description" content="Hyperlocal weather forecast, animated Doppler radar, severe-weather alerts, air quality, and a 30-day construction workability outlook. Free, installable, works offline. Apple-quality design, built for builders and planners."/>
-<meta name="keywords" content="weather app, weather radar, doppler radar, hyperlocal weather, hourly forecast, 10-day forecast, 30-day forecast, construction weather, jobsite weather, solar install weather, roofing weather, severe weather alerts, NWS alerts, air quality index, AQI, rain notification, PWA weather, iOS weather, free weather app"/>
+<title>Skyline — Weather & 30-Day Construction Outlook</title>
+<meta name="description" content="Hyperlocal weather forecast, severe-weather alerts, air quality, and a 30-day construction workability outlook. Free, installable, works offline. Apple-quality design, built for builders and planners."/>
+<meta name="keywords" content="weather app, hyperlocal weather, hourly forecast, 10-day forecast, 30-day forecast, construction weather, jobsite weather, solar install weather, roofing weather, severe weather alerts, NWS alerts, air quality index, AQI, rain notification, PWA weather, iOS weather, free weather app"/>
 <meta name="author" content="Skyline Weather"/>
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
 <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
@@ -26,15 +26,15 @@
 <!-- ===== Open Graph (Facebook, LinkedIn, iMessage, Slack, Discord) ===== -->
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Skyline Weather"/>
-<meta property="og:title" content="Skyline — Weather, Radar & 30-Day Construction Outlook"/>
-<meta property="og:description" content="Hyperlocal forecast, animated radar, severe alerts, and a 30-day construction workability outlook. Apple-quality design. Free. Installable."/>
+<meta property="og:title" content="Skyline — Weather & 30-Day Construction Outlook"/>
+<meta property="og:description" content="Hyperlocal forecast, severe alerts, and a 30-day construction workability outlook. Apple-quality design. Free. Installable."/>
 <meta property="og:url" content="https://weather.nepa-pro.com/"/>
 <meta property="og:image" content="https://weather.nepa-pro.com/og-card.png"/>
 <meta property="og:image:secure_url" content="https://weather.nepa-pro.com/og-card.png"/>
 <meta property="og:image:type" content="image/png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta property="og:image:alt" content="Skyline weather app interface showing current temperature, radar, and 30-day construction outlook"/>
+<meta property="og:image:alt" content="Skyline weather app interface showing current temperature and 30-day construction outlook"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:determiner" content="the"/>
 <meta property="article:author" content="Skyline Weather"/>
@@ -42,8 +42,8 @@
 
 <!-- ===== Twitter / X Card ===== -->
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Skyline — Weather, Radar & 30-Day Construction Outlook"/>
-<meta name="twitter:description" content="Hyperlocal forecast, animated radar, severe alerts, 30-day construction outlook. Free PWA."/>
+<meta name="twitter:title" content="Skyline — Weather & 30-Day Construction Outlook"/>
+<meta name="twitter:description" content="Hyperlocal forecast, severe alerts, 30-day construction outlook. Free PWA."/>
 <meta name="twitter:image" content="https://weather.nepa-pro.com/og-card.png"/>
 <meta name="twitter:image:alt" content="Skyline weather app preview"/>
 <meta name="twitter:app:name:iphone" content="Skyline"/>
@@ -85,7 +85,7 @@
       "name": "Skyline",
       "alternateName": "Skyline Weather",
       "url": "https://weather.nepa-pro.com/",
-      "description": "Hyperlocal weather, animated radar, severe alerts, air quality, and a 30-day construction workability outlook.",
+      "description": "Hyperlocal weather, severe alerts, air quality, and a 30-day construction workability outlook.",
       "applicationCategory": "WeatherApplication",
       "applicationSubCategory": "Productivity",
       "operatingSystem": "Any (PWA — iOS, Android, macOS, Windows, ChromeOS, Linux)",
@@ -98,7 +98,6 @@
         "Hyperlocal current conditions",
         "24-hour and 16-day forecast",
         "30-day construction workability outlook",
-        "Animated NEXRAD radar (NOAA)",
         "NWS severe weather alerts",
         "Air quality index (AQI, PM2.5, PM10, ozone)",
         "Rain incoming push notifications",
@@ -153,7 +152,7 @@
         {
           "@type": "Question",
           "name": "Does Skyline cost money?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Skyline is free. It uses free public weather APIs (Open-Meteo, US National Weather Service, NOAA NEXRAD via Iowa State Mesonet) and runs entirely in your browser as a Progressive Web App." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Skyline is free. It uses free public weather APIs (Open-Meteo, US National Weather Service) and runs entirely in your browser as a Progressive Web App." }
         },
         {
           "@type": "Question",
@@ -176,12 +175,7 @@
 <link rel="preconnect" href="https://geocoding-api.open-meteo.com" crossorigin/>
 <link rel="preconnect" href="https://air-quality-api.open-meteo.com" crossorigin/>
 <link rel="preconnect" href="https://api.weather.gov" crossorigin/>
-<link rel="preconnect" href="https://mesonet.agron.iastate.edu" crossorigin/>
 <link rel="preconnect" href="https://api.bigdatacloud.net" crossorigin/>
-<link rel="dns-prefetch" href="https://unpkg.com"/>
-
-<!-- ===== Leaflet for the radar map ===== -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
 <style>
 /* ============================================================
@@ -753,43 +747,6 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 }
 .metric .ring span { position: relative; font-size: 14px; font-weight: 600; }
 
-/* ===== Radar ===== */
-#map {
-  height: 360px; width: 100%;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--mat-stroke);
-}
-.radar-controls {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 16px;
-}
-.radar-controls .play {
-  width: 38px; height: 38px; border-radius: 50%;
-  background: var(--blue); color: #fff;
-  display: grid; place-items: center;
-  border: none; cursor: pointer;
-}
-.radar-controls .play svg { width: 16px; height: 16px; }
-.radar-controls .scrub {
-  flex: 1;
-  -webkit-appearance: none; appearance: none;
-  height: 4px; border-radius: 999px;
-  background: var(--separator-strong);
-  outline: none;
-}
-.radar-controls .scrub::-webkit-slider-thumb {
-  -webkit-appearance: none; appearance: none;
-  width: 16px; height: 16px; border-radius: 50%;
-  background: #fff; border: 2px solid var(--blue);
-  cursor: pointer;
-}
-.radar-controls .scrub::-moz-range-thumb {
-  width: 14px; height: 14px; border-radius: 50%;
-  background: #fff; border: 2px solid var(--blue);
-}
-.radar-controls .ts { font-size: 12px; font-weight: 600; color: var(--label-2); min-width: 68px; text-align: right; }
-
 /* ===== Search overlay ===== */
 .search-overlay {
   position: fixed; inset: 0; z-index: 100;
@@ -1131,12 +1088,6 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 <!-- =============== PAGE: TODAY =============== -->
 <section class="page active" id="page-today" aria-label="Today">
 
-  <div class="loc-banner" id="loc-banner" role="status">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-7.5-8-13a8 8 0 1 1 16 0c0 5.5-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></svg>
-    <div class="txt"><b id="loc-banner-title">Showing default location</b><small id="loc-banner-sub">Tap to use your real location.</small></div>
-    <button id="loc-banner-btn">Enable</button>
-  </div>
-
   <div class="hero" itemprop="weatherForecast" itemscope itemtype="https://schema.org/Observation">
     <div class="place" id="hero-loc">—</div>
     <div class="temp"><span id="hero-temp">--</span><span class="deg">°</span></div>
@@ -1174,32 +1125,8 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
   <div class="metrics" id="metrics"></div>
 
   <div class="about" role="contentinfo">
-    Skyline · Weather data from <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>, alerts from <a href="https://www.weather.gov" target="_blank" rel="noopener">NWS</a>, radar from <a href="https://mesonet.agron.iastate.edu" target="_blank" rel="noopener">NOAA NEXRAD via IEM</a>.
+    Skyline · Weather data from <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>, alerts from <a href="https://www.weather.gov" target="_blank" rel="noopener">NWS</a>, air quality via Open-Meteo, reverse geocoding via <a href="https://www.bigdatacloud.com" target="_blank" rel="noopener">BigDataCloud</a>.
     <br><a href="#" id="install-hint">Add to Home Screen</a> for the native iOS experience.
-  </div>
-</section>
-
-<!-- =============== PAGE: RADAR =============== -->
-<section class="page" id="page-radar" aria-label="Radar">
-  <div class="section" style="padding-top: 8px;">
-    <div class="card">
-      <div class="card-header">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l7 7"/></svg>
-        NEXRAD Radar
-      </div>
-      <div class="card-summary" id="radar-summary">Loading NEXRAD tiles…</div>
-      <div id="map" role="img" aria-label="Animated NEXRAD weather radar map"></div>
-      <div class="radar-controls">
-        <button class="play" id="btn-play" aria-label="Play radar animation">
-          <svg id="ico-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-        <input type="range" class="scrub" id="radar-scrub" min="0" max="100" value="100" aria-label="Radar timeline"/>
-        <div class="ts" id="radar-ts">—</div>
-      </div>
-      <div style="padding: 4px 16px 14px; font-size: 11px; color: var(--label-2); line-height: 1.45;">
-        Data: NOAA NEXRAD base-reflectivity composite via Iowa State Mesonet. Coverage: continental United States. Updated every 5 minutes.
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1261,10 +1188,6 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
     <span>Today</span>
   </button>
-  <button class="tab" data-tab="radar">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
-    <span>Radar</span>
-  </button>
   <button class="tab" data-tab="outlook">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-5"/></svg>
     <span>30-Day</span>
@@ -1302,7 +1225,7 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
     <ul class="benefits">
       <li>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        <span><b>Real-time conditions for where you are</b><small>Temperature, radar, and AQI for your exact spot — not the nearest big city.</small></span>
+        <span><b>Real-time conditions for where you are</b><small>Temperature, AQI, and forecast for your exact spot — not the nearest big city.</small></span>
       </li>
       <li>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
@@ -1347,17 +1270,10 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
       </div>
       <label class="toggle"><input type="checkbox" id="tog-rain"/><span class="slider"></span></label>
     </div>
-    <div class="row">
-      <div class="lab">
-        <strong>Reduce motion</strong>
-        <small>Lower-energy radar animation</small>
-      </div>
-      <label class="toggle"><input type="checkbox" id="tog-motion"/><span class="slider"></span></label>
-    </div>
     <div class="row" style="border-top: 1px solid var(--separator);">
       <div class="lab">
-        <strong>Skyline v1.0</strong>
-        <small>Open-Meteo · NWS · NEXRAD · Leaflet</small>
+        <strong>Skyline v1.1</strong>
+        <small>Open-Meteo · NWS · BigDataCloud</small>
       </div>
     </div>
     <button class="iconbtn" id="sheet-close" aria-label="Close" style="position:absolute; top:14px; right:16px;">
@@ -1366,12 +1282,11 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
   </div>
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 /* ============================================================
    SKYLINE — APP LOGIC
    Free APIs: Open-Meteo (forecast, geocode, AQ), NWS (alerts),
-              NOAA NEXRAD via Iowa State Mesonet (radar tiles)
+              BigDataCloud (reverse geocode)
    ============================================================ */
 
 const $ = (s, r=document) => r.querySelector(s);
@@ -1382,7 +1297,6 @@ const STATE = {
   locSource: null,     // 'gps' | 'manual' | 'default'
   units: localStorage.getItem('skyline.units') || 'imperial',
   rainAlerts: localStorage.getItem('skyline.rainAlerts') === 'true',
-  reduceMotion: localStorage.getItem('skyline.reduceMotion') === 'true',
   gpsEnabled: localStorage.getItem('skyline.gpsEnabled') === 'true',
   gpsAsked: localStorage.getItem('skyline.gpsAsked') === 'true',
   recents: JSON.parse(localStorage.getItem('skyline.recents') || '[]'),
@@ -1390,8 +1304,7 @@ const STATE = {
   data: null,          // weather payload
   outlook: null,       // 30-day analysis
   alerts: [],
-  aqi: null,
-  radar: { frames: [], idx: 0, playing: false, layer: null, timer: null }
+  aqi: null
 };
 
 /* ===== WMO weather codes -> { label, icon } ===== */
@@ -2136,113 +2049,6 @@ async function loadAQ(lat, lon) {
 }
 
 /* ============================================================
-   RADAR — Leaflet + NOAA NEXRAD via Iowa Mesonet
-   ============================================================ */
-let map, baseTiles;
-async function initMap(lat, lon) {
-  if (map) {
-    map.setView([lat, lon], 8);
-    return;
-  }
-  map = L.map('map', {
-    zoomControl: true,
-    attributionControl: true,
-    tap: true,
-    minZoom: 4,
-    maxZoom: 12
-  }).setView([lat, lon], 8);
-  baseTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap'
-  }).addTo(map);
-  // location marker
-  L.circleMarker([lat, lon], { radius: 6, color: '#0A84FF', fillColor: '#0A84FF', fillOpacity: 0.9, weight: 2 }).addTo(map);
-  await loadRadarFrames();
-}
-
-/* ===== Radar tiles: NOAA NEXRAD via Iowa State Mesonet =====
- * Source: https://mesonet.agron.iastate.edu — base-reflectivity composite of every NEXRAD radar in the US.
- * Free, no API key, no rate limits, standard XYZ tiles up to zoom 12.
- * Updated every ~5 minutes. Coverage: continental US only.
- */
-const MESONET = {
-  // Base URL pattern. The product `nexrad-n0q-900913` is "Base Reflectivity, Web Mercator".
-  // Append "-{YYYYMMDDHHMM}" for historical frames.
-  baseUrl: 'https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0',
-  product: 'nexrad-n0q-900913'
-};
-
-// Round a Date down to the nearest 5-minute boundary; return UTC YYYYMMDDHHMM
-function mesonetTimestamp(d) {
-  const utc = new Date(d.getTime());
-  utc.setUTCMinutes(Math.floor(utc.getUTCMinutes() / 5) * 5, 0, 0);
-  const p = (n) => String(n).padStart(2, '0');
-  return {
-    stamp: `${utc.getUTCFullYear()}${p(utc.getUTCMonth()+1)}${p(utc.getUTCDate())}${p(utc.getUTCHours())}${p(utc.getUTCMinutes())}`,
-    epoch: Math.floor(utc.getTime() / 1000)
-  };
-}
-
-async function loadRadarFrames() {
-  try {
-    // Build 13 historical frames at 5-minute intervals, ending 5 minutes ago (data lag buffer).
-    // Total window: 60 minutes back.
-    const now = Date.now();
-    const frames = [];
-    // Start 5 min in the past, walk back 12 steps of 5 min
-    for (let i = 12; i >= 0; i--) {
-      const t = new Date(now - (i + 1) * 5 * 60 * 1000);
-      const { stamp, epoch } = mesonetTimestamp(t);
-      frames.push({
-        time: epoch,
-        url: `${MESONET.baseUrl}/${MESONET.product}-${stamp}/{z}/{x}/{y}.png`
-      });
-    }
-    STATE.radar.frames = frames;
-    STATE.radar.idx = frames.length - 1;
-    setRadarFrame(STATE.radar.idx);
-    $('#radar-summary').textContent = `${frames.length} frames over the past hour (every 5 min, NOAA NEXRAD).`;
-  } catch (e) {
-    $('#radar-summary').textContent = 'Could not load radar.';
-  }
-}
-
-function setRadarFrame(idx) {
-  const f = STATE.radar.frames[idx];
-  if (!f) return;
-  if (STATE.radar.layer) map.removeLayer(STATE.radar.layer);
-  // NEXRAD composite: native zoom 0–12, standard XYZ tiles.
-  STATE.radar.layer = L.tileLayer(f.url, {
-    opacity: 0.7,
-    tileSize: 256,
-    maxNativeZoom: 12,
-    maxZoom: 18,
-    minZoom: 0,
-    attribution: 'NEXRAD &copy; <a href="https://mesonet.agron.iastate.edu" target="_blank" rel="noopener">IEM</a>'
-  }).addTo(map);
-  STATE.radar.idx = idx;
-  $('#radar-scrub').value = (idx / (STATE.radar.frames.length - 1)) * 100;
-  const d = new Date(f.time * 1000);
-  $('#radar-ts').textContent = d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-}
-
-function playRadar() {
-  STATE.radar.playing = !STATE.radar.playing;
-  $('#ico-play').innerHTML = STATE.radar.playing
-    ? '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>'
-    : '<path d="M8 5v14l11-7z"/>';
-  if (STATE.radar.playing) {
-    const step = STATE.reduceMotion ? 1200 : 600;
-    STATE.radar.timer = setInterval(() => {
-      let n = (STATE.radar.idx + 1) % STATE.radar.frames.length;
-      setRadarFrame(n);
-    }, step);
-  } else {
-    clearInterval(STATE.radar.timer);
-  }
-}
-
-/* ============================================================
    APP FLOW
    ============================================================ */
 async function loadFor(loc, { source = 'manual' } = {}) {
@@ -2255,9 +2061,8 @@ async function loadFor(loc, { source = 'manual' } = {}) {
   STATE.locSource = source === 'gps' ? 'gps' : (source === 'default' ? null : 'manual');
   setPlaceName(placeName);
   setLocSourceBadge(STATE.locSource);
-  if (source === 'default') showLocBanner('default');
-  else if (source === 'manual' && STATE.gpsEnabled) showLocBanner('manual');
-  else hideLocBanner();
+  // Banner is only for the genuinely-no-location case, which the default fallback prevents.
+  hideLocBanner();
 
   // Fire all in parallel
   const [data, aq, hasAlert] = await Promise.all([
@@ -2275,11 +2080,6 @@ async function loadFor(loc, { source = 'manual' } = {}) {
   renderDaily(data);
   renderMetrics(data, aq);
   render30Day(data, hasAlert, aq);
-
-  // Radar
-  if ($('#page-radar').classList.contains('active') || true) {
-    initMap(loc.latitude, loc.longitude);
-  }
 
   // Update document for SEO/voice agents
   document.title = `${Math.round(isImperial() ? data.current.temperature_2m * 9/5 + 32 : data.current.temperature_2m)}° ${wmoLabel(data.current.weather_code)} in ${placeName} — Skyline`;
@@ -2385,9 +2185,7 @@ async function watchGeoPermission() {
           await loadFor(loc, { source: 'gps' });
           startLocationWatch();
         }
-      } else if (status.state === 'denied') {
-        showLocBanner('denied');
-      } else if (status.state === 'prompt') {
+      } else {
         hideLocBanner();
       }
     };
@@ -2445,8 +2243,11 @@ function setLocSourceBadge(source) {
   }
 }
 
+// Banner is currently disabled — these are kept as no-op stubs in case we re-enable
+// the banner UI in a future build. They safely no-op when the #loc-banner element is absent.
 function showLocBanner(state) {
   const b = $('#loc-banner');
+  if (!b) return;
   const title = $('#loc-banner-title');
   const sub = $('#loc-banner-sub');
   const btn = $('#loc-banner-btn');
@@ -2465,7 +2266,10 @@ function showLocBanner(state) {
   }
   b.classList.add('show');
 }
-function hideLocBanner() { $('#loc-banner').classList.remove('show'); }
+function hideLocBanner() {
+  const b = $('#loc-banner');
+  if (b) b.classList.remove('show');
+}
 
 // Start / stop a passive watch so location auto-updates between job sites
 function startLocationWatch() {
@@ -2514,7 +2318,6 @@ async function requestLocation({ silent = false } = {}) {
     }
 
     if (perm === 'denied') {
-      showLocBanner('denied');
       btn?.classList.remove('locating');
       return null;
     }
@@ -2522,8 +2325,6 @@ async function requestLocation({ silent = false } = {}) {
     // Either granted, or first 'prompt' attempt — try to get a position
     const pos = await getPositionOnce();
     if (!pos) {
-      // Could be timeout, hardware issue, or user dismissed prompt
-      if ((await geoPermissionState()) === 'denied') showLocBanner('denied');
       btn?.classList.remove('locating');
       return null;
     }
@@ -2608,11 +2409,6 @@ async function doSearch(q) {
 function setTab(name) {
   $$('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
   $$('.page').forEach(p => p.classList.toggle('active', p.id === `page-${name}`));
-  if (name === 'radar' && STATE.loc && map) {
-    setTimeout(() => map.invalidateSize(), 50);
-  } else if (name === 'radar' && STATE.loc) {
-    setTimeout(() => initMap(STATE.loc.latitude, STATE.loc.longitude), 50);
-  }
   history.replaceState(null, '', `?view=${name}`);
 }
 
@@ -2620,7 +2416,6 @@ function setTab(name) {
 function syncSettings() {
   $$('#seg-units button').forEach(b => b.classList.toggle('active', b.dataset.unit === STATE.units));
   $('#tog-rain').checked = STATE.rainAlerts;
-  $('#tog-motion').checked = STATE.reduceMotion;
   $('#tog-gps').checked = STATE.gpsEnabled;
 }
 
@@ -2666,16 +2461,6 @@ async function init() {
     const l = await requestLocation();
     if (l) loadFor(l, { source: 'gps' });
   });
-  // Banner button: same as locate, but if denied we show "How to re-enable" hint
-  $('#loc-banner-btn').addEventListener('click', async () => {
-    const perm = await geoPermissionState();
-    if (perm === 'denied') {
-      alert('Location is blocked for this site.\n\nTo re-enable:\n• iPhone: Settings → Safari → Location → Ask\n• Chrome: tap the lock icon in the address bar → Permissions → Location\n• Then refresh this page.');
-      return;
-    }
-    const l = await requestLocation();
-    if (l) loadFor(l, { source: 'gps' });
-  });
   // Permission sheet buttons
   $('#loc-allow').addEventListener('click', async () => {
     closeLocSheet();
@@ -2683,7 +2468,7 @@ async function init() {
     STATE.gpsAsked = true;
     const l = await requestLocation({ silent: true });
     if (l) loadFor(l, { source: 'gps' });
-    else showLocBanner((await geoPermissionState()) === 'denied' ? 'denied' : 'default');
+    // If denied / unavailable, app keeps the default location silently.
   });
   $('#loc-skip').addEventListener('click', () => {
     closeLocSheet();
@@ -2723,15 +2508,6 @@ async function init() {
     STATE.rainAlerts = e.target.checked;
     localStorage.setItem('skyline.rainAlerts', String(STATE.rainAlerts));
   });
-  $('#tog-motion').addEventListener('change', (e) => {
-    STATE.reduceMotion = e.target.checked;
-    localStorage.setItem('skyline.reduceMotion', String(STATE.reduceMotion));
-  });
-  $('#btn-play').addEventListener('click', playRadar);
-  $('#radar-scrub').addEventListener('input', (e) => {
-    const idx = Math.round((e.target.value / 100) * (STATE.radar.frames.length - 1));
-    setRadarFrame(idx);
-  });
   $$('.tab').forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
 
   $('#install-hint').addEventListener('click', (e) => {
@@ -2745,7 +2521,7 @@ async function init() {
   // Honor URL view
   const params = new URLSearchParams(location.search);
   const view = params.get('view');
-  if (view && ['today','radar','outlook','alerts'].includes(view)) setTab(view);
+  if (view && ['today','outlook','alerts'].includes(view)) setTab(view);
 
   // ----- LOCATION RESOLUTION (GPS-first) -----
   // Priority:
@@ -2792,8 +2568,8 @@ async function init() {
         }
       }
     } else if (perm === 'denied') {
-      // Show the persistent banner so they know how to fix it
-      setTimeout(() => showLocBanner('denied'), 400);
+      // Permission denied — silently fall through to last-recent or default location.
+      // No banner: a usable forecast is more helpful than nag UI.
     }
   }
 
@@ -2854,7 +2630,6 @@ async function init() {
       localStorage.setItem('skyline.gpsEnabled', 'false');
       STATE.gpsEnabled = false;
       stopLocationWatch();
-      showLocBanner('denied');
     }
 
     if (!STATE.loc) return;

@@ -1,5 +1,5 @@
 // Skyline Weather PWA — Service Worker
-const VERSION = 'skyline-v1.1.0';
+const VERSION = 'skyline-v1.2.0';
 const SHELL_CACHE = `${VERSION}-shell`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 
@@ -7,9 +7,7 @@ const SHELL_ASSETS = [
   './',
   './index.html',
   './manifest.webmanifest',
-  './icon.svg',
-  'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
-  'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
+  './icon.svg'
 ];
 
 self.addEventListener('install', (event) => {
@@ -36,7 +34,8 @@ self.addEventListener('fetch', (event) => {
   // Network-first for weather APIs (always want fresh data)
   if (
     url.hostname.includes('open-meteo.com') ||
-    url.hostname.includes('api.weather.gov')
+    url.hostname.includes('api.weather.gov') ||
+    url.hostname.includes('bigdatacloud.net')
   ) {
     event.respondWith(
       fetch(request)
@@ -50,26 +49,10 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Stale-while-revalidate for radar tiles (NOAA NEXRAD via Iowa Mesonet) + OSM base tiles
-  if (url.hostname.includes('mesonet.agron.iastate.edu') || url.hostname.includes('tile.openstreetmap.org')) {
-    event.respondWith(
-      caches.open(RUNTIME_CACHE).then((cache) =>
-        cache.match(request).then((cached) => {
-          const fetchPromise = fetch(request).then((res) => {
-            cache.put(request, res.clone());
-            return res;
-          }).catch(() => cached);
-          return cached || fetchPromise;
-        })
-      )
-    );
-    return;
-  }
-
   // Cache-first for shell
   event.respondWith(
     caches.match(request).then((cached) => cached || fetch(request).then((res) => {
-      if (res.ok && (url.origin === location.origin || url.hostname.includes('unpkg.com'))) {
+      if (res.ok && url.origin === location.origin) {
         const copy = res.clone();
         caches.open(RUNTIME_CACHE).then((cache) => cache.put(request, copy));
       }
@@ -130,5 +113,5 @@ async function checkRainAlert(lat, lon, placeName) {
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  event.waitUntil(self.clients.openWindow('./?view=radar'));
+  event.waitUntil(self.clients.openWindow('./'));
 });

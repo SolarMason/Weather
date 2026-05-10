@@ -1,6 +1,6 @@
 # Skyline
 
-**Hyperlocal weather, animated radar, severe alerts, and a 30-day construction workability outlook — built as a single-file PWA with no build step.**
+**Hyperlocal weather, severe alerts, air quality, and a 30-day construction workability outlook — built as a single-file PWA with no build step.**
 
 Apple-iOS aesthetic, GPS-first by default, free public APIs, installable on iPhone/Android/desktop.
 
@@ -11,9 +11,8 @@ Apple-iOS aesthetic, GPS-first by default, free public APIs, installable on iPho
 ## Features
 
 - **GPS-first location** — auto-detects on launch with a friendly iOS-style permission sheet, then auto-tracks as you move between job sites
-- **Today** — large hero temp, hourly strip, 10-day gradient bars, 8 metric tiles (UV with conic ring, wind+gusts, humidity+dewpoint, pressure, visibility, US AQI, sunrise/sunset, precipitation)
-- **Radar** — animated NEXRAD base-reflectivity composite, last 60 minutes at 5-min intervals, play/pause, scrubber (US coverage)
-- **30-Day Construction Outlook** — every day scored 0–100 against rain probability, precipitation amount, snow, wind gusts, freeze/heat thresholds, and active NWS alerts. Days 1–16 from real Open-Meteo data; 17–30 extrapolated and labeled accordingly
+- **Today** — large hero temp, hourly strip, 10-day gradient bars, 9 metric tiles (UV with conic ring, wind+gusts, humidity+dewpoint, pressure, visibility, US AQI, sunrise/sunset, precipitation, solar irradiance)
+- **30-Day Construction Outlook** — every day scored 0–100 against rain probability, precipitation amount, snow, wind gusts, freeze/heat thresholds, and active NWS alerts. Each tile shows weather icon, hi/lo temp, rain %, wind, solar kWh/m², and AQI. Tap any day for a full popup; "Schedule This Date" launches schedule.nepa-pro.com prefilled with the forecast. Days 1–16 from real Open-Meteo data; 17–30 extrapolated and labeled accordingly
 - **NWS Alerts** — severity-colored cards (warning / advisory / watch), auto-fetched for the current point
 - **Air quality** — full pollutant breakdown + US AQI category color
 - **Rain banner** — Dynamic-Island-style pill notifies "Rain in ~X min · Y% chance" when precipitation expected within 60 minutes
@@ -29,8 +28,6 @@ Apple-iOS aesthetic, GPS-first by default, free public APIs, installable on iPho
 | [Open-Meteo Air Quality](https://open-meteo.com/en/docs/air-quality-api) | US AQI + pollutant breakdown |
 | [BigDataCloud](https://www.bigdatacloud.com/free-api/free-reverse-geocode-to-city-api) | Reverse geocoding (coords → city name) |
 | [api.weather.gov (NWS)](https://www.weather.gov/documentation/services-web-api) | Severe weather alerts (US point queries) |
-| [Iowa State Mesonet](https://mesonet.agron.iastate.edu) | NOAA NEXRAD base-reflectivity radar tiles |
-| [unpkg](https://unpkg.com) | Leaflet 1.9.4 (CDN) |
 
 ## Deploy to GitHub Pages
 
@@ -76,7 +73,7 @@ After DNS propagates (usually 5–60 min), GitHub will provision a Let's Encrypt
 | `og-card.svg` | Source SVG for the OG card (regenerate the PNG with cairosvg if edited) |
 | `404.html` | Soft-redirects unknown paths back to the app |
 | `robots.txt` | Search-engine + AI crawler rules |
-| `sitemap.xml` | Single-page sitemap (with view variants for radar/outlook/alerts) |
+| `sitemap.xml` | Single-page sitemap (with view variants for outlook/alerts) |
 | `CNAME` | GitHub Pages custom domain config |
 | `.github/workflows/deploy.yml` | GitHub Pages auto-deploy |
 
