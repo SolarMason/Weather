@@ -98,7 +98,7 @@
         "Hyperlocal current conditions",
         "24-hour and 16-day forecast",
         "30-day construction workability outlook",
-        "Animated Doppler radar (RainViewer)",
+        "Animated NEXRAD radar (NOAA)",
         "NWS severe weather alerts",
         "Air quality index (AQI, PM2.5, PM10, ozone)",
         "Rain incoming push notifications",
@@ -153,7 +153,7 @@
         {
           "@type": "Question",
           "name": "Does Skyline cost money?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Skyline is free. It uses free public weather APIs (Open-Meteo, US National Weather Service, RainViewer) and runs entirely in your browser as a Progressive Web App." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Skyline is free. It uses free public weather APIs (Open-Meteo, US National Weather Service, NOAA NEXRAD via Iowa State Mesonet) and runs entirely in your browser as a Progressive Web App." }
         },
         {
           "@type": "Question",
@@ -176,8 +176,7 @@
 <link rel="preconnect" href="https://geocoding-api.open-meteo.com" crossorigin/>
 <link rel="preconnect" href="https://air-quality-api.open-meteo.com" crossorigin/>
 <link rel="preconnect" href="https://api.weather.gov" crossorigin/>
-<link rel="preconnect" href="https://api.rainviewer.com" crossorigin/>
-<link rel="preconnect" href="https://tilecache.rainviewer.com" crossorigin/>
+<link rel="preconnect" href="https://mesonet.agron.iastate.edu" crossorigin/>
 <link rel="preconnect" href="https://api.bigdatacloud.net" crossorigin/>
 <link rel="dns-prefetch" href="https://unpkg.com"/>
 
@@ -1175,7 +1174,7 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
   <div class="metrics" id="metrics"></div>
 
   <div class="about" role="contentinfo">
-    Skyline · Weather data from <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>, alerts from <a href="https://www.weather.gov" target="_blank" rel="noopener">NWS</a>, radar from <a href="https://www.rainviewer.com" target="_blank" rel="noopener">RainViewer</a>.
+    Skyline · Weather data from <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>, alerts from <a href="https://www.weather.gov" target="_blank" rel="noopener">NWS</a>, radar from <a href="https://mesonet.agron.iastate.edu" target="_blank" rel="noopener">NOAA NEXRAD via IEM</a>.
     <br><a href="#" id="install-hint">Add to Home Screen</a> for the native iOS experience.
   </div>
 </section>
@@ -1186,16 +1185,19 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
     <div class="card">
       <div class="card-header">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l7 7"/></svg>
-        Animated Radar
+        NEXRAD Radar
       </div>
-      <div class="card-summary" id="radar-summary">Loading radar tiles…</div>
-      <div id="map" role="img" aria-label="Animated weather radar map"></div>
+      <div class="card-summary" id="radar-summary">Loading NEXRAD tiles…</div>
+      <div id="map" role="img" aria-label="Animated NEXRAD weather radar map"></div>
       <div class="radar-controls">
         <button class="play" id="btn-play" aria-label="Play radar animation">
           <svg id="ico-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         </button>
         <input type="range" class="scrub" id="radar-scrub" min="0" max="100" value="100" aria-label="Radar timeline"/>
         <div class="ts" id="radar-ts">—</div>
+      </div>
+      <div style="padding: 4px 16px 14px; font-size: 11px; color: var(--label-2); line-height: 1.45;">
+        Data: NOAA NEXRAD base-reflectivity composite via Iowa State Mesonet. Coverage: continental United States. Updated every 5 minutes.
       </div>
     </div>
   </div>
@@ -1355,7 +1357,7 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
     <div class="row" style="border-top: 1px solid var(--separator);">
       <div class="lab">
         <strong>Skyline v1.0</strong>
-        <small>Open-Meteo · NWS · RainViewer · Leaflet</small>
+        <small>Open-Meteo · NWS · NEXRAD · Leaflet</small>
       </div>
     </div>
     <button class="iconbtn" id="sheet-close" aria-label="Close" style="position:absolute; top:14px; right:16px;">
@@ -1369,7 +1371,7 @@ body { padding-bottom: calc(96px + var(--safe-bottom)); }
 /* ============================================================
    SKYLINE — APP LOGIC
    Free APIs: Open-Meteo (forecast, geocode, AQ), NWS (alerts),
-              RainViewer (radar tiles)
+              NOAA NEXRAD via Iowa State Mesonet (radar tiles)
    ============================================================ */
 
 const $ = (s, r=document) => r.querySelector(s);
@@ -1508,10 +1510,6 @@ const API = {
       if (!r.ok) return { features: [] };
       return r.json();
     } catch (e) { return { features: [] }; }
-  },
-  rainviewer: async () => {
-    const r = await fetch('https://api.rainviewer.com/public/weather-maps.json');
-    return r.json();
   }
 };
 
@@ -2138,7 +2136,7 @@ async function loadAQ(lat, lon) {
 }
 
 /* ============================================================
-   RADAR — Leaflet + RainViewer
+   RADAR — Leaflet + NOAA NEXRAD via Iowa Mesonet
    ============================================================ */
 let map, baseTiles;
 async function initMap(lat, lon) {
@@ -2162,23 +2160,48 @@ async function initMap(lat, lon) {
   await loadRadarFrames();
 }
 
+/* ===== Radar tiles: NOAA NEXRAD via Iowa State Mesonet =====
+ * Source: https://mesonet.agron.iastate.edu — base-reflectivity composite of every NEXRAD radar in the US.
+ * Free, no API key, no rate limits, standard XYZ tiles up to zoom 12.
+ * Updated every ~5 minutes. Coverage: continental US only.
+ */
+const MESONET = {
+  // Base URL pattern. The product `nexrad-n0q-900913` is "Base Reflectivity, Web Mercator".
+  // Append "-{YYYYMMDDHHMM}" for historical frames.
+  baseUrl: 'https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0',
+  product: 'nexrad-n0q-900913'
+};
+
+// Round a Date down to the nearest 5-minute boundary; return UTC YYYYMMDDHHMM
+function mesonetTimestamp(d) {
+  const utc = new Date(d.getTime());
+  utc.setUTCMinutes(Math.floor(utc.getUTCMinutes() / 5) * 5, 0, 0);
+  const p = (n) => String(n).padStart(2, '0');
+  return {
+    stamp: `${utc.getUTCFullYear()}${p(utc.getUTCMonth()+1)}${p(utc.getUTCDate())}${p(utc.getUTCHours())}${p(utc.getUTCMinutes())}`,
+    epoch: Math.floor(utc.getTime() / 1000)
+  };
+}
+
 async function loadRadarFrames() {
   try {
-    const data = await API.rainviewer();
-    const past = data.radar?.past || [];
-    const nowcast = data.radar?.nowcast || [];
-    const frames = [...past, ...nowcast].slice(-12);
-    STATE.radar.frames = frames.map(f => ({
-      time: f.time,
-      url: `${data.host}${f.path}/256/{z}/{x}/{y}/2/1_1.png`
-    }));
-    STATE.radar.idx = past.length - 1;
-    if (STATE.radar.frames.length) {
-      setRadarFrame(STATE.radar.idx);
-      $('#radar-summary').textContent = `${past.length} past frames + ${nowcast.length} forecast (every 10 min, 2 hr window).`;
-    } else {
-      $('#radar-summary').textContent = 'Radar data temporarily unavailable.';
+    // Build 13 historical frames at 5-minute intervals, ending 5 minutes ago (data lag buffer).
+    // Total window: 60 minutes back.
+    const now = Date.now();
+    const frames = [];
+    // Start 5 min in the past, walk back 12 steps of 5 min
+    for (let i = 12; i >= 0; i--) {
+      const t = new Date(now - (i + 1) * 5 * 60 * 1000);
+      const { stamp, epoch } = mesonetTimestamp(t);
+      frames.push({
+        time: epoch,
+        url: `${MESONET.baseUrl}/${MESONET.product}-${stamp}/{z}/{x}/{y}.png`
+      });
     }
+    STATE.radar.frames = frames;
+    STATE.radar.idx = frames.length - 1;
+    setRadarFrame(STATE.radar.idx);
+    $('#radar-summary').textContent = `${frames.length} frames over the past hour (every 5 min, NOAA NEXRAD).`;
   } catch (e) {
     $('#radar-summary').textContent = 'Could not load radar.';
   }
@@ -2188,21 +2211,19 @@ function setRadarFrame(idx) {
   const f = STATE.radar.frames[idx];
   if (!f) return;
   if (STATE.radar.layer) map.removeLayer(STATE.radar.layer);
-  // RainViewer v2 radar tiles top out at native zoom 8. Letting Leaflet ask for higher zooms
-  // returns RainViewer's "Zoom Level Not Supported" placeholder tile.
-  // maxNativeZoom caps the actual fetch; maxZoom lets users still zoom in (Leaflet over-scales).
+  // NEXRAD composite: native zoom 0–12, standard XYZ tiles.
   STATE.radar.layer = L.tileLayer(f.url, {
-    opacity: 0.72,
+    opacity: 0.7,
     tileSize: 256,
-    maxNativeZoom: 8,
+    maxNativeZoom: 12,
     maxZoom: 18,
-    minZoom: 0
+    minZoom: 0,
+    attribution: 'NEXRAD &copy; <a href="https://mesonet.agron.iastate.edu" target="_blank" rel="noopener">IEM</a>'
   }).addTo(map);
   STATE.radar.idx = idx;
   $('#radar-scrub').value = (idx / (STATE.radar.frames.length - 1)) * 100;
   const d = new Date(f.time * 1000);
-  const isFuture = d.getTime() > Date.now();
-  $('#radar-ts').innerHTML = `${isFuture ? '<span style="color:var(--blue)">+</span>' : ''}${d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
+  $('#radar-ts').textContent = d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
 }
 
 function playRadar() {

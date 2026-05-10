@@ -1,5 +1,5 @@
 // Skyline Weather PWA — Service Worker
-const VERSION = 'skyline-v1.0.0';
+const VERSION = 'skyline-v1.1.0';
 const SHELL_CACHE = `${VERSION}-shell`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 
@@ -36,8 +36,7 @@ self.addEventListener('fetch', (event) => {
   // Network-first for weather APIs (always want fresh data)
   if (
     url.hostname.includes('open-meteo.com') ||
-    url.hostname.includes('api.weather.gov') ||
-    url.hostname.includes('api.rainviewer.com')
+    url.hostname.includes('api.weather.gov')
   ) {
     event.respondWith(
       fetch(request)
@@ -51,8 +50,8 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Stale-while-revalidate for radar tiles
-  if (url.hostname.includes('rainviewer.com') || url.hostname.includes('tile.openstreetmap.org')) {
+  // Stale-while-revalidate for radar tiles (NOAA NEXRAD via Iowa Mesonet) + OSM base tiles
+  if (url.hostname.includes('mesonet.agron.iastate.edu') || url.hostname.includes('tile.openstreetmap.org')) {
     event.respondWith(
       caches.open(RUNTIME_CACHE).then((cache) =>
         cache.match(request).then((cached) => {

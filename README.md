@@ -12,7 +12,7 @@ Apple-iOS aesthetic, GPS-first by default, free public APIs, installable on iPho
 
 - **GPS-first location** — auto-detects on launch with a friendly iOS-style permission sheet, then auto-tracks as you move between job sites
 - **Today** — large hero temp, hourly strip, 10-day gradient bars, 8 metric tiles (UV with conic ring, wind+gusts, humidity+dewpoint, pressure, visibility, US AQI, sunrise/sunset, precipitation)
-- **Radar** — animated tile loop with past + nowcast frames (RainViewer), play/pause, scrubber, future-frame indicator (Leaflet basemap)
+- **Radar** — animated NEXRAD base-reflectivity composite, last 60 minutes at 5-min intervals, play/pause, scrubber (US coverage)
 - **30-Day Construction Outlook** — every day scored 0–100 against rain probability, precipitation amount, snow, wind gusts, freeze/heat thresholds, and active NWS alerts. Days 1–16 from real Open-Meteo data; 17–30 extrapolated and labeled accordingly
 - **NWS Alerts** — severity-colored cards (warning / advisory / watch), auto-fetched for the current point
 - **Air quality** — full pollutant breakdown + US AQI category color
@@ -29,7 +29,7 @@ Apple-iOS aesthetic, GPS-first by default, free public APIs, installable on iPho
 | [Open-Meteo Air Quality](https://open-meteo.com/en/docs/air-quality-api) | US AQI + pollutant breakdown |
 | [BigDataCloud](https://www.bigdatacloud.com/free-api/free-reverse-geocode-to-city-api) | Reverse geocoding (coords → city name) |
 | [api.weather.gov (NWS)](https://www.weather.gov/documentation/services-web-api) | Severe weather alerts (US point queries) |
-| [RainViewer](https://www.rainviewer.com/api.html) | Animated radar tiles (past + nowcast) |
+| [Iowa State Mesonet](https://mesonet.agron.iastate.edu) | NOAA NEXRAD base-reflectivity radar tiles |
 | [unpkg](https://unpkg.com) | Leaflet 1.9.4 (CDN) |
 
 ## Deploy to GitHub Pages
