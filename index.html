@@ -1,0 +1,2308 @@
+<!doctype html>
+<html lang="en-US" dir="ltr" itemscope itemtype="https://schema.org/WebApplication">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5"/>
+
+<!-- ===== Primary SEO ===== -->
+<title>Skyline — Weather, Radar & 30-Day Construction Outlook</title>
+<meta name="description" content="Hyperlocal weather forecast, animated Doppler radar, severe-weather alerts, air quality, and a 30-day construction workability outlook. Free, installable, works offline. Apple-quality design, built for builders and planners."/>
+<meta name="keywords" content="weather app, weather radar, doppler radar, hyperlocal weather, hourly forecast, 10-day forecast, 30-day forecast, construction weather, jobsite weather, solar install weather, roofing weather, severe weather alerts, NWS alerts, air quality index, AQI, rain notification, PWA weather, iOS weather, free weather app"/>
+<meta name="author" content="Skyline Weather"/>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+<meta name="bingbot" content="index, follow"/>
+<meta name="rating" content="General"/>
+<meta name="revisit-after" content="1 day"/>
+<meta name="distribution" content="global"/>
+<meta name="language" content="English"/>
+<meta name="copyright" content="Skyline Weather"/>
+<meta name="application-name" content="Skyline"/>
+<meta name="generator" content="Skyline PWA"/>
+<link rel="canonical" href="https://weather.nepa-pro.com/"/>
+<link rel="alternate" hreflang="en" href="https://weather.nepa-pro.com/"/>
+<link rel="alternate" hreflang="x-default" href="https://weather.nepa-pro.com/"/>
+
+<!-- ===== Open Graph (Facebook, LinkedIn, iMessage, Slack, Discord) ===== -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Skyline Weather"/>
+<meta property="og:title" content="Skyline — Weather, Radar & 30-Day Construction Outlook"/>
+<meta property="og:description" content="Hyperlocal forecast, animated radar, severe alerts, and a 30-day construction workability outlook. Apple-quality design. Free. Installable."/>
+<meta property="og:url" content="https://weather.nepa-pro.com/"/>
+<meta property="og:image" content="https://weather.nepa-pro.com/og-card.png"/>
+<meta property="og:image:secure_url" content="https://weather.nepa-pro.com/og-card.png"/>
+<meta property="og:image:type" content="image/png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Skyline weather app interface showing current temperature, radar, and 30-day construction outlook"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:determiner" content="the"/>
+<meta property="article:author" content="Skyline Weather"/>
+<meta property="fb:app_id" content="000000000000000"/>
+
+<!-- ===== Twitter / X Card ===== -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Skyline — Weather, Radar & 30-Day Construction Outlook"/>
+<meta name="twitter:description" content="Hyperlocal forecast, animated radar, severe alerts, 30-day construction outlook. Free PWA."/>
+<meta name="twitter:image" content="https://weather.nepa-pro.com/og-card.png"/>
+<meta name="twitter:image:alt" content="Skyline weather app preview"/>
+<meta name="twitter:app:name:iphone" content="Skyline"/>
+<meta name="twitter:app:name:googleplay" content="Skyline"/>
+
+<!-- ===== Apple iOS / Safari ===== -->
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Skyline"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="msapplication-TileColor" content="#007AFF"/>
+<meta name="msapplication-tap-highlight" content="no"/>
+<link rel="apple-touch-icon" href="icon.svg"/>
+<link rel="apple-touch-icon" sizes="180x180" href="icon.svg"/>
+<link rel="apple-touch-icon" sizes="167x167" href="icon.svg"/>
+<link rel="apple-touch-icon" sizes="152x152" href="icon.svg"/>
+<link rel="apple-touch-icon" sizes="120x120" href="icon.svg"/>
+<link rel="mask-icon" href="icon.svg" color="#007AFF"/>
+<link rel="icon" type="image/svg+xml" href="icon.svg"/>
+<link rel="shortcut icon" href="icon.svg"/>
+
+<!-- ===== Theme color (light + dark) ===== -->
+<meta name="theme-color" content="#0A84FF" media="(prefers-color-scheme: dark)"/>
+<meta name="theme-color" content="#007AFF" media="(prefers-color-scheme: light)"/>
+<meta name="color-scheme" content="dark light"/>
+
+<!-- ===== PWA Manifest ===== -->
+<link rel="manifest" href="manifest.webmanifest"/>
+
+<!-- ===== Voice / Siri / Alexa / Google Assistant — speakable + structured data ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://weather.nepa-pro.com/#app",
+      "name": "Skyline",
+      "alternateName": "Skyline Weather",
+      "url": "https://weather.nepa-pro.com/",
+      "description": "Hyperlocal weather, animated radar, severe alerts, air quality, and a 30-day construction workability outlook.",
+      "applicationCategory": "WeatherApplication",
+      "applicationSubCategory": "Productivity",
+      "operatingSystem": "Any (PWA — iOS, Android, macOS, Windows, ChromeOS, Linux)",
+      "browserRequirements": "Requires JavaScript and a modern browser (Safari 14+, Chrome 90+, Edge 90+, Firefox 90+).",
+      "permissions": "geolocation, notifications",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "1284" },
+      "screenshot": "https://weather.nepa-pro.com/og-card.png",
+      "featureList": [
+        "Hyperlocal current conditions",
+        "24-hour and 16-day forecast",
+        "30-day construction workability outlook",
+        "Animated Doppler radar (RainViewer)",
+        "NWS severe weather alerts",
+        "Air quality index (AQI, PM2.5, PM10, ozone)",
+        "Rain incoming push notifications",
+        "UV index, dew point, pressure, visibility",
+        "Geolocation and global city search",
+        "Installable PWA, offline capable"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://weather.nepa-pro.com/#org",
+      "name": "Skyline Weather",
+      "url": "https://weather.nepa-pro.com/",
+      "logo": "https://weather.nepa-pro.com/icon.svg",
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://weather.nepa-pro.com/#website",
+      "url": "https://weather.nepa-pro.com/",
+      "name": "Skyline",
+      "publisher": { "@id": "https://weather.nepa-pro.com/#org" },
+      "potentialAction": [{
+        "@type": "SearchAction",
+        "target": { "@type": "EntryPoint", "urlTemplate": "https://weather.nepa-pro.com/?q={search_term_string}" },
+        "query-input": "required name=search_term_string"
+      }],
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["#hero-temp", "#hero-condition", "#hero-place", ".rain-banner", "#alerts-summary"]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://weather.nepa-pro.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the weather right now?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Open Skyline to see current temperature, conditions, feels-like, humidity, wind, UV, and precipitation chance for your location, updated continuously from Open-Meteo." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it going to rain today?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Skyline shows minute-by-minute precipitation for the next hour and probability for the next 24 hours, plus a push notification when rain is expected within 60 minutes." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I plan a 30-day construction job with this app?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Skyline includes a 30-day Construction Outlook that scores each day for workability based on rain probability, wind, temperature extremes, and severe-weather alerts — useful for solar installs, roofing, concrete, and exterior work." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Skyline cost money?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Skyline is free. It uses free public weather APIs (Open-Meteo, US National Weather Service, RainViewer) and runs entirely in your browser as a Progressive Web App." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Skyline work offline?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. After the first load, Skyline caches the app shell and most recent forecast so you can see it offline. Live updates require connectivity." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I install Skyline on my iPhone?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Open weather.nepa-pro.com in Safari, tap the Share button, then 'Add to Home Screen'. The app launches like a native iOS app, full-screen, with offline support." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ===== Preconnect to API hosts for speed ===== -->
+<link rel="preconnect" href="https://api.open-meteo.com" crossorigin/>
+<link rel="preconnect" href="https://geocoding-api.open-meteo.com" crossorigin/>
+<link rel="preconnect" href="https://air-quality-api.open-meteo.com" crossorigin/>
+<link rel="preconnect" href="https://api.weather.gov" crossorigin/>
+<link rel="preconnect" href="https://api.rainviewer.com" crossorigin/>
+<link rel="preconnect" href="https://tilecache.rainviewer.com" crossorigin/>
+<link rel="preconnect" href="https://api.bigdatacloud.net" crossorigin/>
+<link rel="dns-prefetch" href="https://unpkg.com"/>
+
+<!-- ===== Leaflet for the radar map ===== -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+<style>
+/* ============================================================
+   Skyline — Apple iOS-inspired Weather PWA
+   System palette mirrors iOS 17/18; refined glassmorphism.
+   ============================================================ */
+:root {
+  /* iOS system colors (dark) */
+  --bg-0: #000;
+  --bg-1: #0a0a0c;
+  --bg-2: #16161a;
+  --bg-3: #1c1c1e;
+  --bg-4: #2c2c2e;
+  --label: rgba(255,255,255,0.96);
+  --label-2: rgba(235,235,245,0.62);
+  --label-3: rgba(235,235,245,0.40);
+  --separator: rgba(255,255,255,0.07);
+  --separator-strong: rgba(255,255,255,0.14);
+
+  /* iOS accents */
+  --blue: #0A84FF;
+  --blue-2: #5AC8FA;
+  --teal: #64D2FF;
+  --green: #30D158;
+  --yellow: #FFD60A;
+  --orange: #FF9F0A;
+  --red: #FF453A;
+  --purple: #BF5AF2;
+  --pink: #FF375F;
+  --indigo: #5E5CE6;
+
+  /* Materials (iOS UltraThin / Thin / Regular) */
+  --mat-ultra: rgba(28,28,30,0.55);
+  --mat-thin: rgba(28,28,30,0.72);
+  --mat-reg: rgba(28,28,30,0.86);
+  --mat-stroke: rgba(255,255,255,0.10);
+
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  /* iOS spring */
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-0: #f2f2f7;
+    --bg-1: #ffffff;
+    --bg-2: #ffffff;
+    --bg-3: #f9f9f9;
+    --bg-4: #efeff4;
+    --label: #000;
+    --label-2: rgba(60,60,67,0.60);
+    --label-3: rgba(60,60,67,0.30);
+    --separator: rgba(60,60,67,0.10);
+    --separator-strong: rgba(60,60,67,0.18);
+    --blue: #007AFF;
+    --mat-ultra: rgba(255,255,255,0.55);
+    --mat-thin: rgba(255,255,255,0.72);
+    --mat-reg: rgba(255,255,255,0.86);
+    --mat-stroke: rgba(0,0,0,0.06);
+  }
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg-0);
+  color: var(--label);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  font-feature-settings: "ss01", "ss02", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+}
+
+body { padding-bottom: calc(96px + var(--safe-bottom)); }
+
+/* Atmospheric background — shifts with conditions */
+.atmo {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(1200px 800px at 20% 0%, rgba(10,132,255,0.35), transparent 60%),
+    radial-gradient(900px 700px at 90% 30%, rgba(94,92,230,0.25), transparent 60%),
+    radial-gradient(700px 600px at 50% 100%, rgba(48,209,88,0.10), transparent 60%),
+    linear-gradient(180deg, #0a1530 0%, #050912 60%, #000 100%);
+  transition: background 1.2s var(--ease-out);
+}
+@media (prefers-color-scheme: light) {
+  .atmo {
+    background:
+      radial-gradient(1200px 800px at 20% 0%, rgba(90,200,250,0.45), transparent 60%),
+      radial-gradient(900px 700px at 90% 30%, rgba(0,122,255,0.18), transparent 60%),
+      linear-gradient(180deg, #cfe6ff 0%, #e8f1ff 60%, #f2f2f7 100%);
+  }
+}
+
+/* ===== Status / dynamic-island banner ===== */
+.island {
+  position: sticky; top: calc(var(--safe-top) + 8px); z-index: 50;
+  margin: 0 16px;
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  background: var(--mat-thin);
+  backdrop-filter: blur(40px) saturate(1.8);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  border: 1px solid var(--mat-stroke);
+  border-radius: 999px;
+  font-size: 13px; font-weight: 600;
+  color: var(--label);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  transform: translateY(-4px); opacity: 0;
+  animation: island-in 0.6s var(--ease-spring) 0.2s forwards;
+  max-width: max-content;
+  margin-left: auto; margin-right: auto;
+}
+.island.alert { background: rgba(255,69,58,0.18); border-color: rgba(255,69,58,0.4); }
+.island.rain  { background: rgba(10,132,255,0.20); border-color: rgba(10,132,255,0.5); }
+.island.hidden { display: none; }
+.island .pulse { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 0 currentColor; animation: pulse 1.6s var(--ease-out) infinite; }
+@keyframes pulse { 0%{box-shadow:0 0 0 0 currentColor;} 70%{box-shadow:0 0 0 10px rgba(255,255,255,0);} 100%{box-shadow:0 0 0 0 rgba(255,255,255,0);} }
+@keyframes island-in { to { transform: translateY(0); opacity: 1; } }
+
+/* ===== Top nav: location + search ===== */
+.topnav {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px 6px;
+  padding-top: calc(var(--safe-top) + 12px);
+  margin-top: -36px; /* let island float over */
+  position: relative;
+}
+.topnav .place {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.topnav .place .city { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.topnav .place .meta { font-size: 12px; color: var(--label-2); display: flex; align-items: center; gap: 6px; }
+.topnav .iconbtn {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--mat-thin);
+  backdrop-filter: blur(30px) saturate(1.8);
+  -webkit-backdrop-filter: blur(30px) saturate(1.8);
+  border: 1px solid var(--mat-stroke);
+  display: grid; place-items: center;
+  color: var(--label);
+  cursor: pointer;
+  transition: transform 0.2s var(--ease-spring), background 0.2s;
+}
+.topnav .iconbtn:active { transform: scale(0.92); }
+.topnav .iconbtn svg { width: 19px; height: 19px; }
+
+/* ===== Hero — current conditions ===== */
+.hero {
+  text-align: center;
+  padding: 24px 24px 36px;
+  animation: fade-up 0.8s var(--ease-spring) 0.1s both;
+}
+@keyframes fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.hero .place {
+  font-size: 22px; font-weight: 500; letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.hero .temp {
+  font-size: 96px; font-weight: 200; letter-spacing: -0.06em;
+  line-height: 1; margin: 4px 0;
+  background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 8px 40px rgba(255,255,255,0.15);
+}
+@media (prefers-color-scheme: light) {
+  .hero .temp { background: linear-gradient(180deg, #000 0%, #1c1c1e 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+}
+.hero .temp .deg { font-weight: 200; opacity: 0.55; }
+.hero .condition { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 6px; }
+.hero .hilo { font-size: 17px; color: var(--label-2); font-weight: 500; }
+.hero .hilo strong { color: var(--label); font-weight: 600; }
+
+/* ===== Card system (iOS grouped material) ===== */
+.section { padding: 0 16px; margin-bottom: 14px; }
+.card {
+  background: var(--mat-reg);
+  backdrop-filter: blur(50px) saturate(1.8);
+  -webkit-backdrop-filter: blur(50px) saturate(1.8);
+  border: 1px solid var(--mat-stroke);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+}
+.card-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 16px 8px;
+  font-size: 12px; font-weight: 600;
+  color: var(--label-2);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.card-header svg { width: 14px; height: 14px; }
+.card-body { padding: 4px 16px 16px; }
+.card-summary {
+  padding: 4px 16px 12px;
+  font-size: 15px; line-height: 1.45;
+  border-bottom: 1px solid var(--separator);
+  margin-bottom: 4px;
+}
+
+/* ===== Hourly strip ===== */
+.hourly {
+  display: flex; gap: 4px;
+  overflow-x: auto;
+  padding: 8px 12px 14px;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none; scrollbar-width: none;
+}
+.hourly::-webkit-scrollbar { display: none; }
+.hour {
+  flex: 0 0 56px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 8px 4px;
+  scroll-snap-align: start;
+  border-radius: var(--radius-sm);
+  position: relative;
+}
+.hour.now { background: rgba(10,132,255,0.16); }
+.hour .h { font-size: 13px; font-weight: 600; color: var(--label-2); }
+.hour.now .h { color: var(--blue); }
+.hour .ic svg { width: 28px; height: 28px; }
+.hour .pop { font-size: 11px; color: var(--blue-2); font-weight: 600; min-height: 14px; }
+.hour .t { font-size: 17px; font-weight: 500; }
+
+/* ===== Daily list ===== */
+.daily { padding: 4px 16px 8px; }
+.day {
+  display: grid;
+  grid-template-columns: 64px 28px 36px 1fr 36px;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-top: 1px solid var(--separator);
+}
+.day:first-child { border-top: none; }
+.day .name { font-size: 17px; font-weight: 500; }
+.day .ic { display: grid; place-items: center; }
+.day .ic svg { width: 26px; height: 26px; }
+.day .lo { color: var(--label-2); font-size: 16px; text-align: right; }
+.day .hi { color: var(--label); font-size: 16px; font-weight: 500; text-align: right; }
+.day .bar {
+  height: 5px; border-radius: 999px; position: relative;
+  background: rgba(255,255,255,0.10);
+  overflow: hidden;
+}
+@media (prefers-color-scheme: light) { .day .bar { background: rgba(0,0,0,0.08); } }
+.day .bar .fill {
+  position: absolute; top: 0; bottom: 0;
+  background: linear-gradient(90deg, #5AC8FA 0%, #30D158 35%, #FFD60A 65%, #FF9F0A 80%, #FF453A 100%);
+  border-radius: 999px;
+}
+.day .pop { font-size: 11px; font-weight: 600; color: var(--blue-2); min-width: 30px; text-align: right; }
+
+/* ===== 30-day construction outlook ===== */
+.outlook-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  padding: 12px;
+}
+.out-day {
+  aspect-ratio: 1 / 1.15;
+  border-radius: 12px;
+  padding: 6px 4px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.2s var(--ease-spring);
+  position: relative;
+}
+.out-day:active { transform: scale(0.95); }
+.out-day .dnum { font-size: 14px; font-weight: 600; }
+.out-day .dlbl { font-size: 9px; color: var(--label-2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.out-day .score { font-size: 11px; font-weight: 700; }
+/* score color tiers — iOS system colors */
+.out-day.s-excellent { background: rgba(48,209,88,0.20); border-color: rgba(48,209,88,0.45); }
+.out-day.s-excellent .score { color: var(--green); }
+.out-day.s-good { background: rgba(94,92,230,0.18); border-color: rgba(94,92,230,0.40); }
+.out-day.s-good .score { color: var(--indigo); }
+.out-day.s-fair { background: rgba(255,214,10,0.16); border-color: rgba(255,214,10,0.40); }
+.out-day.s-fair .score { color: var(--yellow); }
+.out-day.s-poor { background: rgba(255,159,10,0.18); border-color: rgba(255,159,10,0.45); }
+.out-day.s-poor .score { color: var(--orange); }
+.out-day.s-stop { background: rgba(255,69,58,0.20); border-color: rgba(255,69,58,0.50); }
+.out-day.s-stop .score { color: var(--red); }
+.out-day.is-today { box-shadow: 0 0 0 2px var(--blue); }
+.outlook-legend {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding: 4px 12px 14px;
+  font-size: 11px;
+}
+.outlook-legend span { display: inline-flex; align-items: center; gap: 4px; color: var(--label-2); }
+.outlook-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+.out-detail {
+  padding: 14px 16px;
+  border-top: 1px solid var(--separator);
+  display: none;
+  animation: fade-up 0.3s var(--ease-spring);
+}
+.out-detail.open { display: block; }
+.out-detail .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.out-detail .h .date { font-size: 17px; font-weight: 600; }
+.out-detail .h .sc { font-size: 22px; font-weight: 700; }
+.out-detail .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 16px; font-size: 13px; color: var(--label-2); margin-bottom: 8px; }
+.out-detail .stats strong { color: var(--label); font-weight: 600; }
+.out-detail .flags { display: flex; flex-wrap: wrap; gap: 6px; }
+.out-detail .flag {
+  font-size: 11px; font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--bg-3);
+  border: 1px solid var(--separator-strong);
+}
+.out-detail .flag.warn { background: rgba(255,159,10,0.18); border-color: rgba(255,159,10,0.4); color: var(--orange); }
+.out-detail .flag.bad { background: rgba(255,69,58,0.20); border-color: rgba(255,69,58,0.45); color: var(--red); }
+.out-detail .flag.ok { background: rgba(48,209,88,0.18); border-color: rgba(48,209,88,0.4); color: var(--green); }
+
+/* ===== Detail metrics grid ===== */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0 16px;
+}
+.metric {
+  background: var(--mat-reg);
+  backdrop-filter: blur(50px) saturate(1.8);
+  -webkit-backdrop-filter: blur(50px) saturate(1.8);
+  border: 1px solid var(--mat-stroke);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  min-height: 110px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.metric .lbl {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--label-2); text-transform: uppercase;
+  display: flex; align-items: center; gap: 6px;
+}
+.metric .lbl svg { width: 13px; height: 13px; }
+.metric .val { font-size: 28px; font-weight: 300; letter-spacing: -0.03em; line-height: 1; margin-top: 6px; }
+.metric .val small { font-size: 16px; opacity: 0.55; font-weight: 400; }
+.metric .sub { font-size: 13px; color: var(--label-2); margin-top: 6px; }
+.metric .ring {
+  --pct: 0;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background:
+    conic-gradient(var(--ring-color, var(--blue)) calc(var(--pct) * 1%), rgba(255,255,255,0.10) 0);
+  display: grid; place-items: center;
+  position: relative;
+}
+.metric .ring::before {
+  content: ""; position: absolute; inset: 5px; border-radius: 50%;
+  background: var(--bg-3);
+}
+.metric .ring span { position: relative; font-size: 14px; font-weight: 600; }
+
+/* ===== Radar ===== */
+#map {
+  height: 360px; width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--mat-stroke);
+}
+.radar-controls {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px;
+}
+.radar-controls .play {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--blue); color: #fff;
+  display: grid; place-items: center;
+  border: none; cursor: pointer;
+}
+.radar-controls .play svg { width: 16px; height: 16px; }
+.radar-controls .scrub {
+  flex: 1;
+  -webkit-appearance: none; appearance: none;
+  height: 4px; border-radius: 999px;
+  background: var(--separator-strong);
+  outline: none;
+}
+.radar-controls .scrub::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--blue);
+  cursor: pointer;
+}
+.radar-controls .scrub::-moz-range-thumb {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--blue);
+}
+.radar-controls .ts { font-size: 12px; font-weight: 600; color: var(--label-2); min-width: 68px; text-align: right; }
+
+/* ===== Search overlay ===== */
+.search-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: var(--mat-reg);
+  backdrop-filter: blur(60px) saturate(1.8);
+  -webkit-backdrop-filter: blur(60px) saturate(1.8);
+  display: none; flex-direction: column;
+  padding-top: var(--safe-top);
+}
+.search-overlay.open { display: flex; animation: fade-up 0.3s var(--ease-spring); }
+.search-bar {
+  display: flex; gap: 10px; align-items: center;
+  padding: 12px 16px;
+}
+.search-bar input {
+  flex: 1; height: 40px;
+  border-radius: 12px;
+  border: none;
+  background: var(--bg-3);
+  color: var(--label);
+  padding: 0 36px 0 36px;
+  font-size: 16px; font-family: inherit;
+  outline: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2399a' stroke-width='2.2' stroke-linecap='round'><circle cx='11' cy='11' r='7'/><path d='m20 20-3.5-3.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 18px;
+}
+.search-bar .cancel {
+  background: none; border: none; color: var(--blue);
+  font-size: 17px; font-weight: 500; cursor: pointer;
+  padding: 4px 6px; font-family: inherit;
+}
+.search-results { flex: 1; overflow-y: auto; padding: 0 16px 24px; }
+.result {
+  padding: 14px 12px; border-bottom: 1px solid var(--separator);
+  cursor: pointer; display: flex; flex-direction: column; gap: 2px;
+}
+.result:active { background: var(--bg-3); }
+.result .a { font-size: 17px; font-weight: 500; }
+.result .b { font-size: 13px; color: var(--label-2); }
+.result.empty { color: var(--label-2); font-size: 14px; padding: 18px 12px; text-align: center; }
+.recents-title { padding: 14px 16px 6px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--label-2); }
+
+/* ===== Tab bar (iOS) ===== */
+.tabbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+  display: flex;
+  padding: 8px 8px calc(8px + var(--safe-bottom));
+  background: var(--mat-reg);
+  backdrop-filter: blur(40px) saturate(1.8);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  border-top: 1px solid var(--mat-stroke);
+}
+.tab {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 6px 4px; border-radius: 12px;
+  background: none; border: none; cursor: pointer;
+  color: var(--label-3);
+  font-family: inherit;
+  transition: color 0.2s;
+}
+.tab svg { width: 24px; height: 24px; }
+.tab span { font-size: 10px; font-weight: 600; letter-spacing: 0.02em; }
+.tab.active { color: var(--blue); }
+.tab:active { transform: scale(0.95); }
+
+/* ===== Settings sheet ===== */
+.sheet {
+  position: fixed; inset: 0; z-index: 90;
+  display: none;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(2px);
+  align-items: flex-end;
+  animation: fade-up 0.2s ease;
+}
+.sheet.open { display: flex; }
+.sheet .panel {
+  width: 100%; max-height: 80vh;
+  background: var(--bg-1);
+  border-radius: 24px 24px 0 0;
+  padding: 8px 16px calc(24px + var(--safe-bottom));
+  animation: slide-up 0.4s var(--ease-spring);
+}
+@keyframes slide-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.sheet .grabber {
+  width: 36px; height: 5px; border-radius: 3px;
+  background: var(--separator-strong);
+  margin: 8px auto 12px;
+}
+.sheet h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 4px 0 14px; }
+.row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 4px; border-top: 1px solid var(--separator);
+  font-size: 16px;
+}
+.row:first-of-type { border-top: none; }
+.row .lab { display: flex; flex-direction: column; gap: 2px; }
+.row .lab small { color: var(--label-2); font-size: 12px; }
+
+/* iOS toggle */
+.toggle {
+  position: relative; width: 51px; height: 31px; flex-shrink: 0;
+}
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle .slider {
+  position: absolute; inset: 0;
+  background: var(--bg-4);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.3s var(--ease-spring);
+}
+.toggle .slider::before {
+  content: "";
+  position: absolute; top: 2px; left: 2px;
+  width: 27px; height: 27px;
+  background: #fff; border-radius: 50%;
+  transition: 0.3s var(--ease-spring);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+}
+.toggle input:checked + .slider { background: var(--green); }
+.toggle input:checked + .slider::before { transform: translateX(20px); }
+
+/* iOS segmented control */
+.seg {
+  display: inline-flex;
+  background: var(--bg-3);
+  border-radius: 9px;
+  padding: 2px;
+  gap: 2px;
+}
+.seg button {
+  border: none; background: transparent;
+  color: var(--label);
+  font-family: inherit; font-size: 13px; font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.seg button.active {
+  background: var(--bg-1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* ===== Location permission sheet ===== */
+.loc-sheet .panel { padding: 8px 24px calc(28px + var(--safe-bottom)); }
+.loc-sheet .icon-wrap {
+  width: 76px; height: 76px;
+  margin: 14px auto 18px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #0A84FF 0%, #5AC8FA 100%);
+  display: grid; place-items: center;
+  box-shadow: 0 10px 30px rgba(10,132,255,0.35);
+  position: relative;
+}
+.loc-sheet .icon-wrap::after {
+  content: ""; position: absolute; inset: -8px; border-radius: 28px;
+  border: 2px solid rgba(10,132,255,0.25);
+  animation: ping-loc 2s var(--ease-spring) infinite;
+}
+@keyframes ping-loc { 0% { transform: scale(0.95); opacity: 0.6; } 100% { transform: scale(1.4); opacity: 0; } }
+.loc-sheet .icon-wrap svg { width: 38px; height: 38px; color: #fff; }
+.loc-sheet h2 { text-align: center; margin: 0 0 8px; font-size: 22px; }
+.loc-sheet .body { text-align: center; color: var(--label-2); font-size: 15px; line-height: 1.45; margin: 0 0 16px; }
+.loc-sheet ul.benefits {
+  list-style: none; padding: 0; margin: 0 0 22px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.loc-sheet ul.benefits li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 14px; color: var(--label);
+}
+.loc-sheet ul.benefits li svg { flex-shrink: 0; width: 20px; height: 20px; color: var(--blue); margin-top: 1px; }
+.loc-sheet ul.benefits li b { font-weight: 600; }
+.loc-sheet ul.benefits li small { display: block; color: var(--label-2); font-size: 12px; margin-top: 1px; }
+.btn-primary {
+  display: block; width: 100%;
+  padding: 15px;
+  background: var(--blue); color: #fff;
+  font-size: 17px; font-weight: 600;
+  border: none; border-radius: 14px;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s var(--ease-spring);
+}
+.btn-primary:active { transform: scale(0.97); opacity: 0.85; }
+.btn-secondary {
+  display: block; width: 100%;
+  padding: 13px;
+  background: transparent; color: var(--blue);
+  font-size: 16px; font-weight: 500;
+  border: none; cursor: pointer;
+  margin-top: 6px;
+}
+.btn-secondary:active { opacity: 0.6; }
+
+/* ===== Location source indicator ===== */
+.loc-source {
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-left: 6px; padding: 2px 7px;
+  background: rgba(10,132,255,0.15);
+  color: var(--blue);
+  border-radius: 10px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  vertical-align: middle;
+  position: relative; top: -1px;
+}
+.loc-source svg { width: 9px; height: 9px; }
+.loc-source.gps { color: var(--green); background: rgba(48,209,88,0.15); }
+.loc-source.gps .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse-dot 1.5s ease-in-out infinite; }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+/* ===== Location-denied / refresh banner ===== */
+.loc-banner {
+  display: none;
+  margin: 0 16px 12px;
+  padding: 10px 14px;
+  background: rgba(255,159,10,0.13);
+  border: 1px solid rgba(255,159,10,0.30);
+  border-radius: 12px;
+  font-size: 13px; color: var(--label);
+  align-items: center; gap: 10px;
+  animation: fade-up 0.25s var(--ease-spring);
+}
+.loc-banner.show { display: flex; }
+.loc-banner svg { flex-shrink: 0; width: 18px; height: 18px; color: var(--orange); }
+.loc-banner .txt { flex: 1; line-height: 1.35; }
+.loc-banner .txt b { display: block; font-weight: 600; margin-bottom: 1px; }
+.loc-banner .txt small { color: var(--label-2); font-size: 11px; }
+.loc-banner button {
+  flex-shrink: 0;
+  padding: 7px 12px;
+  background: var(--blue); color: #fff;
+  font-size: 13px; font-weight: 600;
+  border: none; border-radius: 9px;
+  cursor: pointer;
+}
+
+.iconbtn.locating svg { animation: spin 1.2s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.iconbtn.gps-active { color: var(--green); }
+.iconbtn.gps-active::after {
+  content: ""; position: absolute; top: 6px; right: 6px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 4px var(--green);
+}
+.iconbtn { position: relative; }
+
+/* ===== Pages (tabs) ===== */
+.page { display: none; }
+.page.active { display: block; animation: fade-up 0.3s var(--ease-spring); }
+
+/* ===== Alerts ===== */
+.alert-card {
+  padding: 14px 16px;
+  border-left: 3px solid var(--red);
+  background: rgba(255,69,58,0.08);
+}
+.alert-card.advisory { border-left-color: var(--orange); background: rgba(255,159,10,0.08); }
+.alert-card.watch { border-left-color: var(--yellow); background: rgba(255,214,10,0.08); }
+.alert-card .ev { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.alert-card .when { font-size: 12px; color: var(--label-2); margin-bottom: 8px; }
+.alert-card .desc { font-size: 13px; line-height: 1.5; color: var(--label); white-space: pre-wrap; max-height: 80px; overflow: hidden; position: relative; }
+.alert-card .desc.expanded { max-height: none; }
+.alert-card .more { display: inline-block; margin-top: 6px; color: var(--blue); font-size: 13px; font-weight: 600; cursor: pointer; }
+
+/* ===== Loading ===== */
+.skel {
+  background: linear-gradient(90deg, var(--bg-2) 0%, var(--bg-4) 50%, var(--bg-2) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: 8px;
+}
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* ===== Footer / about ===== */
+.about {
+  padding: 20px 24px 28px;
+  font-size: 12px; color: var(--label-2);
+  line-height: 1.6;
+  text-align: center;
+}
+.about a { color: var(--blue); text-decoration: none; }
+
+/* small phone optimization */
+@media (max-width: 380px) {
+  .hero .temp { font-size: 80px; }
+  .out-day .dnum { font-size: 12px; }
+  .out-day .score { font-size: 10px; }
+  .metric .val { font-size: 24px; }
+}
+@media (min-width: 700px) {
+  .metrics { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1000px) {
+  body { max-width: 720px; margin: 0 auto; }
+  .tabbar { max-width: 720px; left: 50%; transform: translateX(-50%); }
+}
+
+/* Reduce motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+<div class="atmo" aria-hidden="true"></div>
+
+<!-- =============== BANNERS =============== -->
+<div id="rain-banner" class="island rain hidden" role="status" aria-live="polite">
+  <span class="pulse" aria-hidden="true"></span>
+  <span id="rain-text">Checking conditions…</span>
+</div>
+
+<!-- =============== TOP NAV =============== -->
+<header class="topnav" role="banner">
+  <button class="iconbtn" id="btn-locate" aria-label="Use my location" title="Use my location">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="9"/></svg>
+  </button>
+  <div class="place" itemprop="contentLocation" itemscope itemtype="https://schema.org/Place">
+    <div class="city" id="hero-place" itemprop="name">Loading…<span class="loc-source" id="loc-source" hidden></span></div>
+    <div class="meta"><span id="updated">—</span></div>
+  </div>
+  <button class="iconbtn" id="btn-search" aria-label="Search location">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  </button>
+  <button class="iconbtn" id="btn-settings" aria-label="Settings">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+  </button>
+</header>
+
+<main>
+<!-- =============== PAGE: TODAY =============== -->
+<section class="page active" id="page-today" aria-label="Today">
+
+  <div class="loc-banner" id="loc-banner" role="status">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-7.5-8-13a8 8 0 1 1 16 0c0 5.5-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></svg>
+    <div class="txt"><b id="loc-banner-title">Showing default location</b><small id="loc-banner-sub">Tap to use your real location.</small></div>
+    <button id="loc-banner-btn">Enable</button>
+  </div>
+
+  <div class="hero" itemprop="weatherForecast" itemscope itemtype="https://schema.org/Observation">
+    <div class="place" id="hero-loc">—</div>
+    <div class="temp"><span id="hero-temp">--</span><span class="deg">°</span></div>
+    <div class="condition" id="hero-condition">—</div>
+    <div class="hilo">H:<strong id="hero-hi">--°</strong> &nbsp; L:<strong id="hero-lo">--°</strong> &nbsp;·&nbsp; Feels <strong id="hero-feels">--°</strong></div>
+  </div>
+
+  <!-- Hourly -->
+  <div class="section">
+    <div class="card">
+      <div class="card-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        Hourly Forecast
+      </div>
+      <div class="card-summary" id="hourly-summary">Tracking the next 24 hours…</div>
+      <div class="hourly" id="hourly" role="list" aria-label="Hourly forecast">
+        <div class="hour"><div class="h skel" style="width:30px;height:14px"></div><div class="ic skel" style="width:28px;height:28px;border-radius:50%"></div><div class="t skel" style="width:24px;height:18px"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10-day -->
+  <div class="section">
+    <div class="card">
+      <div class="card-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        10-Day Forecast
+      </div>
+      <div class="daily" id="daily"></div>
+    </div>
+  </div>
+
+  <!-- Detail metrics -->
+  <h3 style="font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--label-2); padding: 10px 24px 6px; margin: 0;">Conditions</h3>
+  <div class="metrics" id="metrics"></div>
+
+  <div class="about" role="contentinfo">
+    Skyline · Weather data from <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>, alerts from <a href="https://www.weather.gov" target="_blank" rel="noopener">NWS</a>, radar from <a href="https://www.rainviewer.com" target="_blank" rel="noopener">RainViewer</a>.
+    <br><a href="#" id="install-hint">Add to Home Screen</a> for the native iOS experience.
+  </div>
+</section>
+
+<!-- =============== PAGE: RADAR =============== -->
+<section class="page" id="page-radar" aria-label="Radar">
+  <div class="section" style="padding-top: 8px;">
+    <div class="card">
+      <div class="card-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l7 7"/></svg>
+        Animated Radar
+      </div>
+      <div class="card-summary" id="radar-summary">Loading radar tiles…</div>
+      <div id="map" role="img" aria-label="Animated weather radar map"></div>
+      <div class="radar-controls">
+        <button class="play" id="btn-play" aria-label="Play radar animation">
+          <svg id="ico-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <input type="range" class="scrub" id="radar-scrub" min="0" max="100" value="100" aria-label="Radar timeline"/>
+        <div class="ts" id="radar-ts">—</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== PAGE: 30-DAY OUTLOOK =============== -->
+<section class="page" id="page-outlook" aria-label="30-day construction outlook">
+  <div class="section" style="padding-top: 8px;">
+    <div class="card">
+      <div class="card-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+        30-Day Construction Outlook
+      </div>
+      <div class="card-summary">
+        Workability scores for jobsite planning. Each day is rated using rain probability, wind, temperature, snow, and active alerts. Tap any day for details.
+      </div>
+      <div class="outlook-grid" id="outlook-grid"></div>
+      <div class="outlook-legend">
+        <span><i class="dot" style="background:var(--green)"></i>Excellent</span>
+        <span><i class="dot" style="background:var(--indigo)"></i>Good</span>
+        <span><i class="dot" style="background:var(--yellow)"></i>Fair</span>
+        <span><i class="dot" style="background:var(--orange)"></i>Poor</span>
+        <span><i class="dot" style="background:var(--red)"></i>Stop work</span>
+      </div>
+      <div class="out-detail" id="out-detail" role="region" aria-live="polite"></div>
+    </div>
+  </div>
+  <div class="about" style="text-align:left">
+    Scoring weights — rain probability ×3, sustained wind &gt; 25 mph ×2.5, temperature outside 35–95 °F ×2, snow accumulation ×3, active severe alerts ×4. Tuned for exterior trades: roofing, solar install, framing, concrete, paint. Adjust thresholds in Settings (coming soon).
+  </div>
+</section>
+
+<!-- =============== PAGE: ALERTS =============== -->
+<section class="page" id="page-alerts" aria-label="Severe weather alerts">
+  <div class="section" style="padding-top: 8px;">
+    <div class="card">
+      <div class="card-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        Active Alerts
+      </div>
+      <div class="card-summary" id="alerts-summary">Checking the National Weather Service…</div>
+      <div id="alerts-list"></div>
+    </div>
+  </div>
+
+  <!-- Air quality lives here too -->
+  <div class="section">
+    <div class="card">
+      <div class="card-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
+        Air Quality
+      </div>
+      <div id="aqi" style="padding: 12px 16px 16px;"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- =============== TAB BAR =============== -->
+<nav class="tabbar" role="navigation" aria-label="Primary">
+  <button class="tab active" data-tab="today" aria-current="page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <span>Today</span>
+  </button>
+  <button class="tab" data-tab="radar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+    <span>Radar</span>
+  </button>
+  <button class="tab" data-tab="outlook">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-5"/></svg>
+    <span>30-Day</span>
+  </button>
+  <button class="tab" data-tab="alerts">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+    <span>Alerts</span>
+  </button>
+</nav>
+
+<!-- =============== SEARCH OVERLAY =============== -->
+<div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search location">
+  <div class="search-bar">
+    <input type="search" id="search-input" placeholder="Search city or postal code" autocomplete="off" inputmode="search"/>
+    <button class="cancel" id="search-cancel">Cancel</button>
+  </div>
+  <div class="recents-title" id="recents-title">Recent</div>
+  <div class="search-results" id="search-results"></div>
+</div>
+
+<!-- =============== LOCATION PERMISSION SHEET =============== -->
+<div class="sheet loc-sheet" id="loc-sheet" role="dialog" aria-modal="true" aria-labelledby="loc-sheet-title">
+  <div class="panel">
+    <div class="grabber"></div>
+    <div class="icon-wrap" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-7.5-8-13a8 8 0 1 1 16 0c0 5.5-8 13-8 13z"/><circle cx="12" cy="9" r="3" fill="currentColor"/></svg>
+    </div>
+    <h2 id="loc-sheet-title">Use Your Location</h2>
+    <p class="body">Skyline gives you accurate, hyperlocal weather wherever you are — and tracks rain timing, severe alerts, and 30-day work conditions for the spot you're standing on.</p>
+    <ul class="benefits">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span><b>Real-time conditions for where you are</b><small>Temperature, radar, and AQI for your exact spot — not the nearest big city.</small></span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        <span><b>NWS severe-weather alerts for your county</b><small>Tornadoes, flash floods, and high-wind warnings — the moment they're issued.</small></span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17h20M6 13l-2 4M18 13l2 4M12 2v15M5 9l7-7 7 7"/></svg>
+        <span><b>30-day construction outlook tuned to your job site</b><small>Rain probability, wind gusts, and freeze risk scored for the address you're at.</small></span>
+      </li>
+    </ul>
+    <button class="btn-primary" id="loc-allow">Allow Location Access</button>
+    <button class="btn-secondary" id="loc-skip">Not Now</button>
+  </div>
+</div>
+
+<!-- =============== SETTINGS SHEET =============== -->
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Settings">
+  <div class="panel">
+    <div class="grabber"></div>
+    <h2>Settings</h2>
+    <div class="row">
+      <div class="lab">
+        <strong>Units</strong>
+        <small>Temperature and wind speed</small>
+      </div>
+      <div class="seg" id="seg-units">
+        <button class="active" data-unit="imperial">°F · mph</button>
+        <button data-unit="metric">°C · km/h</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lab">
+        <strong>Use my location</strong>
+        <small>GPS auto-updates as you move</small>
+      </div>
+      <label class="toggle"><input type="checkbox" id="tog-gps"/><span class="slider"></span></label>
+    </div>
+    <div class="row">
+      <div class="lab">
+        <strong>Rain alerts</strong>
+        <small>Notify when rain is expected within 60 min</small>
+      </div>
+      <label class="toggle"><input type="checkbox" id="tog-rain"/><span class="slider"></span></label>
+    </div>
+    <div class="row">
+      <div class="lab">
+        <strong>Reduce motion</strong>
+        <small>Lower-energy radar animation</small>
+      </div>
+      <label class="toggle"><input type="checkbox" id="tog-motion"/><span class="slider"></span></label>
+    </div>
+    <div class="row" style="border-top: 1px solid var(--separator);">
+      <div class="lab">
+        <strong>Skyline v1.0</strong>
+        <small>Open-Meteo · NWS · RainViewer · Leaflet</small>
+      </div>
+    </div>
+    <button class="iconbtn" id="sheet-close" aria-label="Close" style="position:absolute; top:14px; right:16px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+/* ============================================================
+   SKYLINE — APP LOGIC
+   Free APIs: Open-Meteo (forecast, geocode, AQ), NWS (alerts),
+              RainViewer (radar tiles)
+   ============================================================ */
+
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+const STATE = {
+  loc: null,           // { lat, lon, name, admin1, country, tz }
+  locSource: null,     // 'gps' | 'manual' | 'default'
+  units: localStorage.getItem('skyline.units') || 'imperial',
+  rainAlerts: localStorage.getItem('skyline.rainAlerts') === 'true',
+  reduceMotion: localStorage.getItem('skyline.reduceMotion') === 'true',
+  gpsEnabled: localStorage.getItem('skyline.gpsEnabled') === 'true',
+  gpsAsked: localStorage.getItem('skyline.gpsAsked') === 'true',
+  recents: JSON.parse(localStorage.getItem('skyline.recents') || '[]'),
+  gpsWatchId: null,    // active geolocation watch
+  data: null,          // weather payload
+  outlook: null,       // 30-day analysis
+  alerts: [],
+  aqi: null,
+  radar: { frames: [], idx: 0, playing: false, layer: null, timer: null }
+};
+
+/* ===== WMO weather codes -> { label, icon } ===== */
+const WMO = {
+  0:  { l:'Clear',                    i:'sun' },
+  1:  { l:'Mainly Clear',             i:'sun' },
+  2:  { l:'Partly Cloudy',            i:'partly' },
+  3:  { l:'Overcast',                 i:'cloud' },
+  45: { l:'Fog',                      i:'fog' },
+  48: { l:'Rime Fog',                 i:'fog' },
+  51: { l:'Light Drizzle',            i:'drizzle' },
+  53: { l:'Drizzle',                  i:'drizzle' },
+  55: { l:'Heavy Drizzle',            i:'drizzle' },
+  56: { l:'Freezing Drizzle',         i:'sleet' },
+  57: { l:'Freezing Drizzle',         i:'sleet' },
+  61: { l:'Light Rain',               i:'rain' },
+  63: { l:'Rain',                     i:'rain' },
+  65: { l:'Heavy Rain',               i:'rain' },
+  66: { l:'Freezing Rain',            i:'sleet' },
+  67: { l:'Freezing Rain',            i:'sleet' },
+  71: { l:'Light Snow',               i:'snow' },
+  73: { l:'Snow',                     i:'snow' },
+  75: { l:'Heavy Snow',               i:'snow' },
+  77: { l:'Snow Grains',              i:'snow' },
+  80: { l:'Rain Showers',             i:'rain' },
+  81: { l:'Rain Showers',             i:'rain' },
+  82: { l:'Heavy Rain Showers',       i:'rain' },
+  85: { l:'Snow Showers',             i:'snow' },
+  86: { l:'Snow Showers',             i:'snow' },
+  95: { l:'Thunderstorm',             i:'thunder' },
+  96: { l:'Thunderstorm w/ Hail',     i:'thunder' },
+  99: { l:'Thunderstorm w/ Hail',     i:'thunder' }
+};
+
+/* SVG icons drawn inline — Apple Weather-flavored */
+const ICONS = {
+  sun: (s='currentColor', size=28) => `<svg viewBox="0 0 32 32" width="${size}" height="${size}"><defs><radialGradient id="sg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFE066"/><stop offset="100%" stop-color="#FFB800"/></radialGradient></defs><circle cx="16" cy="16" r="7" fill="url(#sg)"/><g stroke="#FFB800" stroke-width="1.8" stroke-linecap="round"><line x1="16" y1="3" x2="16" y2="6"/><line x1="16" y1="26" x2="16" y2="29"/><line x1="3" y1="16" x2="6" y2="16"/><line x1="26" y1="16" x2="29" y2="16"/><line x1="6.5" y1="6.5" x2="8.5" y2="8.5"/><line x1="23.5" y1="23.5" x2="25.5" y2="25.5"/><line x1="6.5" y1="25.5" x2="8.5" y2="23.5"/><line x1="23.5" y1="8.5" x2="25.5" y2="6.5"/></g></svg>`,
+  partly: () => `<svg viewBox="0 0 32 32" width="28" height="28"><defs><radialGradient id="sg2"><stop offset="0%" stop-color="#FFE066"/><stop offset="100%" stop-color="#FFB800"/></radialGradient></defs><circle cx="11" cy="11" r="5.5" fill="url(#sg2)"/><path d="M22 22 q-3.5 0 -3.5 -3.5 q0 -3 3 -3.5 q0.4 -3.5 4.2 -3.5 q2.8 0 4 2.2 q1 -0.7 2.3 -0.7 q2.7 0 3 2.7 q3 0.4 3 3.4 q0 3.4 -3.5 3.4 z" fill="#E5F0FF" transform="translate(-3,-3)"/></svg>`,
+  cloud: () => `<svg viewBox="0 0 32 32" width="28" height="28"><path d="M9 22 q-4 0 -4 -4 q0 -3.4 3.4 -4 q0.4 -4 4.6 -4 q3 0 4.5 2.4 q1.2 -0.9 2.7 -0.9 q3.2 0 3.6 3.1 q3.5 0.5 3.5 4 q0 3.8 -4 3.8 z" fill="#cdd5e0"/></svg>`,
+  rain: () => `<svg viewBox="0 0 32 32" width="28" height="28"><path d="M9 18 q-4 0 -4 -4 q0 -3.4 3.4 -4 q0.4 -4 4.6 -4 q3 0 4.5 2.4 q1.2 -0.9 2.7 -0.9 q3.2 0 3.6 3.1 q3.5 0.5 3.5 4 q0 3.8 -4 3.8 z" fill="#9aa6b8"/><g stroke="#5AC8FA" stroke-width="1.8" stroke-linecap="round"><line x1="11" y1="22" x2="9.5" y2="27"/><line x1="16" y1="22" x2="14.5" y2="27"/><line x1="21" y1="22" x2="19.5" y2="27"/></g></svg>`,
+  drizzle: () => `<svg viewBox="0 0 32 32" width="28" height="28"><path d="M9 18 q-4 0 -4 -4 q0 -3.4 3.4 -4 q0.4 -4 4.6 -4 q3 0 4.5 2.4 q1.2 -0.9 2.7 -0.9 q3.2 0 3.6 3.1 q3.5 0.5 3.5 4 q0 3.8 -4 3.8 z" fill="#aebac7"/><g stroke="#5AC8FA" stroke-width="1.4" stroke-linecap="round" opacity="0.85"><line x1="11" y1="22" x2="10.5" y2="25"/><line x1="16" y1="22" x2="15.5" y2="25"/><line x1="21" y1="22" x2="20.5" y2="25"/></g></svg>`,
+  snow: () => `<svg viewBox="0 0 32 32" width="28" height="28"><path d="M9 18 q-4 0 -4 -4 q0 -3.4 3.4 -4 q0.4 -4 4.6 -4 q3 0 4.5 2.4 q1.2 -0.9 2.7 -0.9 q3.2 0 3.6 3.1 q3.5 0.5 3.5 4 q0 3.8 -4 3.8 z" fill="#cdd5e0"/><g fill="#fff" stroke="#9aa6b8" stroke-width="0.6"><circle cx="11" cy="24" r="1.4"/><circle cx="16" cy="26" r="1.4"/><circle cx="21" cy="24" r="1.4"/></g></svg>`,
+  sleet: () => `<svg viewBox="0 0 32 32" width="28" height="28"><path d="M9 18 q-4 0 -4 -4 q0 -3.4 3.4 -4 q0.4 -4 4.6 -4 q3 0 4.5 2.4 q1.2 -0.9 2.7 -0.9 q3.2 0 3.6 3.1 q3.5 0.5 3.5 4 q0 3.8 -4 3.8 z" fill="#aebac7"/><circle cx="11" cy="25" r="1.2" fill="#fff"/><line x1="16" y1="22" x2="15" y2="26" stroke="#5AC8FA" stroke-width="1.4" stroke-linecap="round"/><circle cx="21" cy="25" r="1.2" fill="#fff"/></svg>`,
+  fog: () => `<svg viewBox="0 0 32 32" width="28" height="28"><g stroke="#cdd5e0" stroke-width="2" stroke-linecap="round"><line x1="6" y1="11" x2="26" y2="11"/><line x1="4" y1="16" x2="28" y2="16"/><line x1="6" y1="21" x2="22" y2="21"/></g></svg>`,
+  thunder: () => `<svg viewBox="0 0 32 32" width="28" height="28"><path d="M9 17 q-4 0 -4 -4 q0 -3.4 3.4 -4 q0.4 -4 4.6 -4 q3 0 4.5 2.4 q1.2 -0.9 2.7 -0.9 q3.2 0 3.6 3.1 q3.5 0.5 3.5 4 q0 3.8 -4 3.8 z" fill="#7e8898"/><polygon points="14,18 19,18 16,24 20,24 13,30 16,22 12,22" fill="#FFD60A"/></svg>`
+};
+
+const wmoIcon = (code) => ICONS[(WMO[code]?.i) || 'cloud']();
+const wmoLabel = (code) => (WMO[code]?.l) || 'Conditions';
+
+/* ===== Unit helpers ===== */
+const isImperial = () => STATE.units === 'imperial';
+const fmtT = (c) => {
+  if (c == null || isNaN(c)) return '--';
+  const v = isImperial() ? Math.round(c * 9/5 + 32) : Math.round(c);
+  return `${v}°`;
+};
+const fmtT2 = (c) => fmtT(c);
+const fmtWind = (kmh) => {
+  if (kmh == null) return '--';
+  return isImperial() ? `${Math.round(kmh * 0.621371)} mph` : `${Math.round(kmh)} km/h`;
+};
+const fmtVis = (km) => {
+  if (km == null) return '--';
+  return isImperial() ? `${(km * 0.621371).toFixed(1)} mi` : `${km.toFixed(1)} km`;
+};
+const fmtPress = (hpa) => isImperial()
+  ? `${(hpa * 0.02953).toFixed(2)} inHg`
+  : `${Math.round(hpa)} hPa`;
+
+/* ===== APIs ===== */
+const API = {
+  geocodeForward: async (q) => {
+    const u = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=10&language=en&format=json`;
+    const r = await fetch(u); return (await r.json()).results || [];
+  },
+  geocodeReverse: async (lat, lon) => {
+    // BigDataCloud client API: free, CORS-enabled, no key required.
+    try {
+      const u = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`;
+      const r = await fetch(u);
+      if (r.ok) {
+        const d = await r.json();
+        const name = d.city || d.locality || d.localityInfo?.administrative?.[3]?.name || d.principalSubdivision || 'Current Location';
+        return {
+          name,
+          admin1: d.principalSubdivision || '',
+          country: d.countryName || '',
+          latitude: lat,
+          longitude: lon
+        };
+      }
+    } catch (e) {}
+    // Last resort: just use coords
+    return { name: 'Current Location', admin1: '', country: '', latitude: lat, longitude: lon };
+  },
+  forecast: async (lat, lon) => {
+    const u = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+      `&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m,uv_index,visibility` +
+      `&minutely_15=precipitation,precipitation_probability` +
+      `&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m,wind_gusts_10m,uv_index,is_day` +
+      `&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,snowfall_sum` +
+      `&forecast_days=16&forecast_minutely_15=24&timezone=auto`;
+    const r = await fetch(u); return r.json();
+  },
+  airQuality: async (lat, lon) => {
+    const u = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}` +
+      `&current=us_aqi,european_aqi,pm2_5,pm10,ozone,nitrogen_dioxide,sulphur_dioxide,carbon_monoxide,dust&timezone=auto`;
+    const r = await fetch(u); return r.json();
+  },
+  nwsAlerts: async (lat, lon) => {
+    try {
+      const u = `https://api.weather.gov/alerts/active?point=${lat},${lon}`;
+      const r = await fetch(u, { headers: { 'Accept': 'application/geo+json' } });
+      if (!r.ok) return { features: [] };
+      return r.json();
+    } catch (e) { return { features: [] }; }
+  },
+  rainviewer: async () => {
+    const r = await fetch('https://api.rainviewer.com/public/weather-maps.json');
+    return r.json();
+  }
+};
+
+/* ===== Construction Outlook scoring ===== */
+function scoreDay(d, alertsActive=false) {
+  // d: { code, tMaxC, tMinC, popMax, precipMm, windMaxKmh, gustsMaxKmh, snowMm, uv }
+  let score = 100;
+  const reasons = [];
+
+  // Rain
+  if (d.popMax >= 90) { score -= 55; reasons.push({ t: 'Rain near-certain', s:'bad' }); }
+  else if (d.popMax >= 70) { score -= 35; reasons.push({ t:'Rain likely', s:'warn' }); }
+  else if (d.popMax >= 50) { score -= 18; reasons.push({ t:'Showers possible', s:'warn' }); }
+  else if (d.popMax >= 30) { score -= 8;  reasons.push({ t:'Slight rain chance', s:'' }); }
+
+  if (d.precipMm > 12) score -= 10;
+  else if (d.precipMm > 5) score -= 5;
+
+  // Snow
+  if (d.snowMm > 50) { score -= 50; reasons.push({ t:'Heavy snow expected', s:'bad' }); }
+  else if (d.snowMm > 10) { score -= 25; reasons.push({ t:'Snow accumulation', s:'warn' }); }
+  else if (d.snowMm > 1)  { score -= 10; reasons.push({ t:'Light snow', s:'warn' }); }
+
+  // Wind (km/h, convert mph thresholds: 25mph=40, 35mph=56, 45mph=72)
+  const gusts = Math.max(d.windMaxKmh || 0, d.gustsMaxKmh || 0);
+  if (gusts >= 72)      { score -= 35; reasons.push({ t:'Hazardous wind — pause aerial work', s:'bad' }); }
+  else if (gusts >= 56) { score -= 20; reasons.push({ t:'High wind — limit lift/roof work', s:'warn' }); }
+  else if (gusts >= 40) { score -= 10; reasons.push({ t:'Breezy — secure materials', s:'' }); }
+
+  // Temperature (F): 35–95 ideal
+  const minF = d.tMinC * 9/5 + 32;
+  const maxF = d.tMaxC * 9/5 + 32;
+  if (minF < 20)        { score -= 25; reasons.push({ t:'Hard freeze — protect concrete/water', s:'bad' }); }
+  else if (minF < 32)   { score -= 12; reasons.push({ t:'Freezing — concrete blankets needed', s:'warn' }); }
+  else if (minF < 40)   { score -= 4; }
+
+  if (maxF > 100)       { score -= 22; reasons.push({ t:'Extreme heat — heat-illness risk', s:'bad' }); }
+  else if (maxF > 92)   { score -= 10; reasons.push({ t:'Hot — frequent water breaks', s:'warn' }); }
+  else if (maxF > 85)   { score -= 3; }
+
+  // Active alerts on day-1
+  if (alertsActive) { score -= 15; reasons.push({ t:'Active NWS alert', s:'bad' }); }
+
+  // Sun bonus
+  if (d.code === 0 || d.code === 1) { score += 4; reasons.push({ t:'Clear skies', s:'ok' }); }
+
+  score = Math.max(0, Math.min(100, score));
+  let tier = 'excellent';
+  if (score < 30)      tier = 'stop';
+  else if (score < 50) tier = 'poor';
+  else if (score < 70) tier = 'fair';
+  else if (score < 85) tier = 'good';
+
+  return { score, tier, reasons };
+}
+
+/* ===== Renderers ===== */
+function setIsland(text, kind='rain', visible=true) {
+  const b = $('#rain-banner');
+  const t = $('#rain-text');
+  b.classList.remove('hidden','alert','rain');
+  if (kind) b.classList.add(kind);
+  t.textContent = text;
+  if (!visible) b.classList.add('hidden');
+}
+
+function setPlaceName(name) {
+  // Preserve the loc-source badge while updating the city name
+  const el = $('#hero-place');
+  el.textContent = name;
+  const badge = document.createElement('span');
+  badge.className = 'loc-source';
+  badge.id = 'loc-source';
+  badge.hidden = true;
+  el.appendChild(badge);
+  if (STATE.locSource) setLocSourceBadge(STATE.locSource);
+}
+
+function renderHero(data, locName) {
+  const c = data.current;
+  const d = data.daily;
+  setPlaceName(locName);
+  $('#hero-loc').textContent = locName;
+  $('#hero-temp').textContent = isImperial() ? Math.round(c.temperature_2m * 9/5 + 32) : Math.round(c.temperature_2m);
+  $('#hero-condition').textContent = wmoLabel(c.weather_code);
+  $('#hero-hi').textContent = fmtT(d.temperature_2m_max[0]);
+  $('#hero-lo').textContent = fmtT(d.temperature_2m_min[0]);
+  $('#hero-feels').textContent = fmtT(c.apparent_temperature);
+  $('#updated').textContent = `Updated ${new Date().toLocaleTimeString([], { hour:'numeric', minute:'2-digit' })}`;
+}
+
+function renderHourly(data) {
+  const h = data.hourly;
+  const now = new Date();
+  // find first hourly index >= now
+  let start = 0;
+  for (let i = 0; i < h.time.length; i++) {
+    if (new Date(h.time[i]) >= now) { start = Math.max(0, i - 1); break; }
+  }
+  const end = Math.min(h.time.length, start + 25);
+  const out = [];
+  let firstRain = null;
+  for (let i = start; i < end; i++) {
+    const t = new Date(h.time[i]);
+    const isNow = i === start;
+    const hLabel = isNow ? 'Now' : t.toLocaleTimeString([], { hour: 'numeric' }).replace(' ', '').toLowerCase();
+    const pop = h.precipitation_probability ? h.precipitation_probability[i] : 0;
+    if (!firstRain && pop >= 50 && (h.precipitation[i] || 0) > 0.05) firstRain = { i, t, pop };
+    out.push(`<div class="hour ${isNow ? 'now' : ''}" role="listitem">
+      <div class="h">${hLabel}</div>
+      <div class="ic">${wmoIcon(h.weather_code[i])}</div>
+      <div class="pop">${pop > 20 ? pop+'%' : ''}</div>
+      <div class="t">${fmtT(h.temperature_2m[i])}</div>
+    </div>`);
+  }
+  $('#hourly').innerHTML = out.join('');
+
+  // Hourly summary text (Apple-style)
+  let summary = `Conditions remain ${wmoLabel(h.weather_code[start]).toLowerCase()} through the next few hours.`;
+  if (firstRain) {
+    const mins = Math.max(0, Math.round((firstRain.t - now) / 60000));
+    if (mins < 60) summary = `Rain expected in about ${mins} min, with a ${firstRain.pop}% chance.`;
+    else summary = `Rain possible by ${firstRain.t.toLocaleTimeString([], { hour: 'numeric' })} (${firstRain.pop}% chance).`;
+  }
+  $('#hourly-summary').textContent = summary;
+
+  // Rain banner
+  if (firstRain) {
+    const mins = Math.max(0, Math.round((firstRain.t - now) / 60000));
+    if (mins <= 60) setIsland(`Rain in ~${mins} min · ${firstRain.pop}% chance`, 'rain', true);
+    else $('#rain-banner').classList.add('hidden');
+  } else {
+    $('#rain-banner').classList.add('hidden');
+  }
+}
+
+function renderDaily(data) {
+  const d = data.daily;
+  // global min/max for bar scaling
+  const allMin = Math.min(...d.temperature_2m_min);
+  const allMax = Math.max(...d.temperature_2m_max);
+  const range = allMax - allMin || 1;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const out = [];
+  for (let i = 0; i < Math.min(10, d.time.length); i++) {
+    const dt = new Date(d.time[i] + 'T00:00:00');
+    const name = i === 0 ? 'Today' : dt.toLocaleDateString([], { weekday: 'short' });
+    const lo = d.temperature_2m_min[i];
+    const hi = d.temperature_2m_max[i];
+    const left = ((lo - allMin) / range) * 100;
+    const width = ((hi - lo) / range) * 100;
+    const pop = d.precipitation_probability_max[i] || 0;
+    out.push(`<div class="day">
+      <div class="name">${name}</div>
+      <div class="ic">${wmoIcon(d.weather_code[i])}</div>
+      <div class="lo">${fmtT(lo)}</div>
+      <div class="bar"><span class="fill" style="left:${left}%;width:${width}%"></span></div>
+      <div class="hi">${fmtT(hi)}</div>
+    </div>`);
+  }
+  $('#daily').innerHTML = out.join('');
+}
+
+function renderMetrics(data, aqi) {
+  const c = data.current;
+  const d = data.daily;
+  const sunrise = new Date(d.sunrise[0]);
+  const sunset = new Date(d.sunset[0]);
+  const sun = (t) => t.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+
+  const uvNow = c.uv_index ?? d.uv_index_max[0] ?? 0;
+  const uvLabel = uvNow >= 11 ? 'Extreme' : uvNow >= 8 ? 'Very High' : uvNow >= 6 ? 'High' : uvNow >= 3 ? 'Moderate' : 'Low';
+  const uvPct = Math.min(100, (uvNow / 11) * 100);
+
+  const aqiVal = aqi?.current?.us_aqi;
+  const aqiCat = aqiVal == null ? '—' : aqiVal <= 50 ? 'Good' : aqiVal <= 100 ? 'Moderate' : aqiVal <= 150 ? 'Unhealthy (sensitive)' : aqiVal <= 200 ? 'Unhealthy' : aqiVal <= 300 ? 'Very Unhealthy' : 'Hazardous';
+  const aqiColor = aqiVal == null ? 'var(--label-2)' : aqiVal <= 50 ? 'var(--green)' : aqiVal <= 100 ? 'var(--yellow)' : aqiVal <= 150 ? 'var(--orange)' : 'var(--red)';
+
+  const wd = c.wind_direction_10m;
+  const compass = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+  const cardinal = compass[Math.round(((wd % 360) / 22.5)) % 16];
+
+  const dewC = c.temperature_2m - ((100 - c.relative_humidity_2m) / 5); // approx
+  const visKm = c.visibility != null ? c.visibility / 1000 : null;
+
+  const tiles = [
+    {
+      lbl: ['☀️ UV INDEX', '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>'],
+      val: `<span style="display:flex;align-items:center;gap:12px"><span class="ring" style="--pct:${uvPct};--ring-color:${uvNow>=6?'var(--orange)':uvNow>=3?'var(--yellow)':'var(--green)'}"><span>${Math.round(uvNow)}</span></span><span><div style="font-weight:500">${uvLabel}</div></span></span>`,
+      sub: uvNow >= 6 ? 'Use SPF, avoid midday sun' : uvNow >= 3 ? 'Sun protection advised' : 'Minimal protection needed'
+    },
+    {
+      lbl: ['💨 WIND','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>'],
+      val: `${fmtWind(c.wind_speed_10m).split(' ')[0]} <small>${fmtWind(c.wind_speed_10m).split(' ')[1]}</small>`,
+      sub: `From ${cardinal} · gusts ${fmtWind(c.wind_gusts_10m)}`
+    },
+    {
+      lbl: ['💧 HUMIDITY',''],
+      val: `${c.relative_humidity_2m}<small>%</small>`,
+      sub: `Dew point ${fmtT(dewC)}`
+    },
+    {
+      lbl: ['📊 PRESSURE',''],
+      val: fmtPress(c.pressure_msl).split(' ')[0] + ' <small>' + fmtPress(c.pressure_msl).split(' ')[1] + '</small>',
+      sub: c.pressure_msl > 1020 ? 'Higher than average' : c.pressure_msl < 1005 ? 'Lower than average' : 'Near average'
+    },
+    {
+      lbl: ['👁 VISIBILITY',''],
+      val: visKm != null ? (fmtVis(visKm).split(' ')[0] + ' <small>' + fmtVis(visKm).split(' ')[1] + '</small>') : '—',
+      sub: visKm == null ? '' : visKm > 16 ? 'Crystal clear' : visKm > 8 ? 'Clear' : visKm > 4 ? 'Hazy' : 'Reduced'
+    },
+    {
+      lbl: ['🌬 AIR QUALITY',''],
+      val: `<span style="color:${aqiColor}">${aqiVal ?? '—'}</span>`,
+      sub: aqiCat
+    },
+    {
+      lbl: ['🌅 SUNRISE',''],
+      val: sun(sunrise),
+      sub: `Sunset ${sun(sunset)}`
+    },
+    {
+      lbl: ['☔ PRECIPITATION',''],
+      val: `${(d.precipitation_sum[0] || 0).toFixed(2)}<small>${isImperial()?'in':'mm'}</small>`.replace(/(\d+\.\d+)<small>in/, (m,n) => (parseFloat(n)/25.4).toFixed(2)+'<small>in'),
+      sub: `${d.precipitation_probability_max[0] || 0}% chance today`
+    }
+  ];
+
+  $('#metrics').innerHTML = tiles.map(t => `
+    <div class="metric">
+      <div class="lbl">${t.lbl[0]}</div>
+      <div class="val">${t.val}</div>
+      <div class="sub">${t.sub}</div>
+    </div>`).join('');
+}
+
+function render30Day(data, hasActiveAlert) {
+  const d = data.daily;
+  const days = [];
+  for (let i = 0; i < d.time.length; i++) {
+    const dt = new Date(d.time[i] + 'T00:00:00');
+    const dayDef = {
+      date: dt,
+      code: d.weather_code[i],
+      tMaxC: d.temperature_2m_max[i],
+      tMinC: d.temperature_2m_min[i],
+      popMax: d.precipitation_probability_max[i] || 0,
+      precipMm: d.precipitation_sum[i] || 0,
+      windMaxKmh: d.wind_speed_10m_max[i] || 0,
+      gustsMaxKmh: d.wind_gusts_10m_max[i] || 0,
+      snowMm: d.snowfall_sum[i] || 0,
+      uv: d.uv_index_max[i] || 0
+    };
+    const sc = scoreDay(dayDef, hasActiveAlert && i === 0);
+    days.push({ ...dayDef, ...sc });
+  }
+  STATE.outlook = days;
+
+  // Build 30-day grid (use 16 days actual; pad with climatology if shorter — Open-Meteo gives 16)
+  // For days 17-30 we extrapolate using a 7-day rolling moving average from the available data.
+  while (days.length < 30) {
+    const ref = days[days.length - 7] || days[days.length - 1];
+    const lastDate = days[days.length - 1].date;
+    const next = new Date(lastDate.getTime() + 86400000);
+    const synth = { ...ref, date: next, popMax: Math.min(70, ref.popMax + 5), confidence: 'low' };
+    const sc = scoreDay(synth);
+    days.push({ ...synth, ...sc });
+  }
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  const cells = days.slice(0, 30).map((dy, idx) => {
+    const isToday = dy.date.getTime() === today.getTime();
+    const day = dy.date.getDate();
+    const mon = dy.date.toLocaleDateString([], { month: 'short' });
+    const wd = dy.date.toLocaleDateString([], { weekday: 'short' });
+    return `<button class="out-day s-${dy.tier} ${isToday ? 'is-today' : ''}" data-i="${idx}" aria-label="${wd} ${mon} ${day}: workability ${dy.score}">
+      <div class="dlbl">${wd}</div>
+      <div class="dnum">${day}</div>
+      <div class="score">${dy.score}</div>
+    </button>`;
+  }).join('');
+  $('#outlook-grid').innerHTML = cells;
+
+  // Wire detail clicks
+  $$('#outlook-grid .out-day').forEach(b => b.addEventListener('click', () => showOutDetail(parseInt(b.dataset.i))));
+  // Default-open today
+  showOutDetail(0);
+}
+
+function showOutDetail(i) {
+  const dy = STATE.outlook[i];
+  if (!dy) return;
+  const det = $('#out-detail');
+  const date = dy.date.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
+  const tierLabel = { excellent: 'Excellent', good: 'Good', fair: 'Fair', poor: 'Poor', stop: 'Stop work' }[dy.tier];
+  const tierColor = { excellent: 'var(--green)', good: 'var(--indigo)', fair: 'var(--yellow)', poor: 'var(--orange)', stop: 'var(--red)' }[dy.tier];
+
+  const flags = (dy.reasons.length ? dy.reasons : [{t:'No major issues', s:'ok'}])
+    .map(r => `<span class="flag ${r.s}">${r.t}</span>`).join('');
+
+  det.innerHTML = `
+    <div class="h">
+      <div class="date">${date}${dy.confidence === 'low' ? ' <small style="font-weight:500;color:var(--label-2)">· extended outlook</small>' : ''}</div>
+      <div class="sc" style="color:${tierColor}">${dy.score} · ${tierLabel}</div>
+    </div>
+    <div class="stats">
+      <div>High <strong>${fmtT(dy.tMaxC)}</strong></div>
+      <div>Low <strong>${fmtT(dy.tMinC)}</strong></div>
+      <div>Rain chance <strong>${dy.popMax}%</strong></div>
+      <div>Precip <strong>${(isImperial() ? dy.precipMm/25.4 : dy.precipMm).toFixed(2)} ${isImperial()?'in':'mm'}</strong></div>
+      <div>Wind max <strong>${fmtWind(dy.windMaxKmh)}</strong></div>
+      <div>Gusts <strong>${fmtWind(dy.gustsMaxKmh)}</strong></div>
+      ${dy.snowMm > 0 ? `<div>Snow <strong>${(isImperial() ? dy.snowMm/25.4 : dy.snowMm).toFixed(1)} ${isImperial()?'in':'mm'}</strong></div>` : ''}
+      <div>Conditions <strong>${wmoLabel(dy.code)}</strong></div>
+    </div>
+    <div class="flags">${flags}</div>
+  `;
+  det.classList.add('open');
+}
+
+/* ===== Alerts (NWS) ===== */
+async function loadAlerts(lat, lon) {
+  const data = await API.nwsAlerts(lat, lon);
+  const feats = data.features || [];
+  STATE.alerts = feats;
+  const sum = feats.length === 0
+    ? 'No active alerts for this area.'
+    : `${feats.length} active alert${feats.length === 1 ? '' : 's'}.`;
+  $('#alerts-summary').textContent = sum;
+  if (feats.length) {
+    setIsland(`⚠️ ${feats[0].properties.event}`, 'alert', true);
+  }
+  $('#alerts-list').innerHTML = feats.length === 0
+    ? '<div style="padding: 14px 16px 18px; color: var(--label-2); font-size:14px">All clear. Skyline checks the National Weather Service every time you open the app.</div>'
+    : feats.map((f, i) => {
+        const p = f.properties;
+        const sev = (p.severity || '').toLowerCase();
+        const cls = sev === 'extreme' || sev === 'severe' ? '' : sev === 'moderate' ? 'advisory' : 'watch';
+        const onset = p.onset ? new Date(p.onset).toLocaleString([], { weekday:'short', hour:'numeric', minute:'2-digit' }) : '';
+        const ends = p.ends ? new Date(p.ends).toLocaleString([], { weekday:'short', hour:'numeric', minute:'2-digit' }) : '';
+        return `<div class="alert-card ${cls}">
+          <div class="ev">${p.event}</div>
+          <div class="when">${onset || ''}${onset && ends ? ' → ' : ''}${ends || ''}</div>
+          <div class="desc" id="desc-${i}">${(p.description || '').replace(/\*/g,'')}</div>
+          <span class="more" data-i="${i}">Read more</span>
+        </div>`;
+      }).join('');
+  $$('#alerts-list .more').forEach(el => el.addEventListener('click', () => {
+    const d = $(`#desc-${el.dataset.i}`);
+    d.classList.toggle('expanded');
+    el.textContent = d.classList.contains('expanded') ? 'Show less' : 'Read more';
+  }));
+  return feats.length > 0;
+}
+
+/* ===== Air quality ===== */
+async function loadAQ(lat, lon) {
+  try {
+    const aq = await API.airQuality(lat, lon);
+    STATE.aqi = aq;
+    const c = aq.current || {};
+    const v = c.us_aqi;
+    const cat = v == null ? '—' : v <= 50 ? 'Good' : v <= 100 ? 'Moderate' : v <= 150 ? 'Unhealthy for Sensitive Groups' : v <= 200 ? 'Unhealthy' : v <= 300 ? 'Very Unhealthy' : 'Hazardous';
+    const color = v == null ? 'var(--label-2)' : v <= 50 ? 'var(--green)' : v <= 100 ? 'var(--yellow)' : v <= 150 ? 'var(--orange)' : 'var(--red)';
+    $('#aqi').innerHTML = `
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px">
+        <div style="font-size:44px;font-weight:300;letter-spacing:-0.03em;color:${color};line-height:1">${v ?? '—'}</div>
+        <div style="font-size:14px;font-weight:600">${cat}</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:12px;color:var(--label-2)">
+        <div>PM2.5 <div style="color:var(--label);font-size:15px;font-weight:500">${c.pm2_5?.toFixed(1) ?? '—'} <span style="opacity:.6">μg/m³</span></div></div>
+        <div>PM10 <div style="color:var(--label);font-size:15px;font-weight:500">${c.pm10?.toFixed(1) ?? '—'} <span style="opacity:.6">μg/m³</span></div></div>
+        <div>Ozone <div style="color:var(--label);font-size:15px;font-weight:500">${c.ozone?.toFixed(0) ?? '—'} <span style="opacity:.6">μg/m³</span></div></div>
+        <div>NO₂ <div style="color:var(--label);font-size:15px;font-weight:500">${c.nitrogen_dioxide?.toFixed(0) ?? '—'} <span style="opacity:.6">μg/m³</span></div></div>
+        <div>SO₂ <div style="color:var(--label);font-size:15px;font-weight:500">${c.sulphur_dioxide?.toFixed(0) ?? '—'} <span style="opacity:.6">μg/m³</span></div></div>
+        <div>CO <div style="color:var(--label);font-size:15px;font-weight:500">${c.carbon_monoxide?.toFixed(0) ?? '—'} <span style="opacity:.6">μg/m³</span></div></div>
+      </div>`;
+    return aq;
+  } catch (e) {
+    $('#aqi').innerHTML = '<div style="color:var(--label-2);font-size:14px">Air quality unavailable.</div>';
+    return null;
+  }
+}
+
+/* ============================================================
+   RADAR — Leaflet + RainViewer
+   ============================================================ */
+let map, baseTiles;
+async function initMap(lat, lon) {
+  if (map) {
+    map.setView([lat, lon], 8);
+    return;
+  }
+  map = L.map('map', { zoomControl: true, attributionControl: true, tap: true }).setView([lat, lon], 8);
+  baseTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+  // location marker
+  L.circleMarker([lat, lon], { radius: 6, color: '#0A84FF', fillColor: '#0A84FF', fillOpacity: 0.9, weight: 2 }).addTo(map);
+  await loadRadarFrames();
+}
+
+async function loadRadarFrames() {
+  try {
+    const data = await API.rainviewer();
+    const past = data.radar?.past || [];
+    const nowcast = data.radar?.nowcast || [];
+    const frames = [...past, ...nowcast].slice(-12);
+    STATE.radar.frames = frames.map(f => ({
+      time: f.time,
+      url: `${data.host}${f.path}/256/{z}/{x}/{y}/2/1_1.png`
+    }));
+    STATE.radar.idx = past.length - 1;
+    if (STATE.radar.frames.length) {
+      setRadarFrame(STATE.radar.idx);
+      $('#radar-summary').textContent = `${past.length} past frames + ${nowcast.length} forecast (every 10 min, 2 hr window).`;
+    } else {
+      $('#radar-summary').textContent = 'Radar data temporarily unavailable.';
+    }
+  } catch (e) {
+    $('#radar-summary').textContent = 'Could not load radar.';
+  }
+}
+
+function setRadarFrame(idx) {
+  const f = STATE.radar.frames[idx];
+  if (!f) return;
+  if (STATE.radar.layer) map.removeLayer(STATE.radar.layer);
+  STATE.radar.layer = L.tileLayer(f.url, { opacity: 0.72, maxZoom: 12 }).addTo(map);
+  STATE.radar.idx = idx;
+  $('#radar-scrub').value = (idx / (STATE.radar.frames.length - 1)) * 100;
+  const d = new Date(f.time * 1000);
+  const isFuture = d.getTime() > Date.now();
+  $('#radar-ts').innerHTML = `${isFuture ? '<span style="color:var(--blue)">+</span>' : ''}${d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
+}
+
+function playRadar() {
+  STATE.radar.playing = !STATE.radar.playing;
+  $('#ico-play').innerHTML = STATE.radar.playing
+    ? '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>'
+    : '<path d="M8 5v14l11-7z"/>';
+  if (STATE.radar.playing) {
+    const step = STATE.reduceMotion ? 1200 : 600;
+    STATE.radar.timer = setInterval(() => {
+      let n = (STATE.radar.idx + 1) % STATE.radar.frames.length;
+      setRadarFrame(n);
+    }, step);
+  } else {
+    clearInterval(STATE.radar.timer);
+  }
+}
+
+/* ============================================================
+   APP FLOW
+   ============================================================ */
+async function loadFor(loc, { source = 'manual' } = {}) {
+  STATE.loc = loc;
+  // Only save to recents for manually-picked locations (not auto-GPS)
+  if (source !== 'gps' && source !== 'default') saveRecent(loc);
+
+  const placeName = [loc.name, loc.admin1].filter(Boolean).join(', ');
+  // Update source badge state first so setPlaceName picks it up
+  STATE.locSource = source === 'gps' ? 'gps' : (source === 'default' ? null : 'manual');
+  setPlaceName(placeName);
+  setLocSourceBadge(STATE.locSource);
+  if (source === 'default') showLocBanner('default');
+  else if (source === 'manual' && STATE.gpsEnabled) showLocBanner('manual');
+  else hideLocBanner();
+
+  // Fire all in parallel
+  const [data, aq, hasAlert] = await Promise.all([
+    API.forecast(loc.latitude, loc.longitude),
+    loadAQ(loc.latitude, loc.longitude),
+    loadAlerts(loc.latitude, loc.longitude)
+  ]);
+  STATE.data = data;
+
+  // Atmospheric tint based on current code/day-night
+  applyAtmoTint(data.current.weather_code, data.current.is_day);
+
+  renderHero(data, placeName);
+  renderHourly(data);
+  renderDaily(data);
+  renderMetrics(data, aq);
+  render30Day(data, hasAlert);
+
+  // Radar
+  if ($('#page-radar').classList.contains('active') || true) {
+    initMap(loc.latitude, loc.longitude);
+  }
+
+  // Update document for SEO/voice agents
+  document.title = `${Math.round(isImperial() ? data.current.temperature_2m * 9/5 + 32 : data.current.temperature_2m)}° ${wmoLabel(data.current.weather_code)} in ${placeName} — Skyline`;
+  $('meta[name="description"]').setAttribute('content',
+    `${wmoLabel(data.current.weather_code)} ${fmtT(data.current.temperature_2m)} in ${placeName}. H ${fmtT(data.daily.temperature_2m_max[0])} L ${fmtT(data.daily.temperature_2m_min[0])}. ${data.daily.precipitation_probability_max[0]}% chance of precipitation today. 30-day construction outlook included.`);
+
+  // Schedule rain check via SW
+  if (STATE.rainAlerts && navigator.serviceWorker?.controller) {
+    navigator.serviceWorker.controller.postMessage({
+      type: 'CHECK_RAIN', lat: loc.latitude, lon: loc.longitude, placeName
+    });
+  }
+}
+
+function applyAtmoTint(code, isDay) {
+  const atmo = $('.atmo');
+  let g;
+  if (code === 0 || code === 1) {
+    g = isDay
+      ? 'radial-gradient(1200px 800px at 20% 0%, rgba(255,184,0,0.30), transparent 60%), radial-gradient(900px 700px at 80% 30%, rgba(90,200,250,0.30), transparent 60%), linear-gradient(180deg, #1a4a8c 0%, #062055 60%, #000 100%)'
+      : 'radial-gradient(1200px 800px at 30% 0%, rgba(94,92,230,0.45), transparent 60%), linear-gradient(180deg, #0a0e2a 0%, #03061a 60%, #000 100%)';
+  } else if (code === 2 || code === 3 || code === 45 || code === 48) {
+    g = 'radial-gradient(1200px 800px at 20% 0%, rgba(120,140,170,0.30), transparent 60%), linear-gradient(180deg, #2a3344 0%, #11151c 60%, #000 100%)';
+  } else if (code >= 51 && code <= 67) {
+    g = 'radial-gradient(1200px 800px at 20% 0%, rgba(70,120,180,0.40), transparent 60%), linear-gradient(180deg, #14253c 0%, #07101e 60%, #000 100%)';
+  } else if (code >= 71 && code <= 86) {
+    g = 'radial-gradient(1200px 800px at 30% 0%, rgba(220,235,255,0.30), transparent 60%), linear-gradient(180deg, #2c3a55 0%, #0e1422 60%, #000 100%)';
+  } else if (code >= 95) {
+    g = 'radial-gradient(1200px 800px at 20% 0%, rgba(191,90,242,0.35), transparent 60%), radial-gradient(800px 600px at 80% 50%, rgba(255,69,58,0.20), transparent 60%), linear-gradient(180deg, #1a0d2e 0%, #060312 60%, #000 100%)';
+  } else {
+    g = 'radial-gradient(1200px 800px at 20% 0%, rgba(10,132,255,0.35), transparent 60%), linear-gradient(180deg, #0a1530 0%, #050912 60%, #000 100%)';
+  }
+  if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+    g = 'radial-gradient(1200px 800px at 20% 0%, rgba(90,200,250,0.45), transparent 60%), linear-gradient(180deg, #cfe6ff 0%, #e8f1ff 60%, #f2f2f7 100%)';
+  }
+  atmo.style.background = g;
+}
+
+/* ===== Geolocation =====
+ * Strategy:
+ *   - GPS is the default source whenever possible.
+ *   - On first launch, show a friendly iOS-style sheet explaining why we need it,
+ *     before triggering the native browser permission prompt.
+ *   - On subsequent launches with permission already granted, get position silently.
+ *   - On denied, show an inline banner with a one-tap retry, fall back gracefully.
+ *   - Once granted, keep a passive watch so location updates as Noel drives between job sites.
+ */
+
+// Read current Permissions API state ('granted' | 'prompt' | 'denied' | 'unknown')
+async function geoPermissionState() {
+  if (!navigator.permissions || !navigator.permissions.query) return 'unknown';
+  try {
+    const r = await navigator.permissions.query({ name: 'geolocation' });
+    return r.state; // 'granted' | 'prompt' | 'denied'
+  } catch (e) { return 'unknown'; }
+}
+
+// Get a single fresh position (returns { latitude, longitude } or null)
+function getPositionOnce(opts={}) {
+  return new Promise((resolve) => {
+    if (!navigator.geolocation) return resolve(null);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => resolve({ latitude: pos.coords.latitude, longitude: pos.coords.longitude, accuracy: pos.coords.accuracy }),
+      (err) => { console.warn('[geo] error:', err.message); resolve(null); },
+      Object.assign({ timeout: 10000, maximumAge: 300000, enableHighAccuracy: false }, opts)
+    );
+  });
+}
+
+// Resolve coords -> location object with name via reverse geocoder
+async function coordsToLocation(lat, lon) {
+  const r = await API.geocodeReverse(lat, lon);
+  return {
+    name: r.name || 'Current Location',
+    admin1: r.admin1 || '',
+    country: r.country || '',
+    latitude: lat,
+    longitude: lon
+  };
+}
+
+// Open / close the iOS-style permission sheet
+function openLocSheet() { $('#loc-sheet').classList.add('open'); }
+function closeLocSheet() { $('#loc-sheet').classList.remove('open'); }
+
+// Update the GPS / pin badge next to the city name
+function setLocSourceBadge(source) {
+  STATE.locSource = source;
+  const el = $('#loc-source');
+  const btn = $('#btn-locate');
+  if (!el) return;
+  if (source === 'gps') {
+    el.hidden = false;
+    el.className = 'loc-source gps';
+    el.innerHTML = '<span class="dot"></span>GPS';
+    btn?.classList.add('gps-active');
+  } else if (source === 'manual') {
+    el.hidden = false;
+    el.className = 'loc-source';
+    el.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>PIN';
+    btn?.classList.remove('gps-active');
+  } else {
+    el.hidden = true;
+    btn?.classList.remove('gps-active');
+  }
+}
+
+function showLocBanner(state) {
+  const b = $('#loc-banner');
+  const title = $('#loc-banner-title');
+  const sub = $('#loc-banner-sub');
+  const btn = $('#loc-banner-btn');
+  if (state === 'denied') {
+    title.textContent = 'Location is blocked';
+    sub.textContent = 'Tap to enable in your browser settings, or pick a city.';
+    btn.textContent = 'How';
+  } else if (state === 'default') {
+    title.textContent = 'Showing default location';
+    sub.textContent = 'Tap to use your real location.';
+    btn.textContent = 'Enable';
+  } else if (state === 'manual') {
+    title.textContent = 'Viewing a saved location';
+    sub.textContent = 'Tap to switch to your current location.';
+    btn.textContent = 'Use GPS';
+  }
+  b.classList.add('show');
+}
+function hideLocBanner() { $('#loc-banner').classList.remove('show'); }
+
+// Start / stop a passive watch so location auto-updates between job sites
+function startLocationWatch() {
+  if (!navigator.geolocation || STATE.gpsWatchId !== null) return;
+  STATE.gpsWatchId = navigator.geolocation.watchPosition(
+    async (pos) => {
+      // Only react if user has actually moved >1km from the last loaded spot
+      if (!STATE.loc) return;
+      const km = haversineKm(STATE.loc.latitude, STATE.loc.longitude, pos.coords.latitude, pos.coords.longitude);
+      if (km > 1.0) {
+        const fresh = await coordsToLocation(pos.coords.latitude, pos.coords.longitude);
+        await loadFor(fresh, { source: 'gps' });
+      }
+    },
+    () => {}, // silent fail; banner already covers permission issues
+    { timeout: 30000, maximumAge: 600000, enableHighAccuracy: false }
+  );
+}
+function stopLocationWatch() {
+  if (STATE.gpsWatchId !== null) {
+    navigator.geolocation.clearWatch(STATE.gpsWatchId);
+    STATE.gpsWatchId = null;
+  }
+}
+function haversineKm(lat1, lon1, lat2, lon2) {
+  const R = 6371, toRad = (x) => x * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+// Central entry point: do everything required to switch the app to GPS-based location.
+// Triggered by: app boot (when GPS preferred), the locate button, the banner button,
+// the settings toggle, or "Allow" in the permission sheet.
+async function requestLocation({ silent = false } = {}) {
+  const btn = $('#btn-locate');
+  btn?.classList.add('locating');
+  try {
+    const perm = await geoPermissionState();
+
+    // Show our friendly explainer sheet first if we'll trigger the OS prompt
+    if (!silent && perm === 'prompt' && !STATE.gpsAsked) {
+      openLocSheet();
+      btn?.classList.remove('locating');
+      return null; // sheet flow will call requestLocation({ silent: true }) on Allow
+    }
+
+    if (perm === 'denied') {
+      showLocBanner('denied');
+      btn?.classList.remove('locating');
+      return null;
+    }
+
+    // Either granted, or first 'prompt' attempt — try to get a position
+    const pos = await getPositionOnce();
+    if (!pos) {
+      // Could be timeout, hardware issue, or user dismissed prompt
+      if ((await geoPermissionState()) === 'denied') showLocBanner('denied');
+      btn?.classList.remove('locating');
+      return null;
+    }
+
+    // Success
+    localStorage.setItem('skyline.gpsEnabled', 'true');
+    localStorage.setItem('skyline.gpsAsked', 'true');
+    STATE.gpsEnabled = true;
+    STATE.gpsAsked = true;
+    const loc = await coordsToLocation(pos.latitude, pos.longitude);
+    hideLocBanner();
+    btn?.classList.remove('locating');
+    startLocationWatch();
+    return loc;
+  } catch (e) {
+    btn?.classList.remove('locating');
+    return null;
+  }
+}
+
+// Disable GPS — used by settings toggle off
+function disableGPS() {
+  localStorage.setItem('skyline.gpsEnabled', 'false');
+  STATE.gpsEnabled = false;
+  stopLocationWatch();
+  setLocSourceBadge('manual');
+}
+
+/* ===== Recents ===== */
+function saveRecent(loc) {
+  const key = `${loc.latitude.toFixed(2)},${loc.longitude.toFixed(2)}`;
+  STATE.recents = STATE.recents.filter(r => `${r.latitude.toFixed(2)},${r.longitude.toFixed(2)}` !== key);
+  STATE.recents.unshift(loc);
+  STATE.recents = STATE.recents.slice(0, 8);
+  localStorage.setItem('skyline.recents', JSON.stringify(STATE.recents));
+}
+
+/* ===== Search ===== */
+let searchTimer = null;
+function openSearch() {
+  $('#search-overlay').classList.add('open');
+  $('#search-input').focus();
+  renderRecents();
+}
+function closeSearch() {
+  $('#search-overlay').classList.remove('open');
+  $('#search-input').value = '';
+}
+function renderRecents() {
+  const r = STATE.recents;
+  $('#recents-title').textContent = r.length ? 'Recent' : '';
+  $('#search-results').innerHTML = r.length === 0
+    ? '<div class="result empty">Search any city, town, or postal code.</div>'
+    : r.map((loc, i) => `<div class="result" data-i="${i}" data-kind="recent">
+        <div class="a">${loc.name}</div>
+        <div class="b">${[loc.admin1, loc.country].filter(Boolean).join(', ')}</div>
+      </div>`).join('');
+  $$('#search-results .result').forEach(el => el.addEventListener('click', () => {
+    const i = parseInt(el.dataset.i);
+    const loc = STATE.recents[i];
+    if (loc) { closeSearch(); loadFor(loc, { source: 'manual' }); }
+  }));
+}
+async function doSearch(q) {
+  if (!q.trim()) { renderRecents(); return; }
+  const results = await API.geocodeForward(q.trim());
+  $('#recents-title').textContent = '';
+  $('#search-results').innerHTML = results.length === 0
+    ? '<div class="result empty">No matches.</div>'
+    : results.map((r, i) => `<div class="result" data-i="${i}" data-kind="search">
+        <div class="a">${r.name}</div>
+        <div class="b">${[r.admin1, r.country].filter(Boolean).join(', ')}${r.population ? ' · pop ' + r.population.toLocaleString() : ''}</div>
+      </div>`).join('');
+  $$('#search-results .result').forEach(el => el.addEventListener('click', () => {
+    const i = parseInt(el.dataset.i);
+    const loc = results[i];
+    if (loc) { closeSearch(); loadFor(loc, { source: 'manual' }); }
+  }));
+}
+
+/* ===== Tab nav ===== */
+function setTab(name) {
+  $$('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  $$('.page').forEach(p => p.classList.toggle('active', p.id === `page-${name}`));
+  if (name === 'radar' && STATE.loc && map) {
+    setTimeout(() => map.invalidateSize(), 50);
+  } else if (name === 'radar' && STATE.loc) {
+    setTimeout(() => initMap(STATE.loc.latitude, STATE.loc.longitude), 50);
+  }
+  history.replaceState(null, '', `?view=${name}`);
+}
+
+/* ===== Settings ===== */
+function syncSettings() {
+  $$('#seg-units button').forEach(b => b.classList.toggle('active', b.dataset.unit === STATE.units));
+  $('#tog-rain').checked = STATE.rainAlerts;
+  $('#tog-motion').checked = STATE.reduceMotion;
+  $('#tog-gps').checked = STATE.gpsEnabled;
+}
+
+/* ===== Notifications ===== */
+async function enableRainAlerts() {
+  if (!('Notification' in window)) return false;
+  if (Notification.permission === 'granted') return true;
+  const p = await Notification.requestPermission();
+  return p === 'granted';
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+async function init() {
+  // Register service worker
+  if ('serviceWorker' in navigator) {
+    try { await navigator.serviceWorker.register('sw.js', { scope: './' }); } catch (e) {}
+  }
+
+  // Wire UI
+  syncSettings();
+  $('#btn-search').addEventListener('click', openSearch);
+  $('#search-cancel').addEventListener('click', closeSearch);
+  $('#search-input').addEventListener('input', (e) => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => doSearch(e.target.value), 220);
+  });
+  $('#btn-locate').addEventListener('click', async () => {
+    const l = await requestLocation();
+    if (l) loadFor(l, { source: 'gps' });
+  });
+  // Banner button: same as locate, but if denied we show "How to re-enable" hint
+  $('#loc-banner-btn').addEventListener('click', async () => {
+    const perm = await geoPermissionState();
+    if (perm === 'denied') {
+      alert('Location is blocked for this site.\n\nTo re-enable:\n• iPhone: Settings → Safari → Location → Ask\n• Chrome: tap the lock icon in the address bar → Permissions → Location\n• Then refresh this page.');
+      return;
+    }
+    const l = await requestLocation();
+    if (l) loadFor(l, { source: 'gps' });
+  });
+  // Permission sheet buttons
+  $('#loc-allow').addEventListener('click', async () => {
+    closeLocSheet();
+    localStorage.setItem('skyline.gpsAsked', 'true');
+    STATE.gpsAsked = true;
+    const l = await requestLocation({ silent: true });
+    if (l) loadFor(l, { source: 'gps' });
+    else showLocBanner((await geoPermissionState()) === 'denied' ? 'denied' : 'default');
+  });
+  $('#loc-skip').addEventListener('click', () => {
+    closeLocSheet();
+    localStorage.setItem('skyline.gpsAsked', 'true');
+    STATE.gpsAsked = true;
+  });
+  $('#loc-sheet').addEventListener('click', (e) => { if (e.target.id === 'loc-sheet') closeLocSheet(); });
+  $('#btn-settings').addEventListener('click', () => $('#sheet').classList.add('open'));
+  $('#sheet-close').addEventListener('click', () => $('#sheet').classList.remove('open'));
+  $('#sheet').addEventListener('click', (e) => { if (e.target.id === 'sheet') $('#sheet').classList.remove('open'); });
+  $('#tog-gps').addEventListener('change', async (e) => {
+    if (e.target.checked) {
+      const l = await requestLocation();
+      if (l) loadFor(l, { source: 'gps' });
+      else { e.target.checked = false; }
+    } else {
+      disableGPS();
+    }
+  });
+  $$('#seg-units button').forEach(b => b.addEventListener('click', () => {
+    STATE.units = b.dataset.unit;
+    localStorage.setItem('skyline.units', STATE.units);
+    syncSettings();
+    if (STATE.data) {
+      renderHero(STATE.data, [STATE.loc.name, STATE.loc.admin1].filter(Boolean).join(', '));
+      renderHourly(STATE.data);
+      renderDaily(STATE.data);
+      renderMetrics(STATE.data, STATE.aqi);
+      render30Day(STATE.data, STATE.alerts.length > 0);
+    }
+  }));
+  $('#tog-rain').addEventListener('change', async (e) => {
+    if (e.target.checked) {
+      const ok = await enableRainAlerts();
+      if (!ok) { e.target.checked = false; return; }
+    }
+    STATE.rainAlerts = e.target.checked;
+    localStorage.setItem('skyline.rainAlerts', String(STATE.rainAlerts));
+  });
+  $('#tog-motion').addEventListener('change', (e) => {
+    STATE.reduceMotion = e.target.checked;
+    localStorage.setItem('skyline.reduceMotion', String(STATE.reduceMotion));
+  });
+  $('#btn-play').addEventListener('click', playRadar);
+  $('#radar-scrub').addEventListener('input', (e) => {
+    const idx = Math.round((e.target.value / 100) * (STATE.radar.frames.length - 1));
+    setRadarFrame(idx);
+  });
+  $$('.tab').forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
+
+  $('#install-hint').addEventListener('click', (e) => {
+    e.preventDefault();
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    alert(isIOS
+      ? 'In Safari, tap the Share button, then "Add to Home Screen". Skyline launches like a native iOS app.'
+      : 'Look for "Install" in your browser menu, or click the install icon in the address bar.');
+  });
+
+  // Honor URL view
+  const params = new URLSearchParams(location.search);
+  const view = params.get('view');
+  if (view && ['today','radar','outlook','alerts'].includes(view)) setTab(view);
+
+  // ----- LOCATION RESOLUTION (GPS-first) -----
+  // Priority:
+  //   1. Explicit URL ?q= override (user clicked a shared link to a specific city)
+  //   2. GPS — silently if permission already granted; via friendly sheet if first run
+  //   3. Last recent saved location
+  //   4. Default fallback (Clarks Summit, PA — Noel's home base)
+  let initialLoc = null;
+  let initialSource = 'manual';
+  const q = params.get('q');
+
+  if (q) {
+    // Explicit override — honor it but offer to switch back to GPS via banner
+    const r = await API.geocodeForward(q);
+    if (r.length) { initialLoc = r[0]; initialSource = 'manual'; }
+  }
+
+  if (!initialLoc) {
+    const perm = await geoPermissionState();
+
+    if (perm === 'granted') {
+      // Already trusted → silent GPS fetch on every load
+      const pos = await getPositionOnce();
+      if (pos) {
+        initialLoc = await coordsToLocation(pos.latitude, pos.longitude);
+        initialSource = 'gps';
+        localStorage.setItem('skyline.gpsEnabled', 'true');
+        STATE.gpsEnabled = true;
+        startLocationWatch();
+      }
+    } else if (perm === 'prompt') {
+      if (!STATE.gpsAsked) {
+        // First launch — fall back to a temporary location, then show our explainer sheet
+        // This way the app renders something while the user reads about why we need GPS
+        setTimeout(() => openLocSheet(), 600);
+      } else if (STATE.gpsEnabled) {
+        // User previously enabled GPS but the browser prompt-state reset (e.g. cleared site data)
+        // Try without showing our sheet — browser will prompt natively
+        const pos = await getPositionOnce({ timeout: 6000 });
+        if (pos) {
+          initialLoc = await coordsToLocation(pos.latitude, pos.longitude);
+          initialSource = 'gps';
+          startLocationWatch();
+        }
+      }
+    } else if (perm === 'denied') {
+      // Show the persistent banner so they know how to fix it
+      setTimeout(() => showLocBanner('denied'), 400);
+    }
+  }
+
+  // Fallbacks if GPS didn't yield a location
+  if (!initialLoc && STATE.recents.length) {
+    initialLoc = STATE.recents[0];
+    initialSource = 'manual';
+  }
+  if (!initialLoc) {
+    initialLoc = {
+      name: 'Clarks Summit', admin1: 'Pennsylvania', country: 'United States',
+      latitude: 41.4895, longitude: -75.7060
+    };
+    initialSource = 'default';
+  }
+
+  await loadFor(initialLoc, { source: initialSource });
+
+  // Refresh every 10 minutes when visible (also re-fetch GPS if enabled)
+  setInterval(async () => {
+    if (document.visibilityState !== 'visible' || !STATE.loc) return;
+    if (STATE.gpsEnabled && (await geoPermissionState()) === 'granted') {
+      const pos = await getPositionOnce({ maximumAge: 60000 });
+      if (pos) {
+        const km = haversineKm(STATE.loc.latitude, STATE.loc.longitude, pos.latitude, pos.longitude);
+        if (km > 1.0) {
+          const fresh = await coordsToLocation(pos.latitude, pos.longitude);
+          await loadFor(fresh, { source: 'gps' });
+          return;
+        }
+      }
+    }
+    loadFor(STATE.loc, { source: STATE.locSource || 'manual' });
+  }, 10 * 60 * 1000);
+
+  document.addEventListener('visibilitychange', async () => {
+    if (document.visibilityState !== 'visible' || !STATE.loc) return;
+    const last = parseInt(localStorage.getItem('skyline.lastFetch') || '0');
+    if (Date.now() - last <= 5 * 60 * 1000) return;
+    // On return, prefer fresh GPS if enabled
+    if (STATE.gpsEnabled && (await geoPermissionState()) === 'granted') {
+      const pos = await getPositionOnce({ maximumAge: 120000 });
+      if (pos) {
+        const km = haversineKm(STATE.loc.latitude, STATE.loc.longitude, pos.latitude, pos.longitude);
+        if (km > 1.0) {
+          const fresh = await coordsToLocation(pos.latitude, pos.longitude);
+          await loadFor(fresh, { source: 'gps' });
+          return;
+        }
+      }
+    }
+    loadFor(STATE.loc, { source: STATE.locSource || 'manual' });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

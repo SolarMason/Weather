@@ -1,0 +1,64 @@
+{
+  "name": "Skyline — Weather & Construction Outlook",
+  "short_name": "Skyline",
+  "description": "Hyperlocal weather, animated radar, severe alerts, and a 30-day construction workability outlook. Built for builders, planners, and anyone who lives by the forecast.",
+  "id": "/skyline-weather/",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#007AFF",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["weather", "utilities", "productivity", "lifestyle"],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "icon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any maskable" },
+    { "src": "icon.svg", "type": "image/svg+xml", "sizes": "512x512", "purpose": "any" },
+    { "src": "icon.svg", "type": "image/svg+xml", "sizes": "192x192", "purpose": "any" },
+    { "src": "icon.svg", "type": "image/svg+xml", "sizes": "180x180", "purpose": "any" }
+  ],
+  "screenshots": [
+    {
+      "src": "icon.svg",
+      "sizes": "1170x2532",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "Skyline weather home view"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Radar",
+      "short_name": "Radar",
+      "description": "Open animated radar map",
+      "url": "./?view=radar",
+      "icons": [{ "src": "icon.svg", "sizes": "96x96", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "30-Day Outlook",
+      "short_name": "Outlook",
+      "description": "Construction workability outlook",
+      "url": "./?view=outlook",
+      "icons": [{ "src": "icon.svg", "sizes": "96x96", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Active Alerts",
+      "short_name": "Alerts",
+      "description": "Severe weather alerts",
+      "url": "./?view=alerts",
+      "icons": [{ "src": "icon.svg", "sizes": "96x96", "type": "image/svg+xml" }]
+    }
+  ],
+  "share_target": {
+    "action": "./",
+    "method": "GET",
+    "params": { "title": "title", "text": "text", "url": "url" }
+  },
+  "protocol_handlers": [
+    { "protocol": "web+skyline", "url": "./?q=%s" }
+  ]
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>Skyline — Page not found</title>
+  <meta name="robots" content="noindex"/>
+  <style>
+    :root { color-scheme: light dark; }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+      background: linear-gradient(180deg, #0a1530 0%, #050912 60%, #000 100%);
+      color: #f2f2f7;
+      display: grid; place-items: center; text-align: center;
+      padding: 24px;
+    }
+    @media (prefers-color-scheme: light) {
+      body { background: linear-gradient(180deg, #cfe6ff 0%, #e8f1ff 60%, #f2f2f7 100%); color: #1c1c1e; }
+    }
+    .wrap { max-width: 360px; }
+    h1 { font-size: 64px; font-weight: 700; letter-spacing: -0.04em; margin: 0 0 4px; }
+    p { font-size: 17px; line-height: 1.4; opacity: 0.8; margin: 0 0 24px; }
+    a {
+      display: inline-block; padding: 14px 28px;
+      background: #0A84FF; color: #fff;
+      font-size: 17px; font-weight: 600;
+      text-decoration: none; border-radius: 14px;
+    }
+  </style>
+  <script>
+    // If they tried a path that should be the app (e.g. /skyline/?view=radar), redirect to the app root with the same query
+    (function () {
+      var p = window.location.pathname;
+      var q = window.location.search;
+      // Only redirect if we look like we're inside a deploy subpath, not at the literal /404.html
+      if (p && p !== '/404.html' && !p.endsWith('/404.html')) {
+        // Strip trailing path back to the closest known deploy root and reload index
+        var redirect = p.replace(/[^\/]+$/, '') + (q || '');
+        if (redirect !== p + q) {
+          window.location.replace(redirect);
+        }
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <h1>404</h1>
+    <p>That page isn't here. Skyline just shows weather — let's go back.</p>
+    <a href="./">Open Skyline</a>
+  </div>
+</body>
+</html>

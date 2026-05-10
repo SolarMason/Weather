@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+Disallow: /sw.js
+
+# AI crawlers — explicitly allow indexing for Siri/Google Assistant/ChatGPT/Claude visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Replace with your deployment URL before going live
+Sitemap: https://weather.nepa-pro.com/sitemap.xml
